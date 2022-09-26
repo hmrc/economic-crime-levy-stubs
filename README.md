@@ -4,7 +4,7 @@
 
 > `sbt run`
 
-The service runs on port `14001` by default.
+The service runs on port `14004` by default.
 
 ## Running dependencies
 
