@@ -16,17 +16,20 @@
 
 package uk.gov.hmrc.economiccrimelevystubs
 
-import play.api.mvc.Call
 import play.api.test.FakeRequest
 import uk.gov.hmrc.economiccrimelevystubs.base.ISpecBase
+import uk.gov.hmrc.economiccrimelevystubs.controllers.routes
 
-class HealthEndpointIntegrationSpec extends ISpecBase {
+class HelloWorldISpec extends ISpecBase {
 
-  "GET /ping/ping" should {
-    "respond with 200 status" in {
-      val result = callRoute(FakeRequest(Call("GET", "/ping/ping")))
+  s"GET /$contextPath/hello-world" should {
+    "return 200 OK with Hello World" in {
+      val result = callRoute(
+        FakeRequest(routes.HelloWorldController.helloWorld())
+      )
 
       status(result) shouldBe OK
+      contentAsString(result) shouldBe "Hello World"
     }
   }
 
