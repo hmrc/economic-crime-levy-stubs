@@ -14,19 +14,26 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.economiccrimelevystubs
+package uk.gov.hmrc.economiccrimelevystubs.controllers
 
-import play.api.mvc.Call
-import play.api.test.FakeRequest
-import uk.gov.hmrc.economiccrimelevystubs.base.ISpecBase
+import play.api.mvc.Result
+import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 
-class HealthEndpointIntegrationSpec extends ISpecBase {
+import scala.concurrent.Future
 
-  "GET /ping/ping" should {
-    "respond with 200 status" in {
-      val result = callRoute(FakeRequest(Call("GET", "/ping/ping")))
+class HelloWorldControllerSpec extends SpecBase {
 
-      status(result) shouldBe OK
+  val controller = new HelloWorldController(
+    cc
+  )
+
+  "helloWorld" should {
+    "return 200 OK with Hello World" in {
+      val result: Future[Result] =
+        controller.helloWorld()(fakeRequest)
+
+      status(result)          shouldBe OK
+      contentAsString(result) shouldBe "Hello World"
     }
   }
 
