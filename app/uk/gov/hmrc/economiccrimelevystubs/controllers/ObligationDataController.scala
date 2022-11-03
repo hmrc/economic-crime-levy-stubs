@@ -16,18 +16,22 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
+import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
+import uk.gov.hmrc.economiccrimelevystubs.models.EclStubData
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.{Inject, Singleton}
 
-@Singleton()
-class HelloWorldController @Inject() (
+@Singleton
+class ObligationDataController @Inject() (
   cc: ControllerComponents
 ) extends BackendController(cc) {
 
-  def helloWorld: Action[AnyContent] = Action { _ =>
-    Ok("Hello World")
+  def getObligationData(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
+    idNumber match {
+      case "fo-id" => Ok(Json.toJson(EclStubData.fulfilledObligationData))
+      case _       => Ok(Json.toJson(EclStubData.openObligationData))
+    }
   }
-
 }
