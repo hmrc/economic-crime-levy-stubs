@@ -17,11 +17,21 @@
 package uk.gov.hmrc.economiccrimelevystubs.models
 
 import uk.gov.hmrc.economiccrimelevystubs.models.des._
+import uk.gov.hmrc.time.TaxYear
 
-import java.time.{Duration, Instant}
+import java.time._
 import java.util.Date
 
 object EclStubData {
+
+  private def localDateToDate(localDate: LocalDate) = Date.from(
+    Instant.ofEpochSecond(localDate.toEpochSecond(LocalTime.parse("00:00:00"), ZoneOffset.UTC))
+  )
+
+  private val startOfPreviousTaxYear = localDateToDate(TaxYear.current.previous.starts)
+  private val endOfPreviousTaxYear   = localDateToDate(TaxYear.current.previous.finishes)
+  private val eclDueDate             = localDateToDate(MonthDay.of(9, 30).atYear(TaxYear.current.previous.finishes.getYear))
+
   val fulfilledObligationData: ObligationData = ObligationData(
     obligations = Seq(
       Obligation(
@@ -29,10 +39,10 @@ object EclStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Fulfilled,
-            inboundCorrespondenceFromDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
-            inboundCorrespondenceToDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
+            inboundCorrespondenceFromDate = startOfPreviousTaxYear,
+            inboundCorrespondenceToDate = endOfPreviousTaxYear,
             inboundCorrespondenceDateReceived = Some(Date.from(Instant.now().minus(Duration.ofDays(1)))),
-            inboundCorrespondenceDueDate = Date.from(Instant.now()),
+            inboundCorrespondenceDueDate = eclDueDate,
             periodKey = "#001"
           )
         )
@@ -47,10 +57,10 @@ object EclStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Open,
-            inboundCorrespondenceFromDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
-            inboundCorrespondenceToDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
+            inboundCorrespondenceFromDate = startOfPreviousTaxYear,
+            inboundCorrespondenceToDate = endOfPreviousTaxYear,
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = Date.from(dueDate),
+            inboundCorrespondenceDueDate = eclDueDate,
             periodKey = "#001"
           )
         )
