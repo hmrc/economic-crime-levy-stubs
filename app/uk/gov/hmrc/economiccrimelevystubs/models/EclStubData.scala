@@ -16,9 +16,9 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.models
 
-import uk.gov.hmrc.economiccrimelevystubs.models.des.{Fulfilled, Obligation, ObligationData, ObligationDetails, Open}
+import uk.gov.hmrc.economiccrimelevystubs.models.des._
 
-import java.time.Instant
+import java.time.{Duration, Instant}
 import java.util.Date
 
 object EclStubData {
@@ -31,8 +31,8 @@ object EclStubData {
             status = Fulfilled,
             inboundCorrespondenceFromDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
             inboundCorrespondenceToDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
-            inboundCorrespondenceDateReceived = Some(Date.from(Instant.parse("1920-02-29T00:00:00.00Z"))),
-            inboundCorrespondenceDueDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
+            inboundCorrespondenceDateReceived = Some(Date.from(Instant.now().minus(Duration.ofDays(1)))),
+            inboundCorrespondenceDueDate = Date.from(Instant.now()),
             periodKey = "#001"
           )
         )
@@ -40,7 +40,7 @@ object EclStubData {
     )
   )
 
-  val openObligationData: ObligationData = ObligationData(
+  def openObligationData(dueDate: Instant): ObligationData = ObligationData(
     obligations = Seq(
       Obligation(
         identification = None,
@@ -49,8 +49,8 @@ object EclStubData {
             status = Open,
             inboundCorrespondenceFromDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
             inboundCorrespondenceToDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
-            inboundCorrespondenceDateReceived = Some(Date.from(Instant.parse("1920-02-29T00:00:00.00Z"))),
-            inboundCorrespondenceDueDate = Date.from(Instant.parse("1920-02-29T00:00:00.00Z")),
+            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDueDate = Date.from(dueDate),
             periodKey = "#001"
           )
         )

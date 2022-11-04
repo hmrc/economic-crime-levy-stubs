@@ -21,6 +21,7 @@ import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.economiccrimelevystubs.models.EclStubData
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
+import java.time.{Duration, Instant}
 import javax.inject.{Inject, Singleton}
 
 @Singleton
@@ -29,9 +30,31 @@ class ObligationDataController @Inject() (
 ) extends BackendController(cc) {
 
   def getObligationData(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
-    idNumber match {
-      case "fo-id" => Ok(Json.toJson(EclStubData.fulfilledObligationData))
-      case _       => Ok(Json.toJson(EclStubData.openObligationData))
+    idNumber.takeRight(3) match {
+      case "001" => Ok(Json.toJson(EclStubData.openObligationData(Instant.now().plus(Duration.ofDays(1)))))
+      case "002" => Ok(Json.toJson(EclStubData.openObligationData(Instant.now().minus(Duration.ofDays(1)))))
+      case "003" => Ok(Json.toJson(EclStubData.fulfilledObligationData))
+      case "400" =>
+        BadRequest(
+          Json.obj(
+            "code"   -> "INVALID_IDTYPE",
+            "reason" -> "Submission has not passed validation. Invalid parameter idNumber."
+          )
+        )
+      case "500" =>
+        InternalServerError(
+          Json.obj(
+            "code"   -> "SERVER_ERROR",
+            "reason" -> "DES is currently experiencing problems that require live service intervention."
+          )
+        )
+      case _     =>
+        NotFound(
+          Json.obj(
+            "code"   -> "NOT_FOUND",
+            "reason" -> "The remote endpoint has indicated that no associated data found."
+          )
+        )
     }
   }
 }
