@@ -3,17 +3,27 @@
 This service acts as a stub for any DES (Data Exchange Service) and IF (Integration Framework) APIs that the ECL backend
 microservices make calls to.
 
+## APIs
+
+The following APIs are stubbed by this service:
+
+| API                         | Endpoint                                                                  | Method |
+|-----------------------------|---------------------------------------------------------------------------|--------|
+| #1330 Get Obligation Data   | `/enterprise/obligation-data/zecl/{eclRegistrationReference}/ECL`         | GET    |
+| #1553 Get Financial Details | `/enterprise/02.00.00/financial-data/zecl/{eclRegistrationReference}/ECL` | GET    |
+
 ## Test Data
+
 Use the IDs in the following table to trigger different API outcomes:
 
-| APIs                  | Data                                                                  | ID              |
-|-----------------------|-----------------------------------------------------------------------|-----------------|
-| - Get Obligation Data | - A single open obligation that is due in the future                  | XMECL0000000001 |
-| - Get Obligation Data | - A single open obligation that is overdue                            | XMECL0000000002 |
-| - Get Obligation Data | - A single fulfilled obligation that was received before the due date | XMECL0000000003 |
-| - Get Obligation Data | - No obligations (404)                                                | XMECL0000000404 |
-| - Get Obligation Data | - Internal server error response (500)                                | XMECL0000000500 |
-| - Get Obligation Data | - Bad request response (400)                                          | XMECL0000000400 |
+| APIs                                              | Data                                                                                    | ID              |
+|---------------------------------------------------|-----------------------------------------------------------------------------------------|-----------------|
+| - Get Obligation Data<br/>- Get Financial Details | - A single open obligation that is due in the future<br/>- No payment due               | XMECL0000000001 |
+| - Get Obligation Data<br/>- Get Financial Details | - A single open obligation that is overdue<br/>- No payment due                         | XMECL0000000002 |
+| - Get Obligation Data<br/>- Get Financial Details | - A single fulfilled obligation that was received before the due date<br/>- Payment due | XMECL0000000003 |
+| - Get Obligation Data                             | - No obligations (404)                                                                  | XMECL0000000404 |
+| - Get Obligation Data                             | - Internal server error response (500)                                                  | XMECL0000000500 |
+| - Get Obligation Data                             | - Bad request response (400)                                                            | XMECL0000000400 |
 
 ## Running the service
 

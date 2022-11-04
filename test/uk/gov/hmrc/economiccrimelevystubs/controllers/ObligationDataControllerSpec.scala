@@ -35,7 +35,7 @@ class ObligationDataControllerSpec extends SpecBase {
 
   "getObligationData" should {
 
-    "return 200 OK with obligation data serialized as JSON containing a open obligation that is due in the future when the idNumber ends in '001'" in {
+    "return 200 OK with obligation data JSON containing a open obligation that is due in the future when the idNumber ends in '001'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000001", regimeType)(fakeRequest)
 
@@ -45,7 +45,7 @@ class ObligationDataControllerSpec extends SpecBase {
       )
     }
 
-    "return 200 OK with obligation data serialized as JSON containing a open obligation that is overdue when the idNumber ends in '002'" in {
+    "return 200 OK with obligation data JSON containing a open obligation that is overdue when the idNumber ends in '002'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000002", regimeType)(fakeRequest)
 
@@ -55,7 +55,7 @@ class ObligationDataControllerSpec extends SpecBase {
       )
     }
 
-    "return 200 OK with obligation data serialized as JSON containing an fulfilled obligation when the idNumber ends in '003'" in {
+    "return 200 OK with obligation data JSON containing an fulfilled obligation when the idNumber ends in '003'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000003", regimeType)(fakeRequest)
 

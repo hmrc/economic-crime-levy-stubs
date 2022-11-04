@@ -17,6 +17,7 @@
 package uk.gov.hmrc.economiccrimelevystubs.models
 
 import uk.gov.hmrc.economiccrimelevystubs.models.des._
+import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.{FinancialDetail, FinancialDetails}
 import uk.gov.hmrc.time.TaxYear
 
 import java.time._
@@ -63,6 +64,24 @@ object EclStubData {
             inboundCorrespondenceDueDate = eclDueDate,
             periodKey = "#001"
           )
+        )
+      )
+    )
+  )
+
+  val financialDetailsWithPaymentDue: FinancialDetails = FinancialDetails(
+    Some(
+      Seq(
+        FinancialDetail(
+          taxYear = TaxYear.current.previous.starts.getYear.toString,
+          chargeType = Some("ECL"),
+          chargeReference = Some("XM002610011594"),
+          periodKey = Some("#001"),
+          originalAmount = Some(10000),
+          outstandingAmount = Some(10000),
+          clearedAmount = Some(0),
+          accruedInterest = Some(0),
+          items = Seq.empty
         )
       )
     )
