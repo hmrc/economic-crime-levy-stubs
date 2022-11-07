@@ -1,5 +1,32 @@
 # economic-crime-levy-stubs
 
+This service acts as a stub for any DES (Data Exchange Service) and IF (Integration Framework) APIs that the ECL backend
+microservices make calls to.
+
+## APIs
+
+The following APIs are stubbed by this service:
+
+| API                         | Endpoint                                                                  | Method |
+|-----------------------------|---------------------------------------------------------------------------|--------|
+| #1330 Get Obligation Data   | `/enterprise/obligation-data/zecl/{eclRegistrationReference}/ECL`         | GET    |
+| #1553 Get Financial Details | `/enterprise/02.00.00/financial-data/zecl/{eclRegistrationReference}/ECL` | GET    |
+
+## Test Data
+
+Use the IDs in the following table to trigger different API outcomes:
+
+| ID              | Get Obligation Data                                                 | Get Financial Details                |
+|-----------------|---------------------------------------------------------------------|--------------------------------------|
+| XMECL0000000001 | A single open obligation that is due in the future                  | No payment due                       |
+| XMECL0000000002 | A single open obligation that is overdue                            | No payment due                       |
+| XMECL0000000003 | A single fulfilled obligation that was received before the due date | Payment due                          |
+| XMECL0000000404 | No obligations (404)                                                | No financial data (404)              |
+| XMECL0000000500 | Internal server error response (500)                                | Internal server error response (500) |
+| XMECL0000000400 | Bad request response (400)                                          | Bad request response (400)           |
+
+**NOTE**: Any other ID will result in a "No data found" (404) response, e.g. XMECL0000000404
+
 ## Running the service
 
 > `sbt run`

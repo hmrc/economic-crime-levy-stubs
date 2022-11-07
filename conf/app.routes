@@ -1,3 +1,4 @@
 # microservice specific routes
 
-GET        /hello-world        uk.gov.hmrc.economiccrimelevystubs.controllers.HelloWorldController.helloWorld()
+GET        /enterprise/obligation-data/:idType/:idNumber/:regimeType                uk.gov.hmrc.economiccrimelevystubs.controllers.ObligationDataController.getObligationData(idType, idNumber, regimeType)
+GET        /enterprise/02.00.00/financial-data/:idType/:idNumber/:regimeType        uk.gov.hmrc.economiccrimelevystubs.controllers.FinancialDetailsController.getFinancialDetails(idType, idNumber, regimeType)
