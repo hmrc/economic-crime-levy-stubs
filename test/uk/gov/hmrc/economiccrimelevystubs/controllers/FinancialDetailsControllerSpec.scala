@@ -56,9 +56,9 @@ class FinancialDetailsControllerSpec extends SpecBase {
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000400", regimeType)(fakeRequest)
 
-      status(result) shouldBe BAD_REQUEST
+      status(result)        shouldBe BAD_REQUEST
       contentAsJson(result) shouldBe Json.obj(
-        "code" -> "INVALID_IDTYPE",
+        "code"   -> "INVALID_IDTYPE",
         "reason" -> "Submission has not passed validation. Invalid parameter idType."
       )
     }
@@ -67,9 +67,9 @@ class FinancialDetailsControllerSpec extends SpecBase {
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000500", regimeType)(fakeRequest)
 
-      status(result) shouldBe INTERNAL_SERVER_ERROR
+      status(result)        shouldBe INTERNAL_SERVER_ERROR
       contentAsJson(result) shouldBe Json.obj(
-        "code" -> "SERVER_ERROR",
+        "code"   -> "SERVER_ERROR",
         "reason" -> "IF is currently experiencing problems that require live service intervention."
       )
     }
@@ -78,9 +78,9 @@ class FinancialDetailsControllerSpec extends SpecBase {
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000404", regimeType)(fakeRequest)
 
-      status(result) shouldBe NOT_FOUND
+      status(result)        shouldBe NOT_FOUND
       contentAsJson(result) shouldBe Json.obj(
-        "code" -> "NO_DATA_FOUND",
+        "code"   -> "NO_DATA_FOUND",
         "reason" -> "The remote endpoint has indicated that no data can be found."
       )
     }
