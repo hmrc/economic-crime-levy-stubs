@@ -33,6 +33,27 @@ class FinancialDetailsController @Inject() (
     idNumber.takeRight(3) match {
       case "001" | "002" => Ok(Json.toJson(FinancialDetails(None)))
       case "003"         => Ok(Json.toJson(EclStubData.financialDetailsWithPaymentDue))
+      case "400" =>
+        BadRequest(
+          Json.obj(
+            "code" -> "INVALID_IDTYPE",
+            "reason" -> "Submission has not passed validation. Invalid parameter idType."
+          )
+        )
+      case "500" =>
+        InternalServerError(
+          Json.obj(
+            "code" -> "SERVER_ERROR",
+            "reason" -> "IF is currently experiencing problems that require live service intervention."
+          )
+        )
+      case _ =>
+        NotFound(
+          Json.obj(
+            "code" -> "NO_DATA_FOUND",
+            "reason" -> "The remote endpoint has indicated that no data can be found."
+          )
+        )
     }
   }
 

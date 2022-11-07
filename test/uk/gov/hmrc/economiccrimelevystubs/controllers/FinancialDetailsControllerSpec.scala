@@ -52,5 +52,38 @@ class FinancialDetailsControllerSpec extends SpecBase {
       contentAsJson(result) shouldBe Json.toJson(EclStubData.financialDetailsWithPaymentDue)
     }
 
+    "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000400", regimeType)(fakeRequest)
+
+      status(result) shouldBe BAD_REQUEST
+      contentAsJson(result) shouldBe Json.obj(
+        "code" -> "INVALID_IDTYPE",
+        "reason" -> "Submission has not passed validation. Invalid parameter idType."
+      )
+    }
+
+    "return 500 INTERNAL_SERVER_ERROR with a SERVER_ERROR code when the idNumber ends in '500'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000500", regimeType)(fakeRequest)
+
+      status(result) shouldBe INTERNAL_SERVER_ERROR
+      contentAsJson(result) shouldBe Json.obj(
+        "code" -> "SERVER_ERROR",
+        "reason" -> "IF is currently experiencing problems that require live service intervention."
+      )
+    }
+
+    "return 404 NOT_FOUND with a NOT_FOUND code then idNumber ends in any other value" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000404", regimeType)(fakeRequest)
+
+      status(result) shouldBe NOT_FOUND
+      contentAsJson(result) shouldBe Json.obj(
+        "code" -> "NO_DATA_FOUND",
+        "reason" -> "The remote endpoint has indicated that no data can be found."
+      )
+    }
+
   }
 }

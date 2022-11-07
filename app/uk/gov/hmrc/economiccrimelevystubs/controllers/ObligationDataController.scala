@@ -38,7 +38,7 @@ class ObligationDataController @Inject() (
         BadRequest(
           Json.obj(
             "code"   -> "INVALID_IDTYPE",
-            "reason" -> "Submission has not passed validation. Invalid parameter idNumber."
+            "reason" -> "Submission has not passed validation. Invalid parameter idType."
           )
         )
       case "500" =>

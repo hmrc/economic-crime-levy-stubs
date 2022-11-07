@@ -16,14 +16,16 @@ The following APIs are stubbed by this service:
 
 Use the IDs in the following table to trigger different API outcomes:
 
-| APIs                                              | Data                                                                                    | ID              |
-|---------------------------------------------------|-----------------------------------------------------------------------------------------|-----------------|
-| - Get Obligation Data<br/>- Get Financial Details | - A single open obligation that is due in the future<br/>- No payment due               | XMECL0000000001 |
-| - Get Obligation Data<br/>- Get Financial Details | - A single open obligation that is overdue<br/>- No payment due                         | XMECL0000000002 |
-| - Get Obligation Data<br/>- Get Financial Details | - A single fulfilled obligation that was received before the due date<br/>- Payment due | XMECL0000000003 |
-| - Get Obligation Data                             | - No obligations (404)                                                                  | XMECL0000000404 |
-| - Get Obligation Data                             | - Internal server error response (500)                                                  | XMECL0000000500 |
-| - Get Obligation Data                             | - Bad request response (400)                                                            | XMECL0000000400 |
+| ID              | Get Obligation Data                                                 | Get Financial Details                |
+|-----------------|---------------------------------------------------------------------|--------------------------------------|
+| XMECL0000000001 | A single open obligation that is due in the future                  | No payment due                       |
+| XMECL0000000002 | A single open obligation that is overdue                            | No payment due                       |
+| XMECL0000000003 | A single fulfilled obligation that was received before the due date | Payment due                          |
+| XMECL0000000404 | No obligations (404)                                                | No financial data (404)              |
+| XMECL0000000500 | Internal server error response (500)                                | Internal server error response (500) |
+| XMECL0000000400 | Bad request response (400)                                          | Bad request response (400)           |
+
+**NOTE**: Any other ID will result in a "No data found" (404) response, e.g. XMECL0000000404
 
 ## Running the service
 

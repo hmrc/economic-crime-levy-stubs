@@ -70,7 +70,7 @@ class ObligationDataControllerSpec extends SpecBase {
       status(result)        shouldBe BAD_REQUEST
       contentAsJson(result) shouldBe Json.obj(
         "code"   -> "INVALID_IDTYPE",
-        "reason" -> "Submission has not passed validation. Invalid parameter idNumber."
+        "reason" -> "Submission has not passed validation. Invalid parameter idType."
       )
     }
 
@@ -87,7 +87,7 @@ class ObligationDataControllerSpec extends SpecBase {
 
     "return 404 NOT_FOUND with a NOT_FOUND code then idNumber ends in any other value" in {
       val result: Future[Result] =
-        controller.getObligationData(idType, "XMECL0000000123", regimeType)(fakeRequest)
+        controller.getObligationData(idType, "XMECL0000000404", regimeType)(fakeRequest)
 
       status(result)        shouldBe NOT_FOUND
       contentAsJson(result) shouldBe Json.obj(
