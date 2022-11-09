@@ -18,22 +18,18 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.economiccrimelevystubs.data.ObligationStubData
+import uk.gov.hmrc.economiccrimelevystubs.data.SubscriptionStatusStubData
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import java.time.{Duration, Instant}
-import javax.inject.{Inject, Singleton}
+import javax.inject.Inject
 
-@Singleton
-class ObligationDataController @Inject() (
+class SubscriptionStatusController @Inject() (
   cc: ControllerComponents
 ) extends BackendController(cc) {
-
-  def getObligationData(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
-    idNumber.takeRight(3) match {
-      case "001" => Ok(Json.toJson(ObligationStubData.openObligationData(Instant.now().plus(Duration.ofDays(1)))))
-      case "002" => Ok(Json.toJson(ObligationStubData.openObligationData(Instant.now().minus(Duration.ofDays(1)))))
-      case "003" => Ok(Json.toJson(ObligationStubData.fulfilledObligationData))
+  def getSubscriptionStatus(regime: String, idType: String, idValue: String): Action[AnyContent] = Action { _ =>
+    idValue.takeRight(3) match {
+      case "001" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData))
+      case "002" => Ok(Json.toJson(SubscriptionStatusStubData.eclNotSubscribedData))
       case "400" =>
         BadRequest(
           Json.obj(
@@ -45,14 +41,14 @@ class ObligationDataController @Inject() (
         InternalServerError(
           Json.obj(
             "code"   -> "SERVER_ERROR",
-            "reason" -> "DES is currently experiencing problems that require live service intervention."
+            "reason" -> "IF is currently experiencing problems that require live service intervention."
           )
         )
       case _     =>
         NotFound(
           Json.obj(
-            "code"   -> "NOT_FOUND",
-            "reason" -> "The remote endpoint has indicated that no associated data found."
+            "code"   -> "NO_DATA_FOUND",
+            "reason" -> "The remote endpoint has indicated that the requested resource could  not be found."
           )
         )
     }

@@ -19,42 +19,44 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
-import uk.gov.hmrc.economiccrimelevystubs.data.FinancialDetailsStubData
+import uk.gov.hmrc.economiccrimelevystubs.data.SubscriptionStatusStubData
 
 import scala.concurrent.Future
 
-class FinancialDetailsControllerSpec extends SpecBase {
+class SubscriptionStatusControllerSpec extends SpecBase {
 
-  val controller = new FinancialDetailsController(
+  val controller = new SubscriptionStatusController(
     cc
   )
 
-  private val idType     = "zecl"
-  private val regimeType = "ECL"
+  private val idType = "SAFE"
+  private val regime = "ECL"
 
-  "getFinancialDetails" should {
+  "getSubscriptionStatus" should {
 
-    "return 200 OK with no financial details JSON when the idNumber ends in '001' or '002'" in {
-      Seq("XMECL0000000001", "XMECL0000000002").foreach { idNumber =>
-        val result: Future[Result] =
-          controller.getFinancialDetails(idType, idNumber, regimeType)(fakeRequest)
-
-        status(result)        shouldBe OK
-        contentAsJson(result) shouldBe Json.parse("{}")
-      }
-    }
-
-    "return 200 OK with financial details JSON containing a payment that is due when the idNumber ends in '003'" in {
+    "return 200 OK with subscription status JSON containing a successful subscription status when the idValue ends in '001'" in {
       val result: Future[Result] =
-        controller.getFinancialDetails(idType, "XMECL0000000003", regimeType)(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "X00000000000001")(fakeRequest)
 
       status(result)        shouldBe OK
-      contentAsJson(result) shouldBe Json.toJson(FinancialDetailsStubData.financialDetailsWithPaymentDue)
+      contentAsJson(result) shouldBe Json.toJson(
+        SubscriptionStatusStubData.eclSubscribedData
+      )
+    }
+
+    "return 200 OK with subscription status JSON containing a not found subscription status when the idNumber ends in '002'" in {
+      val result: Future[Result] =
+        controller.getSubscriptionStatus(regime, idType, "X00000000000002")(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        SubscriptionStatusStubData.eclNotSubscribedData
+      )
     }
 
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
       val result: Future[Result] =
-        controller.getFinancialDetails(idType, "XMECL0000000400", regimeType)(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "X00000000000400")(fakeRequest)
 
       status(result)        shouldBe BAD_REQUEST
       contentAsJson(result) shouldBe Json.obj(
@@ -65,7 +67,7 @@ class FinancialDetailsControllerSpec extends SpecBase {
 
     "return 500 INTERNAL_SERVER_ERROR with a SERVER_ERROR code when the idNumber ends in '500'" in {
       val result: Future[Result] =
-        controller.getFinancialDetails(idType, "XMECL0000000500", regimeType)(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "X00000000000500")(fakeRequest)
 
       status(result)        shouldBe INTERNAL_SERVER_ERROR
       contentAsJson(result) shouldBe Json.obj(
@@ -74,14 +76,14 @@ class FinancialDetailsControllerSpec extends SpecBase {
       )
     }
 
-    "return 404 NOT_FOUND with a NOT_FOUND code then idNumber ends in any other value" in {
+    "return 404 NOT_FOUND with a NO_DATA_FOUND code then idNumber ends in any other value" in {
       val result: Future[Result] =
-        controller.getFinancialDetails(idType, "XMECL0000000404", regimeType)(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "X00000000000404")(fakeRequest)
 
       status(result)        shouldBe NOT_FOUND
       contentAsJson(result) shouldBe Json.obj(
         "code"   -> "NO_DATA_FOUND",
-        "reason" -> "The remote endpoint has indicated that no data can be found."
+        "reason" -> "The remote endpoint has indicated that the requested resource could  not be found."
       )
     }
 
