@@ -44,7 +44,7 @@ class SubscriptionStatusControllerSpec extends SpecBase {
       )
     }
 
-    "return 200 OK with subscription status JSON containing a not found subscription status when the idNumber ends in '002'" in {
+    "return 200 OK with subscription status JSON containing a form bundle not found subscription status when the idNumber ends in '002'" in {
       val result: Future[Result] =
         controller.getSubscriptionStatus(regime, idType, "X00000000000002")(fakeRequest)
 
