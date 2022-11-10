@@ -34,23 +34,23 @@ class SubscriptionStatusControllerSpec extends SpecBase {
 
   "getSubscriptionStatus" should {
 
-    "return 200 OK with subscription status JSON containing a successful subscription status when the idValue ends in '001'" in {
+    "return 200 OK with subscription status JSON containing a form bundle not found subscription status when the idValue ends in '001'" in {
       val result: Future[Result] =
         controller.getSubscriptionStatus(regime, idType, "X00000000000001")(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        SubscriptionStatusStubData.eclSubscribedData
+        SubscriptionStatusStubData.eclNotSubscribedData
       )
     }
 
-    "return 200 OK with subscription status JSON containing a form bundle not found subscription status when the idNumber ends in '002'" in {
+    "return 200 OK with subscription status JSON containing a successful subscription status when the idNumber ends in '002'" in {
       val result: Future[Result] =
         controller.getSubscriptionStatus(regime, idType, "X00000000000002")(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        SubscriptionStatusStubData.eclNotSubscribedData
+        SubscriptionStatusStubData.eclSubscribedData
       )
     }
 

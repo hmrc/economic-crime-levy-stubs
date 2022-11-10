@@ -28,8 +28,8 @@ class SubscriptionStatusController @Inject() (
 ) extends BackendController(cc) {
   def getSubscriptionStatus(regime: String, idType: String, idValue: String): Action[AnyContent] = Action { _ =>
     idValue.takeRight(3) match {
-      case "001" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData))
-      case "002" => Ok(Json.toJson(SubscriptionStatusStubData.eclNotSubscribedData))
+      case "001" => Ok(Json.toJson(SubscriptionStatusStubData.eclNotSubscribedData))
+      case "002" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData))
       case "400" =>
         BadRequest(
           Json.obj(
