@@ -19,7 +19,7 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
-import uk.gov.hmrc.economiccrimelevystubs.models.EclStubData
+import uk.gov.hmrc.economiccrimelevystubs.data.ObligationStubData
 
 import java.time.{Duration, Instant}
 import scala.concurrent.Future
@@ -41,7 +41,7 @@ class ObligationDataControllerSpec extends SpecBase {
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        EclStubData.openObligationData(Instant.now().plus(Duration.ofDays(1)))
+        ObligationStubData.openObligationData(Instant.now().plus(Duration.ofDays(1)))
       )
     }
 
@@ -51,7 +51,7 @@ class ObligationDataControllerSpec extends SpecBase {
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        EclStubData.openObligationData(Instant.now().minus(Duration.ofDays(1)))
+        ObligationStubData.openObligationData(Instant.now().minus(Duration.ofDays(1)))
       )
     }
 
@@ -60,7 +60,7 @@ class ObligationDataControllerSpec extends SpecBase {
         controller.getObligationData(idType, "XMECL0000000003", regimeType)(fakeRequest)
 
       status(result)        shouldBe OK
-      contentAsJson(result) shouldBe Json.toJson(EclStubData.fulfilledObligationData)
+      contentAsJson(result) shouldBe Json.toJson(ObligationStubData.fulfilledObligationData)
     }
 
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
