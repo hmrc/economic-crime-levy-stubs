@@ -15,7 +15,8 @@ The following APIs are stubbed by this service:
 
 ## Test Data
 
-Use the IDs in the following tables to trigger different API outcomes (APIs that share the same ID type are grouped in to the same table):
+Use the IDs in the following tables to trigger different API outcomes (APIs that share the same ID type are grouped in
+to the same table):
 
 | ECL Registration Reference | Get Obligation Data                                                 | Get Financial Details                |
 |----------------------------|---------------------------------------------------------------------|--------------------------------------|
@@ -26,6 +27,9 @@ Use the IDs in the following tables to trigger different API outcomes (APIs that
 | XMECL0000000500            | Internal server error response (500)                                | Internal server error response (500) |
 | XMECL0000000400            | Bad request response (400)                                          | Bad request response (400)           |
 
+**NOTE**: Any ECL Registration Reference other than those listed in the above table will result in a 404 'No data found'
+response.
+
 | Business Partner ID | Get Subscription Status                |
 |---------------------|----------------------------------------|
 | X00000000000001     | Not subscribed (form bundle not found) |
@@ -34,8 +38,8 @@ Use the IDs in the following tables to trigger different API outcomes (APIs that
 | X00000000000400     | Bad request response (400)             |
 | X00000000000500     | Internal server error response (500)   |
 
-**NOTE**: In all cases, any ID other than those listed in the above tables will result in a "No data found" (404)
-response.
+**NOTE**: Any Business Partner ID other than those listed in the above table will result in 200 'Not subscribed (form
+bundle not found)' response.
 
 ## Running the service
 
