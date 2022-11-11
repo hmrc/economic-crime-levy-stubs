@@ -28,7 +28,6 @@ class SubscriptionStatusController @Inject() (
 ) extends BackendController(cc) {
   def getSubscriptionStatus(regime: String, idType: String, idValue: String): Action[AnyContent] = Action { _ =>
     idValue.takeRight(3) match {
-      case "001" => Ok(Json.toJson(SubscriptionStatusStubData.eclNotSubscribedData))
       case "002" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData))
       case "400" =>
         BadRequest(
@@ -44,13 +43,14 @@ class SubscriptionStatusController @Inject() (
             "reason" -> "IF is currently experiencing problems that require live service intervention."
           )
         )
-      case _     =>
+      case "404" =>
         NotFound(
           Json.obj(
             "code"   -> "NO_DATA_FOUND",
             "reason" -> "The remote endpoint has indicated that the requested resource could  not be found."
           )
         )
+      case _     => Ok(Json.toJson(SubscriptionStatusStubData.eclNotSubscribedData))
     }
   }
 }
