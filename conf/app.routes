@@ -1,5 +1,7 @@
 # microservice specific routes
 
-GET        /enterprise/obligation-data/:idType/:idNumber/:regimeType                uk.gov.hmrc.economiccrimelevystubs.controllers.ObligationDataController.getObligationData(idType, idNumber, regimeType)
-GET        /enterprise/02.00.00/financial-data/:idType/:idNumber/:regimeType        uk.gov.hmrc.economiccrimelevystubs.controllers.FinancialDetailsController.getFinancialDetails(idType, idNumber, regimeType)
-GET        /cross-regime/subscription/:regime/:idType/:idValue/status               uk.gov.hmrc.economiccrimelevystubs.controllers.SubscriptionStatusController.getSubscriptionStatus(regime, idType, idValue)
+GET         /enterprise/obligation-data/:idType/:idNumber/:regimeType                uk.gov.hmrc.economiccrimelevystubs.controllers.ObligationDataController.getObligationData(idType, idNumber, regimeType)
+GET         /enterprise/02.00.00/financial-data/:idType/:idNumber/:regimeType        uk.gov.hmrc.economiccrimelevystubs.controllers.FinancialDetailsController.getFinancialDetails(idType, idNumber, regimeType)
+GET         /cross-regime/subscription/:regime/:idType/:idValue/status               uk.gov.hmrc.economiccrimelevystubs.controllers.SubscriptionStatusController.getSubscriptionStatus(regime, idType, idValue)
+
+POST        /economic-crime-levy/subscriptions/:regime/create                        uk.gov.hmrc.economiccrimelevystubs.controllers.SubscriptionController.createSubscription(regime, idType, idValue)
