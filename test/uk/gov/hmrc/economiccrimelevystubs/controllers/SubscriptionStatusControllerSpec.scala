@@ -36,7 +36,7 @@ class SubscriptionStatusControllerSpec extends SpecBase {
 
     "return 200 OK with subscription status JSON containing a form bundle not found subscription status when the idValue ends in any other value" in {
       val result: Future[Result] =
-        controller.getSubscriptionStatus(regime, idType, "X00000000000001")(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "XA0000000000001")(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
@@ -46,7 +46,7 @@ class SubscriptionStatusControllerSpec extends SpecBase {
 
     "return 200 OK with subscription status JSON containing a successful subscription status when the idValue ends in '002'" in {
       val result: Future[Result] =
-        controller.getSubscriptionStatus(regime, idType, "X00000000000002")(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "XA0000000000002")(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
@@ -56,7 +56,7 @@ class SubscriptionStatusControllerSpec extends SpecBase {
 
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idValue ends in '400'" in {
       val result: Future[Result] =
-        controller.getSubscriptionStatus(regime, idType, "X00000000000400")(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "XA0000000000400")(fakeRequest)
 
       status(result)        shouldBe BAD_REQUEST
       contentAsJson(result) shouldBe Json.obj(
@@ -67,7 +67,7 @@ class SubscriptionStatusControllerSpec extends SpecBase {
 
     "return 500 INTERNAL_SERVER_ERROR with a SERVER_ERROR code when the idValue ends in '500'" in {
       val result: Future[Result] =
-        controller.getSubscriptionStatus(regime, idType, "X00000000000500")(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "XA0000000000500")(fakeRequest)
 
       status(result)        shouldBe INTERNAL_SERVER_ERROR
       contentAsJson(result) shouldBe Json.obj(
@@ -78,7 +78,7 @@ class SubscriptionStatusControllerSpec extends SpecBase {
 
     "return 404 NOT_FOUND with a NO_DATA_FOUND code then idValue ends in '404'" in {
       val result: Future[Result] =
-        controller.getSubscriptionStatus(regime, idType, "X00000000000404")(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "XA0000000000404")(fakeRequest)
 
       status(result)        shouldBe NOT_FOUND
       contentAsJson(result) shouldBe Json.obj(

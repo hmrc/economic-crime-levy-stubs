@@ -32,11 +32,11 @@ response.
 
 | Business Partner ID | Get Subscription Status                |
 |---------------------|----------------------------------------|
-| X00000000000001     | Not subscribed (form bundle not found) |
-| X00000000000002     | Already subscribed with ECL reference  |
-| X00000000000404     | No data found (404)                    |
-| X00000000000400     | Bad request response (400)             |
-| X00000000000500     | Internal server error response (500)   |
+| XA0000000000001     | Not subscribed (form bundle not found) |
+| XA0000000000002     | Already subscribed with ECL reference  |
+| XA0000000000404     | No data found (404)                    |
+| XA0000000000400     | Bad request response (400)             |
+| XA0000000000500     | Internal server error response (500)   |
 
 **NOTE**: Any Business Partner ID other than those listed in the above table will result in 200 'Not subscribed (form
 bundle not found)' response.

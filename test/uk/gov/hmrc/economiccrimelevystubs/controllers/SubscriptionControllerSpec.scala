@@ -48,7 +48,7 @@ class SubscriptionControllerSpec extends SpecBase {
       when(mockEclRegistrationReferenceService.getNextEclReference).thenReturn(Future.successful(eclReference))
 
       val result: Future[Result] =
-        controller.createSubscription(regime, idType, "X00000000000001")(fakeRequest)
+        controller.createSubscription(regime, idType, "XA0000000000001")(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
