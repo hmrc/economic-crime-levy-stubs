@@ -16,8 +16,9 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
-import play.api.libs.json.Json
-import play.api.mvc.{Action, AnyContent, ControllerComponents}
+import play.api.Logging
+import play.api.libs.json.{JsValue, Json}
+import play.api.mvc.{Action, ControllerComponents}
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.CreateSubscriptionResponse
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
@@ -31,16 +32,20 @@ class SubscriptionController @Inject() (
   eclRegistrationReferenceService: EclRegistrationReferenceService,
   clock: Clock
 )(implicit ec: ExecutionContext)
-    extends BackendController(cc) {
+    extends BackendController(cc)
+    with Logging {
 
-  def createSubscription(regime: String, idType: String, idValue: String): Action[AnyContent] = Action.async { _ =>
-    eclRegistrationReferenceService.getNextEclReference.map(registrationReference =>
-      Ok(
-        Json.toJson(
-          CreateSubscriptionResponse(processingDate = Instant.now(clock), eclReference = registrationReference)
+  def createSubscription(regime: String, idType: String, idValue: String): Action[JsValue] =
+    Action.async(parse.json) { implicit request =>
+      logger.info(s"Received create subscription request with JSON body:\n${Json.prettyPrint(request.body)}")
+
+      eclRegistrationReferenceService.getNextEclReference.map(registrationReference =>
+        Ok(
+          Json.toJson(
+            CreateSubscriptionResponse(processingDate = Instant.now(clock), eclReference = registrationReference)
+          )
         )
       )
-    )
-  }
+    }
 
 }
