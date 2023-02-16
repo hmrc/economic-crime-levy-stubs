@@ -38,7 +38,9 @@ class SubscriptionController @Inject() (
   def createSubscription(regime: String, idType: String, idValue: String): Action[JsValue] =
     Action.async(parse.json) { implicit request =>
       logger.info(
-        s"Received create subscription request\n\nJSON body:\n${Json.prettyPrint(request.body)}\n\nHeaders:\n${request.headers}"
+        s"Received create subscription request\n\n" +
+          s"Request body:\n${Json.prettyPrint(request.body)}\n\n" +
+          s"Request headers:\n${request.headers}"
       )
 
       eclRegistrationReferenceService.getNextEclReference.map(registrationReference =>
