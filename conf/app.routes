@@ -5,3 +5,5 @@ GET         /enterprise/02.00.00/financial-data/:idType/:idNumber/:regimeType   
 GET         /cross-regime/subscription/:regime/:idType/:idValue/status               uk.gov.hmrc.economiccrimelevystubs.controllers.SubscriptionStatusController.getSubscriptionStatus(regime, idType, idValue)
 
 POST        /economic-crime-levy/subscriptions/:regime/create                        uk.gov.hmrc.economiccrimelevystubs.controllers.SubscriptionController.createSubscription(regime, idType, idValue)
+
+POST        /economic-crime-levy/returns/:eclRegistrationReference/:periodKey        uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnController.submitReturn(eclRegistrationReference, periodKey)
