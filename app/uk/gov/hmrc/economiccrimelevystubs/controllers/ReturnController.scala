@@ -20,7 +20,7 @@ import play.api.Logging
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{Action, ControllerComponents}
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.SubmitEclReturnResponse
-import uk.gov.hmrc.economiccrimelevystubs.services.EclReturnReferenceService
+import uk.gov.hmrc.economiccrimelevystubs.services.ChargeReferenceService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.{Clock, Instant}
@@ -29,7 +29,7 @@ import scala.concurrent.ExecutionContext
 
 class ReturnController @Inject() (
   cc: ControllerComponents,
-  eclReturnReferenceService: EclReturnReferenceService,
+  eclReturnReferenceService: ChargeReferenceService,
   clock: Clock
 )(implicit ec: ExecutionContext)
     extends BackendController(cc)
@@ -43,12 +43,11 @@ class ReturnController @Inject() (
           s"Request headers:\n${request.headers}"
       )
 
-      eclReturnReferenceService
-        .getNextEclReference(periodKey)
-        .map(returnReference =>
+      eclReturnReferenceService.getNextChargeReference
+        .map(chargeReference =>
           Ok(
             Json.toJson(
-              SubmitEclReturnResponse(processingDate = Instant.now(clock), eclReference = returnReference)
+              SubmitEclReturnResponse(processingDate = Instant.now(clock), chargeReference = chargeReference)
             )
           )
         )

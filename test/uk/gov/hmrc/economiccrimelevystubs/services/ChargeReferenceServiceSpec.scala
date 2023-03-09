@@ -23,21 +23,21 @@ import uk.gov.hmrc.economiccrimelevystubs.repositories.SequenceRepository
 
 import scala.concurrent.Future
 
-class EclReturnReferenceServiceSpec extends SpecBase {
+class ChargeReferenceServiceSpec extends SpecBase {
 
   val mockSequenceRepository: SequenceRepository = mock[SequenceRepository]
 
-  val service = new EclReturnReferenceService(mockSequenceRepository)
+  val service = new ChargeReferenceService(mockSequenceRepository)
 
-  "getNextEclReference" should {
-    "return a correctly formatted ECL reference" in {
+  "getNextChargeReference" should {
+    "return a correctly formatted charge reference" in {
       when(mockSequenceRepository.getNextSequenceId(any())).thenReturn(Future.successful(1L))
 
-      val periodKey = "22XY"
+      val prefix = "XY"
 
-      val result: String = await(service.getNextEclReference(periodKey))
+      val result: String = await(service.getNextChargeReference)
 
-      result shouldBe s"${periodKey}0000000001"
+      result shouldBe s"${prefix}000000000001"
     }
   }
 

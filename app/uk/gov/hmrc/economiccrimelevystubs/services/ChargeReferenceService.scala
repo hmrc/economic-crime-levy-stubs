@@ -22,15 +22,16 @@ import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class EclReturnReferenceService @Inject() (sequenceRepository: SequenceRepository)(implicit
+class ChargeReferenceService @Inject() (sequenceRepository: SequenceRepository)(implicit
   ec: ExecutionContext
 ) {
 
-  private val eclReturnReferenceKey = "eclReturnReference"
+  private val chargeReferenceKey = "chargeReference"
+  private val prefix             = "XY"
 
-  def getNextEclReference(periodKey: String): Future[String] =
-    sequenceRepository.getNextSequenceId(eclReturnReferenceKey).map { id =>
-      s"$periodKey${"%010d".format(id)}"
+  def getNextChargeReference: Future[String] =
+    sequenceRepository.getNextSequenceId(chargeReferenceKey).map { id =>
+      s"$prefix${"%012d".format(id)}"
     }
 
 }

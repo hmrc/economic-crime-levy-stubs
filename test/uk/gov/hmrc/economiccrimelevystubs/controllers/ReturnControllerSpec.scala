@@ -16,41 +16,39 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
-import org.mockito.ArgumentMatchers
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.SubmitEclReturnResponse
-import uk.gov.hmrc.economiccrimelevystubs.services.EclReturnReferenceService
+import uk.gov.hmrc.economiccrimelevystubs.services.ChargeReferenceService
 
 import java.time.{Clock, Instant, ZoneId}
 import scala.concurrent.Future
 
 class ReturnControllerSpec extends SpecBase {
 
-  val mockEclReturnReferenceService: EclReturnReferenceService = mock[EclReturnReferenceService]
+  val mockChargeReferenceService: ChargeReferenceService = mock[ChargeReferenceService]
 
   private val now              = Instant.now
   private val stubClock: Clock = Clock.fixed(now, ZoneId.systemDefault)
 
   val controller = new ReturnController(
     cc,
-    mockEclReturnReferenceService,
+    mockChargeReferenceService,
     stubClock
   )
 
   private val eclRegistrationReference = "XMECL0000000001"
-  private val periodKey                = "22XY"
+  private val prefix                   = "XY"
 
-  "createSubscription" should {
-    "return 200 OK with the processing date and ECL registration reference" in {
-      val eclReference = s"${periodKey}0000000001"
+  "submitReturn" should {
+    "return 200 OK with the processing date and charge reference" in {
+      val chargeReference = s"${prefix}000000000001"
 
-      when(mockEclReturnReferenceService.getNextEclReference(ArgumentMatchers.eq(periodKey)))
-        .thenReturn(Future.successful(eclReference))
+      when(mockChargeReferenceService.getNextChargeReference).thenReturn(Future.successful(chargeReference))
 
       val result: Future[Result] =
-        controller.submitReturn(eclRegistrationReference, periodKey)(
+        controller.submitReturn(eclRegistrationReference, prefix)(
           fakeRequestWithJsonBody(Json.obj("foo" -> "bar"))
         )
 
@@ -58,7 +56,7 @@ class ReturnControllerSpec extends SpecBase {
       contentAsJson(result) shouldBe Json.toJson(
         SubmitEclReturnResponse(
           processingDate = now,
-          eclReference = eclReference
+          chargeReference = chargeReference
         )
       )
     }
