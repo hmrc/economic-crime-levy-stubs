@@ -38,9 +38,6 @@ class SubscriptionControllerSpec extends SpecBase {
     stubClock
   )
 
-  private val idType = "SAFE"
-  private val regime = "ECL"
-
   "createSubscription" should {
     "return 200 OK with the processing date and ECL registration reference" in {
       val eclReference = "XMECL0000000001"
@@ -48,7 +45,7 @@ class SubscriptionControllerSpec extends SpecBase {
       when(mockEclRegistrationReferenceService.getNextEclReference).thenReturn(Future.successful(eclReference))
 
       val result: Future[Result] =
-        controller.createSubscription(regime, idType, "XA0000000000001")(
+        controller.createSubscription("XA0000000000001")(
           fakeRequestWithJsonBody(Json.obj("foo" -> "bar"))
         )
 

@@ -35,10 +35,11 @@ class SubscriptionController @Inject() (
     extends BackendController(cc)
     with Logging {
 
-  def createSubscription(regime: String, idType: String, idValue: String): Action[JsValue] =
+  def createSubscription(safeId: String): Action[JsValue] =
     Action.async(parse.json) { implicit request =>
       logger.info(
         s"Received create subscription request\n\n" +
+          s"SAFE ID: $safeId\n\n" +
           s"Request body:\n${Json.prettyPrint(request.body)}\n\n" +
           s"Request headers:\n${request.headers}"
       )
