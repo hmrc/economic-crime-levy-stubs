@@ -21,7 +21,6 @@ import uk.gov.hmrc.economiccrimelevystubs.repositories.SequenceRepository
 import javax.inject.{Inject, Singleton}
 import scala.collection.mutable.ListBuffer
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.{Failure, Success}
 
 @Singleton
 class EclRegistrationReferenceService @Inject() (sequenceRepository: SequenceRepository)(implicit
@@ -37,9 +36,9 @@ class EclRegistrationReferenceService @Inject() (sequenceRepository: SequenceRep
     }
 
   def getPreviousReferences: Future[List[String]] =
-    getNextEclReference.map { reference =>
+    getNextEclReference.map { reference => // TODO: This will not work as getNextEclReference returns a string in the format 'XMECLnnnnnnnnnn' which cannot be converted to an Int
       val referenceRange = List.range(1, reference.toInt)
-      var references     = new ListBuffer[String]()
+      val references = new ListBuffer[String]()
       for (elem <- referenceRange)
         references += s"$prefix${"%010d".format(elem)}"
       references.toList

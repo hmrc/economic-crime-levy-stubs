@@ -18,14 +18,13 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.JsValue
 import play.api.mvc.{Action, ControllerComponents}
-import play.libs.Json
+import play.api.libs.json.Json
 import uk.gov.hmrc.economiccrimelevystubs.models.des.ReferencesForRemoval
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.ExecutionContext
-import scala.language.postfixOps
 
 @Singleton
 class EnrolmentCleanUpController @Inject() (
@@ -35,7 +34,7 @@ class EnrolmentCleanUpController @Inject() (
     extends BackendController(cc) {
 
   def referencesForCleanup(): Action[JsValue] =
-    Action.async(parse.json) {
+    Action.async(parse.json) { _ =>
 
       eclRegistrationReferenceService.getPreviousReferences.map(references =>
         Ok(Json.toJson(ReferencesForRemoval(references)))
