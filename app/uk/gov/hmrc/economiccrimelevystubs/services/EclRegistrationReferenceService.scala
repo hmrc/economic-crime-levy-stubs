@@ -19,7 +19,9 @@ package uk.gov.hmrc.economiccrimelevystubs.services
 import uk.gov.hmrc.economiccrimelevystubs.repositories.SequenceRepository
 
 import javax.inject.{Inject, Singleton}
+import scala.collection.mutable.ListBuffer
 import scala.concurrent.{ExecutionContext, Future}
+import scala.util.{Failure, Success}
 
 @Singleton
 class EclRegistrationReferenceService @Inject() (sequenceRepository: SequenceRepository)(implicit
@@ -34,4 +36,12 @@ class EclRegistrationReferenceService @Inject() (sequenceRepository: SequenceRep
       s"$prefix${"%010d".format(id)}"
     }
 
+  def getPreviousReferences: Future[List[String]] =
+    getNextEclReference.map { reference =>
+      val referenceRange = List.range(1, reference.toInt)
+      var references     = new ListBuffer[String]()
+      for (elem <- referenceRange)
+        references += s"$prefix${"%010d".format(elem)}"
+      references.toList
+    }
 }
