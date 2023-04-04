@@ -8,4 +8,4 @@ POST        /economic-crime-levy/subscription/:safeId                           
 
 POST        /economic-crime-levy/returns/:eclRegistrationReference/:periodKey        uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnController.submitReturn(eclRegistrationReference, periodKey)
 
-GET         /enrolments/cleanup                                                      uk.gov.hmrc.economiccrimelevystubs.controllers.EnrolmentCleanUpController.referencesForCleanup()
+GET         /enrolments/cleanup-references                                                      uk.gov.hmrc.economiccrimelevystubs.controllers.EnrolmentCleanUpController.referencesForCleanup()

@@ -36,11 +36,13 @@ class EclRegistrationReferenceService @Inject() (sequenceRepository: SequenceRep
     }
 
   def getPreviousReferences: Future[List[String]] =
-    getNextEclReference.map { reference => // TODO: This will not work as getNextEclReference returns a string in the format 'XMECLnnnnnnnnnn' which cannot be converted to an Int
-      val referenceRange = List.range(1, reference.toInt)
-      val references = new ListBuffer[String]()
-      for (elem <- referenceRange)
-        references += s"$prefix${"%010d".format(elem)}"
-      references.toList
+    sequenceRepository.getCurrentReference(eclRegistrationReferenceKey).map {
+      case Some(ref) =>
+        val referenceRange = List.range(1, ref + 1)
+        val references     = new ListBuffer[String]()
+        for (elem <- referenceRange)
+          references += s"$prefix${"%010d".format(elem)}"
+        references.toList
+      case _         => List.empty
     }
 }
