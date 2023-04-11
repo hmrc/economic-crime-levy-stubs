@@ -39,4 +39,13 @@ class EclRegistrationReferenceServiceSpec extends SpecBase {
     }
   }
 
+  "getNextEclReference" should {
+    "return a List of correctly formatted ECL references" in {
+      when(mockSequenceRepository.getCurrentReference(any())).thenReturn(Future(Option(2L)))
+
+      val result: List[String] = await(service.getPreviousReferences)
+
+      result shouldBe List("XMECL0000000001", "XMECL0000000002")
+    }
+  }
 }

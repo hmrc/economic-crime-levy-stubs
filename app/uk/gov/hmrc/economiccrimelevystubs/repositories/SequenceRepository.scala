@@ -37,6 +37,12 @@ class SequenceRepository @Inject() (
       indexes = Seq.empty
     ) {
 
+  def getCurrentReference(key: String): Future[Option[Long]] =
+    collection
+      .find(filter = equal("_id", key))
+      .map(_.sequence)
+      .headOption()
+
   def getNextSequenceId(key: String): Future[Long] =
     collection
       .findOneAndUpdate(
