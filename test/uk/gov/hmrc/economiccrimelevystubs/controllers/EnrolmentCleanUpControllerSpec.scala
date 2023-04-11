@@ -16,10 +16,9 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
-import play.api.libs.json.Json
+import play.api.libs.json.{Json, OFormat}
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
-import uk.gov.hmrc.economiccrimelevystubs.models.des.ReferencesForRemoval
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
 
 import scala.concurrent.Future
@@ -42,7 +41,7 @@ class EnrolmentCleanUpControllerSpec extends SpecBase {
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        ReferencesForRemoval(List(eclReference))
+        List(eclReference)
       )
     }
 
@@ -55,9 +54,7 @@ class EnrolmentCleanUpControllerSpec extends SpecBase {
         )
 
       status(result)        shouldBe OK
-      contentAsJson(result) shouldBe Json.toJson(
-        ReferencesForRemoval(List())
-      )
+      contentAsJson(result) shouldBe Json.toJson(List.empty[String])
     }
   }
 

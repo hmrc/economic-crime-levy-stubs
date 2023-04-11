@@ -18,7 +18,6 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.economiccrimelevystubs.models.des.ReferencesForRemoval
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
@@ -33,9 +32,7 @@ class EnrolmentCleanUpController @Inject() (
 
   def referencesForCleanup(): Action[AnyContent] =
     Action.async { _ =>
-      eclRegistrationReferenceService.getPreviousReferences.map(references =>
-        Ok(Json.toJson(ReferencesForRemoval(references)))
-      )
+      eclRegistrationReferenceService.getPreviousReferences.map(references => Ok(Json.toJson(references)))
     }
 
 }
