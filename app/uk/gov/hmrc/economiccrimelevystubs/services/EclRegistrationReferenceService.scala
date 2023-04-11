@@ -29,14 +29,16 @@ class EclRegistrationReferenceService @Inject() (sequenceRepository: SequenceRep
   private val eclRegistrationReferenceKey = "eclRegistrationReference"
   private val prefix                      = "XMECL"
 
+  private val pattern = "%010d"
+
   def getNextEclReference: Future[String] =
     sequenceRepository.getNextSequenceId(eclRegistrationReferenceKey).map { id =>
-      s"$prefix${"%010d".format(id)}"
+      s"$prefix${pattern.format(id)}"
     }
 
   def getPreviousReferences: Future[List[String]] =
     sequenceRepository.getCurrentReference(eclRegistrationReferenceKey).map {
-      case Some(ref) => List.range(1, ref + 1).map(i => s"$prefix${"%010d".format(i)}")
+      case Some(ref) => List.range(1, ref + 1).map(i => s"$prefix${pattern.format(i)}")
       case _         => List.empty
     }
 }
