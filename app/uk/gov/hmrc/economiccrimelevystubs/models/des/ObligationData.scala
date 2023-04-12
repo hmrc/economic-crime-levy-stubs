@@ -16,11 +16,9 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.models.des
 
-import play.api.libs.json.Reads.dateReads
-import play.api.libs.json.Writes.dateWrites
-import play.api.libs.json.{Format, JsError, JsResult, JsString, JsSuccess, JsValue, Json}
+import play.api.libs.json._
 
-import java.util.Date
+import java.time.LocalDate
 
 sealed trait ObligationStatus
 
@@ -77,15 +75,13 @@ object Identification {
 
 final case class ObligationDetails(
   status: ObligationStatus,
-  inboundCorrespondenceFromDate: Date,
-  inboundCorrespondenceToDate: Date,
-  inboundCorrespondenceDateReceived: Option[Date],
-  inboundCorrespondenceDueDate: Date,
+  inboundCorrespondenceFromDate: LocalDate,
+  inboundCorrespondenceToDate: LocalDate,
+  inboundCorrespondenceDateReceived: Option[LocalDate],
+  inboundCorrespondenceDueDate: LocalDate,
   periodKey: String
 )
 
 object ObligationDetails {
-  implicit val dateFormat: Format[Date] = Format(dateReads("yyyy-MM-dd"), dateWrites("yyyy-MM-dd"))
-
   implicit val format: Format[ObligationDetails] = Json.format[ObligationDetails]
 }

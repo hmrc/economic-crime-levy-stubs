@@ -21,7 +21,6 @@ import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.economiccrimelevystubs.data.ObligationStubData
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
-import java.time.{Duration, Instant}
 import javax.inject.{Inject, Singleton}
 
 @Singleton
@@ -31,8 +30,8 @@ class ObligationDataController @Inject() (
 
   def getObligationData(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
     idNumber.takeRight(3) match {
-      case "001" => Ok(Json.toJson(ObligationStubData.openObligationData(Instant.now().plus(Duration.ofDays(1)))))
-      case "002" => Ok(Json.toJson(ObligationStubData.openObligationData(Instant.now().minus(Duration.ofDays(1)))))
+      case "001" => Ok(Json.toJson(ObligationStubData.openObligationData()))
+      case "002" => Ok(Json.toJson(ObligationStubData.openObligationData()))
       case "003" => Ok(Json.toJson(ObligationStubData.fulfilledObligationData))
       case "400" =>
         BadRequest(

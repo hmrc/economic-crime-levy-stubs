@@ -21,7 +21,6 @@ import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.data.ObligationStubData
 
-import java.time.{Duration, Instant}
 import scala.concurrent.Future
 
 class ObligationDataControllerSpec extends SpecBase {
@@ -41,7 +40,7 @@ class ObligationDataControllerSpec extends SpecBase {
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        ObligationStubData.openObligationData(Instant.now().plus(Duration.ofDays(1)))
+        ObligationStubData.openObligationData()
       )
     }
 
@@ -51,7 +50,7 @@ class ObligationDataControllerSpec extends SpecBase {
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        ObligationStubData.openObligationData(Instant.now().minus(Duration.ofDays(1)))
+        ObligationStubData.openObligationData()
       )
     }
 
