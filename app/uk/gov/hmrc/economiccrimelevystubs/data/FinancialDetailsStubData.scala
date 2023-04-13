@@ -17,7 +17,7 @@
 package uk.gov.hmrc.economiccrimelevystubs.data
 
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.{FinancialDetail, FinancialDetails}
-import uk.gov.hmrc.time.TaxYear
+import uk.gov.hmrc.economiccrimelevystubs.utils.EclTaxYear
 
 object FinancialDetailsStubData {
 
@@ -25,7 +25,7 @@ object FinancialDetailsStubData {
     Some(
       Seq(
         FinancialDetail(
-          taxYear = TaxYear.current.previous.starts.getYear.toString,
+          taxYear = EclTaxYear.currentFyStartYear.toString,
           chargeType = Some("ECL"),
           chargeReference = Some("XM002610011594"),
           periodKey = Some("#001"),

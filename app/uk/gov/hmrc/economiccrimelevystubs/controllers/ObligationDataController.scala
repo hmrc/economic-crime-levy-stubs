@@ -30,9 +30,10 @@ class ObligationDataController @Inject() (
 
   def getObligationData(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
     idNumber.takeRight(3) match {
-      case "001" => Ok(Json.toJson(ObligationStubData.openObligationData()))
-      case "002" => Ok(Json.toJson(ObligationStubData.openObligationData()))
-      case "003" => Ok(Json.toJson(ObligationStubData.fulfilledObligationData))
+      case "001" => Ok(Json.toJson(ObligationStubData.openDueObligation()))
+      case "002" => Ok(Json.toJson(ObligationStubData.openOverdueAndDueObligations()))
+      case "003" => Ok(Json.toJson(ObligationStubData.fulfilledOnTimeObligation))
+      case "004" => Ok(Json.toJson(ObligationStubData.fulfilledOnTimeAndOpenDueObligations()))
       case "400" =>
         BadRequest(
           Json.obj(
