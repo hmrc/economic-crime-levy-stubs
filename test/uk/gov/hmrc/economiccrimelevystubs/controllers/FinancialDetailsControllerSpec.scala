@@ -45,11 +45,13 @@ class FinancialDetailsControllerSpec extends SpecBase {
     }
 
     "return 200 OK with financial details JSON containing a payment that is due when the idNumber ends in '003'" in {
-      val result: Future[Result] =
-        controller.getFinancialDetails(idType, "XMECL0000000003", regimeType)(fakeRequest)
+      Seq("XMECL0000000003", "XMECL0000000004").foreach { idNumber =>
+        val result: Future[Result] =
+          controller.getFinancialDetails(idType, idNumber, regimeType)(fakeRequest)
 
-      status(result)        shouldBe OK
-      contentAsJson(result) shouldBe Json.toJson(FinancialDetailsStubData.financialDetailsWithPaymentDue)
+        status(result)        shouldBe OK
+        contentAsJson(result) shouldBe Json.toJson(FinancialDetailsStubData.financialDetailsWithPaymentDue)
+      }
     }
 
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
