@@ -32,7 +32,7 @@ class FinancialDetailsController @Inject() (
   def getFinancialDetails(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
     idNumber.takeRight(3) match {
       case "001" | "002" => Ok(Json.toJson(FinancialDetails(None)))
-      case "003"         => Ok(Json.toJson(FinancialDetailsStubData.financialDetailsWithPaymentDue))
+      case "003" | "004" => Ok(Json.toJson(FinancialDetailsStubData.financialDetailsWithPaymentDue))
       case "400"         =>
         BadRequest(
           Json.obj(

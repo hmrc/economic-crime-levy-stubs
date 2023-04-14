@@ -21,7 +21,6 @@ import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.data.ObligationStubData
 
-import java.time.{Duration, Instant}
 import scala.concurrent.Future
 
 class ObligationDataControllerSpec extends SpecBase {
@@ -35,32 +34,40 @@ class ObligationDataControllerSpec extends SpecBase {
 
   "getObligationData" should {
 
-    "return 200 OK with obligation data JSON containing a open obligation that is due in the future when the idNumber ends in '001'" in {
+    "return 200 OK with obligation data JSON containing an open due obligation when the idNumber ends in '001'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000001", regimeType)(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        ObligationStubData.openObligationData(Instant.now().plus(Duration.ofDays(1)))
+        ObligationStubData.openDueObligation()
       )
     }
 
-    "return 200 OK with obligation data JSON containing a open obligation that is overdue when the idNumber ends in '002'" in {
+    "return 200 OK with obligation data JSON containing open overdue and due obligations when the idNumber ends in '002'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000002", regimeType)(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        ObligationStubData.openObligationData(Instant.now().minus(Duration.ofDays(1)))
+        ObligationStubData.openOverdueAndDueObligations()
       )
     }
 
-    "return 200 OK with obligation data JSON containing an fulfilled obligation when the idNumber ends in '003'" in {
+    "return 200 OK with obligation data JSON containing a fulfilled on time obligation when the idNumber ends in '003'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000003", regimeType)(fakeRequest)
 
       status(result)        shouldBe OK
-      contentAsJson(result) shouldBe Json.toJson(ObligationStubData.fulfilledObligationData)
+      contentAsJson(result) shouldBe Json.toJson(ObligationStubData.fulfilledOnTimeObligation)
+    }
+
+    "return 200 OK with obligation data JSON containing fulfilled on time and open due obligations when the idNumber ends in '004'" in {
+      val result: Future[Result] =
+        controller.getObligationData(idType, "XMECL0000000004", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(ObligationStubData.fulfilledOnTimeAndOpenDueObligations())
     }
 
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
