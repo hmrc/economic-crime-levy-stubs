@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.repositories
 
-import org.mongodb.scala.MongoCollection
 import org.mongodb.scala.model.Filters.equal
 import org.mongodb.scala.model.Updates.inc
 import org.mongodb.scala.model.{FindOneAndUpdateOptions, ReturnDocument}
@@ -39,10 +38,10 @@ class SequenceRepository @Inject() (
     ) {
 
   /** A TTL index is not desirable as there is only ever 1 record per key (currently 2)
-   * that tracks the next available sequence number, hence we do not want the record to expire
-   * so that we don't reset and recycle sequence numbers.
-   */
-  override protected lazy val requiresTtlIndex: Boolean = false
+    * that tracks the next available sequence number, hence we do not want the record to expire
+    * so that we don't reset and recycle sequence numbers.
+    */
+  override lazy val requiresTtlIndex: Boolean = false
 
   def getCurrentReference(key: String): Future[Option[Long]] =
     collection

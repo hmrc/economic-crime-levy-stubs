@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
-import play.api.libs.json.{Json, OFormat}
+import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
