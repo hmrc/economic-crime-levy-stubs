@@ -37,6 +37,12 @@ class SequenceRepository @Inject() (
       indexes = Seq.empty
     ) {
 
+  /** A TTL index is not desirable as there is only ever 1 record per key (currently 2)
+    * that tracks the next available sequence number, hence we do not want the record to expire
+    * so that we don't reset and recycle sequence numbers.
+    */
+  override lazy val requiresTtlIndex: Boolean = false
+
   def getCurrentReference(key: String): Future[Option[Long]] =
     collection
       .find(filter = equal("_id", key))
