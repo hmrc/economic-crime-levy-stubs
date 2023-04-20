@@ -18,14 +18,15 @@ The following APIs are stubbed by this service:
 Use the IDs in the following tables to trigger different API outcomes (APIs that share the same ID type are grouped in
 to the same table):
 
-| ECL Registration Reference | Get Obligation Data                                                 | Get Financial Details                |
-|----------------------------|---------------------------------------------------------------------|--------------------------------------|
-| XMECL0000000001            | A single open obligation that is due in the future                  | No payment due                       |
-| XMECL0000000002            | A single open obligation that is overdue                            | No payment due                       |
-| XMECL0000000003            | A single fulfilled obligation that was received before the due date | Payment due                          |
-| XMECL0000000404            | No obligations (404)                                                | No financial data (404)              |
-| XMECL0000000500            | Internal server error response (500)                                | Internal server error response (500) |
-| XMECL0000000400            | Bad request response (400)                                          | Bad request response (400)           |
+| ECL Registration Reference | Get Obligation Data                                                                       | Get Financial Details                |
+|----------------------------|-------------------------------------------------------------------------------------------|--------------------------------------|
+| XMECL0000000001            | A single open obligation that is due in the future                                        | No payment due                       |
+| XMECL0000000002            | Two open obligations; one that is due in the future and one that is overdue               | No payment due                       |
+| XMECL0000000003            | A single fulfilled obligation before the due date                                         | Payment due                          |
+| XMECL0000000004            | Two obligations; one fulfilled before the due date and one open that is due in the future | Payment due                          |
+| XMECL0000000404            | No obligations (404)                                                                      | No financial data (404)              |
+| XMECL0000000500            | Internal server error response (500)                                                      | Internal server error response (500) |
+| XMECL0000000400            | Bad request response (400)                                                                | Bad request response (400)           |
 
 **NOTE**: Any ECL Registration Reference other than those listed in the above table will result in a 404 'No data found'
 response.
