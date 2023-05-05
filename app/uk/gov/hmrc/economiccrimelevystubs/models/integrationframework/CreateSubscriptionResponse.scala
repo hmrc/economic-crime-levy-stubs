@@ -20,8 +20,14 @@ import play.api.libs.json.{Json, OFormat}
 
 import java.time.Instant
 
-final case class CreateSubscriptionResponse(processingDate: Instant, eclReference: String)
+final case class CreateSubscriptionResponse(success: CreateSubscriptionResponsePayload)
 
 object CreateSubscriptionResponse {
   implicit val format: OFormat[CreateSubscriptionResponse] = Json.format[CreateSubscriptionResponse]
+}
+
+final case class CreateSubscriptionResponsePayload(processingDate: Instant, eclReference: String)
+
+object CreateSubscriptionResponsePayload {
+  implicit val format: OFormat[CreateSubscriptionResponsePayload] = Json.format[CreateSubscriptionResponsePayload]
 }

@@ -19,7 +19,7 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
-import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.CreateSubscriptionResponse
+import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.{CreateSubscriptionResponse, CreateSubscriptionResponsePayload}
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
 
 import java.time.{Clock, Instant, ZoneId}
@@ -51,9 +51,11 @@ class SubscriptionControllerSpec extends SpecBase {
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        CreateSubscriptionResponse(
-          processingDate = now,
-          eclReference = eclReference
+        CreateSubscriptionResponse(success =
+          CreateSubscriptionResponsePayload(
+            processingDate = now,
+            eclReference = eclReference
+          )
         )
       )
     }
