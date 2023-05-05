@@ -19,7 +19,7 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 import play.api.Logging
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{Action, ControllerComponents}
-import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.CreateSubscriptionResponse
+import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.{CreateSubscriptionResponse, CreateSubscriptionResponsePayload}
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
@@ -47,7 +47,12 @@ class SubscriptionController @Inject() (
       eclRegistrationReferenceService.getNextEclReference.map(registrationReference =>
         Ok(
           Json.toJson(
-            CreateSubscriptionResponse(processingDate = Instant.now(clock), eclReference = registrationReference)
+            CreateSubscriptionResponse(success =
+              CreateSubscriptionResponsePayload(
+                processingDate = Instant.now(clock),
+                eclReference = registrationReference
+              )
+            )
           )
         )
       )
