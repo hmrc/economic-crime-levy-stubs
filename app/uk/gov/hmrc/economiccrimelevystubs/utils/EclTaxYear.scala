@@ -30,7 +30,7 @@ object EclTaxYear {
   private val EclFyStartDay   = 1
 
   def dueDate(yearDue: Int = currentYear): LocalDate =
-    LocalDate.of(calculateYearDue(yearDue), MonthDue, DayDue)
+    LocalDate.of(yearDue, MonthDue, DayDue)
 
   private def yearDue: Int = calculateYearDue()
 
