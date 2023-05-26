@@ -39,6 +39,8 @@ class ReturnController @Inject() (
     Action.async(parse.json) { implicit request =>
       logger.info(
         s"Received submit return request\n\n" +
+          s"ECL Registration reference: $eclRegistrationReference\n\n" +
+          s"Period key: $periodKey\n\n" +
           s"Request body:\n${Json.prettyPrint(request.body)}\n\n" +
           s"Request headers:\n${request.headers}"
       )
