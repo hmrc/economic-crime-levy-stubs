@@ -113,4 +113,37 @@ object ObligationStubData {
     )
   )
 
+  def overdueSubmittedDueObligations(): ObligationData = ObligationData(
+    obligations = Seq(
+      Obligation(
+        identification = None,
+        obligationDetails = Seq(
+          ObligationDetails(
+            status = Open,
+            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 2),
+            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 2),
+            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDueDate = dueDate(currentYear - 1),
+            periodKey = periodKey(eclPeriodFrom(currentYear - 1))
+          ),
+          ObligationDetails(
+            status = Fulfilled,
+            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 3),
+            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 3),
+            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDueDate = dueDate(currentYear - 2),
+            periodKey = periodKey(eclPeriodFrom(currentYear - 2))
+          ),
+          ObligationDetails(
+            status = Open,
+            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 1),
+            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 1),
+            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDueDate = dueDate(currentYear),
+            periodKey = periodKey(eclPeriodFrom(currentYear))
+          )
+        )
+      )
+    )
+  )
 }
