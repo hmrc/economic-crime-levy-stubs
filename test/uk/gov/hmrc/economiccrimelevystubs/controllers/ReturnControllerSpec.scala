@@ -38,17 +38,15 @@ class ReturnControllerSpec extends SpecBase {
     stubClock
   )
 
-  private val eclRegistrationReference = "XMECL0000000001"
-  private val prefix                   = "XY"
-
   "submitReturn" should {
     "return 200 OK with the processing date and charge reference" in {
-      val chargeReference = s"${prefix}000000000001"
+      val eclRegistrationReference = "XMECL0000000001"
+      val chargeReference          = "XY000000000001"
 
       when(mockChargeReferenceService.getNextChargeReference).thenReturn(Future.successful(chargeReference))
 
       val result: Future[Result] =
-        controller.submitReturn(eclRegistrationReference, prefix)(
+        controller.submitReturn(eclRegistrationReference)(
           fakeRequestWithJsonBody(Json.obj("foo" -> "bar"))
         )
 
