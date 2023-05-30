@@ -34,6 +34,7 @@ class ObligationDataController @Inject() (
       case "002" => Ok(Json.toJson(ObligationStubData.openOverdueAndDueObligations()))
       case "003" => Ok(Json.toJson(ObligationStubData.fulfilledOnTimeObligation))
       case "004" => Ok(Json.toJson(ObligationStubData.fulfilledOnTimeAndOpenDueObligations()))
+      case "005" => Ok(Json.toJson(ObligationStubData.overdueSubmittedDueObligations()))
       case "400" =>
         BadRequest(
           Json.obj(
