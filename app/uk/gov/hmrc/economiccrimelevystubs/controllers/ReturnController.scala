@@ -18,14 +18,14 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.Logging
 import play.api.libs.json.{JsValue, Json}
-import play.api.mvc.{Action, ControllerComponents}
+import play.api.mvc.{Action, ControllerComponents, Result}
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.SubmitEclReturnResponse
 import uk.gov.hmrc.economiccrimelevystubs.services.ChargeReferenceService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import java.time.{Clock, Instant}
 import javax.inject.Inject
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 class ReturnController @Inject() (
   cc: ControllerComponents,
@@ -44,14 +44,27 @@ class ReturnController @Inject() (
           s"Request headers:\n${request.headers}"
       )
 
-      eclReturnReferenceService.getNextChargeReference
-        .map(chargeReference =>
-          Ok(
-            Json.toJson(
-              SubmitEclReturnResponse(processingDate = Instant.now(clock), chargeReference = chargeReference)
+      val amountDue: BigDecimal = (request.body \ "returnDetails" \ "amountOfEclDutyLiable").get.as[BigDecimal]
+
+      val chargeReference: Option[Future[String]] =
+        if (amountDue == 0) None else Some(eclReturnReferenceService.getNextChargeReference)
+
+      val result: Option[String] => Result = c =>
+        Ok(
+          Json.toJson(
+            SubmitEclReturnResponse(
+              processingDate = Instant.now(clock),
+              chargeReference = c
             )
           )
         )
+
+      chargeReference match {
+        case Some(fChargeReference) =>
+          fChargeReference.map(ref => result(Some(ref)))
+        case None                   =>
+          Future.successful(result(None))
+      }
     }
 
 }

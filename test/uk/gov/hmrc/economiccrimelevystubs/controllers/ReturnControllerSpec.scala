@@ -39,22 +39,43 @@ class ReturnControllerSpec extends SpecBase {
   )
 
   "submitReturn" should {
-    "return 200 OK with the processing date and charge reference" in {
+    "return 200 OK with the processing date and charge reference when it is not a nil return" in {
       val eclRegistrationReference = "XMECL0000000001"
       val chargeReference          = "XY000000000001"
 
       when(mockChargeReferenceService.getNextChargeReference).thenReturn(Future.successful(chargeReference))
 
+      val returnJson = Json.obj("returnDetails" -> Json.obj("amountOfEclDutyLiable" -> 10000))
+
       val result: Future[Result] =
         controller.submitReturn(eclRegistrationReference)(
-          fakeRequestWithJsonBody(Json.obj("foo" -> "bar"))
+          fakeRequestWithJsonBody(returnJson)
         )
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
         SubmitEclReturnResponse(
           processingDate = now,
-          chargeReference = chargeReference
+          chargeReference = Some(chargeReference)
+        )
+      )
+    }
+
+    "return 200 OK with the processing date and no charge reference when it is a nil return" in {
+      val eclRegistrationReference = "XMECL0000000001"
+
+      val returnJson = Json.obj("returnDetails" -> Json.obj("amountOfEclDutyLiable" -> 0))
+
+      val result: Future[Result] =
+        controller.submitReturn(eclRegistrationReference)(
+          fakeRequestWithJsonBody(returnJson)
+        )
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        SubmitEclReturnResponse(
+          processingDate = now,
+          chargeReference = None
         )
       )
     }
