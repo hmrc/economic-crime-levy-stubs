@@ -24,6 +24,7 @@ to the same table):
 | XMECL0000000002            | Two open obligations; one that is due in the future and one that is overdue               | No payment due                       |
 | XMECL0000000003            | A single fulfilled obligation before the due date                                         | Payment due                          |
 | XMECL0000000004            | Two obligations; one fulfilled before the due date and one open that is due in the future | Payment due                          |
+| XMECL0000000005            | Three obligations; overdue, due and fulfilled                                             | Payment due                          |
 | XMECL0000000404            | No obligations (404)                                                                      | No financial data (404)              |
 | XMECL0000000500            | Internal server error response (500)                                                      | Internal server error response (500) |
 | XMECL0000000400            | Bad request response (400)                                                                | Bad request response (400)           |

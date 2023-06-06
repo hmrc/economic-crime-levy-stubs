@@ -44,8 +44,8 @@ class FinancialDetailsControllerSpec extends SpecBase {
       }
     }
 
-    "return 200 OK with financial details JSON containing a payment that is due when the idNumber ends in '003'" in {
-      Seq("XMECL0000000003", "XMECL0000000004").foreach { idNumber =>
+    "return 200 OK with financial details JSON containing a payment that is due when the idNumber ends in 003, 004 or 005" in {
+      Seq("XMECL0000000003", "XMECL0000000004", "XMECL0000000005").foreach { idNumber =>
         val result: Future[Result] =
           controller.getFinancialDetails(idType, idNumber, regimeType)(fakeRequest)
 
