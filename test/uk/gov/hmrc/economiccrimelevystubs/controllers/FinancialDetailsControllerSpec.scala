@@ -19,40 +19,23 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
-import uk.gov.hmrc.economiccrimelevystubs.data.FinancialDetailsStubData
+import uk.gov.hmrc.economiccrimelevystubs.services.ReadFileService
 
 import scala.concurrent.Future
 
 class FinancialDetailsControllerSpec extends SpecBase {
 
+  val mockReadFileService: ReadFileService = mock[ReadFileService]
+
   val controller = new FinancialDetailsController(
-    cc
+    cc,
+    mockReadFileService
   )
 
   private val idType     = "zecl"
   private val regimeType = "ECL"
 
   "getFinancialDetails" should {
-
-    "return 200 OK with no financial details JSON when the idNumber ends in '001' or '002'" in {
-      Seq("XMECL0000000001", "XMECL0000000002").foreach { idNumber =>
-        val result: Future[Result] =
-          controller.getFinancialDetails(idType, idNumber, regimeType)(fakeRequest)
-
-        status(result)        shouldBe OK
-        contentAsJson(result) shouldBe Json.parse("{}")
-      }
-    }
-
-    "return 200 OK with financial details JSON containing a payment that is due when the idNumber ends in 003, 004 or 005" in {
-      Seq("XMECL0000000003", "XMECL0000000004", "XMECL0000000005").foreach { idNumber =>
-        val result: Future[Result] =
-          controller.getFinancialDetails(idType, idNumber, regimeType)(fakeRequest)
-
-        status(result)        shouldBe OK
-        contentAsJson(result) shouldBe Json.toJson(FinancialDetailsStubData.financialDetailsWithPaymentDue)
-      }
-    }
 
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
       val result: Future[Result] =

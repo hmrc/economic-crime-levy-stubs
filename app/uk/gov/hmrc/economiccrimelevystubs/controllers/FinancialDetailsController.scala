@@ -18,36 +18,36 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.economiccrimelevystubs.data.FinancialDetailsStubData
-import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.FinancialDetails
+import uk.gov.hmrc.economiccrimelevystubs.services.ReadFileService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.{Inject, Singleton}
 
 @Singleton
 class FinancialDetailsController @Inject() (
-  cc: ControllerComponents
+  cc: ControllerComponents,
+  readFileService: ReadFileService
 ) extends BackendController(cc) {
 
   def getFinancialDetails(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
     idNumber.takeRight(3) match {
-      case "001" | "002"         => Ok(Json.toJson(FinancialDetails(None)))
-      case "003" | "004" | "005" => Ok(Json.toJson(FinancialDetailsStubData.financialDetailsWithPaymentDue))
-      case "400"                 =>
+      case "001" => Ok(readFileService.readFile("FinancialDataClearedObligationResponse"))
+      case "002" => Ok(readFileService.readFile("FinancialDataClearedAndOutstandingObligationResponse"))
+      case "400" =>
         BadRequest(
           Json.obj(
             "code"   -> "INVALID_IDTYPE",
             "reason" -> "Submission has not passed validation. Invalid parameter idType."
           )
         )
-      case "500"                 =>
+      case "500" =>
         InternalServerError(
           Json.obj(
             "code"   -> "SERVER_ERROR",
             "reason" -> "IF is currently experiencing problems that require live service intervention."
           )
         )
-      case _                     =>
+      case _     =>
         NotFound(
           Json.obj(
             "code"   -> "NO_DATA_FOUND",
