@@ -19,6 +19,7 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
+import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.FinancialDataErrorResponse
 import uk.gov.hmrc.economiccrimelevystubs.services.ReadFileService
 
 import scala.concurrent.Future
@@ -43,8 +44,12 @@ class FinancialDetailsControllerSpec extends SpecBase {
 
       status(result)        shouldBe BAD_REQUEST
       contentAsJson(result) shouldBe Json.obj(
-        "code"   -> "INVALID_IDTYPE",
-        "reason" -> "Submission has not passed validation. Invalid parameter idType."
+        "failures" -> Seq(
+          FinancialDataErrorResponse(
+            "INVALID_REGIME_TYPE",
+            "Submission has not passed validation. Invalid parameter taxRegime."
+          )
+        )
       )
     }
 
@@ -54,8 +59,12 @@ class FinancialDetailsControllerSpec extends SpecBase {
 
       status(result)        shouldBe INTERNAL_SERVER_ERROR
       contentAsJson(result) shouldBe Json.obj(
-        "code"   -> "SERVER_ERROR",
-        "reason" -> "IF is currently experiencing problems that require live service intervention."
+        "failures" -> Seq(
+          FinancialDataErrorResponse(
+            "SERVER_ERROR",
+            "IF is currently experiencing problems that require live service intervention."
+          )
+        )
       )
     }
 
@@ -65,8 +74,12 @@ class FinancialDetailsControllerSpec extends SpecBase {
 
       status(result)        shouldBe NOT_FOUND
       contentAsJson(result) shouldBe Json.obj(
-        "code"   -> "NO_DATA_FOUND",
-        "reason" -> "The remote endpoint has indicated that no data can be found."
+        "failures" -> Seq(
+          FinancialDataErrorResponse(
+            "NO_DATA_FOUND",
+            "The remote endpoint has indicated that no data can be found."
+          )
+        )
       )
     }
 

@@ -26,15 +26,15 @@
           "contractAccountCategory": "ECL",
           "contractObjectNumber": "104920928302302",
           "contractObjectType": "ECL",
-          "postingDate": "2022-01-01",
-          "issueDate": "2022-01-01",
+          "postingDate": "2021-01-01",
+          "issueDate": "2021-01-01",
           "documentTotalAmount": 100,
           "documentClearedAmount": 100,
           "documentOutstandingAmount": 0,
           "documentLockDetails": {
             "lockType": "Payment",
-            "lockStartDate": "2022-01-01",
-            "lockEndDate": "2022-01-01"
+            "lockStartDate": "2021-01-01",
+            "lockEndDate": "2021-01-01"
           },
           "documentInterestTotals": {
             "interestPostedAmount": 13.12,
@@ -56,14 +56,14 @@
               "mainTransaction": "6220",
               "subTransaction": "3410",
               "chargeDescription": "ECL Return",
-              "periodFromDate": "2022-04-01",
-              "periodToDate": "2023-03-31",
-              "periodKey": "22YD",
-              "netDueDate": "2022-02-08",
+              "periodFromDate": "2021-04-01",
+              "periodToDate": "2022-03-31",
+              "periodKey": "21XY",
+              "netDueDate": "2021-02-08",
               "formBundleNumber": "125435934761",
               "statisticalKey": "1",
-              "amount": 50,
-              "clearingDate": "2022-02-09",
+              "amount": 100,
+              "clearingDate": "2021-02-09",
               "clearingReason": "01",
               "clearingDocument": "719283701921",
               "outgoingPaymentMethod": "B",
@@ -71,8 +71,8 @@
               "lineItemLockDetails": [
                 {
                   "lockType": "Payment",
-                  "lockStartDate": "2022-01-01",
-                  "lockEndDate": "2022-01-01"
+                  "lockStartDate": "2021-01-01",
+                  "lockEndDate": "2021-01-01"
                 }
               ]
             }

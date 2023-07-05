@@ -26,15 +26,15 @@
           "contractAccountCategory": "ECL",
           "contractObjectNumber": "104920928302302",
           "contractObjectType": "ECL",
-          "postingDate": "2022-01-01",
-          "issueDate": "2022-01-01",
+          "postingDate": "2023-01-01",
+          "issueDate": "2023-01-01",
           "documentTotalAmount": 100,
-          "documentClearedAmount": 50,
-          "documentOutstandingAmount": 50,
+          "documentClearedAmount": 70,
+          "documentOutstandingAmount": 30,
           "documentLockDetails": {
             "lockType": "Payment",
-            "lockStartDate": "2022-01-01",
-            "lockEndDate": "2022-01-01"
+            "lockStartDate": "2023-01-01",
+            "lockEndDate": "2023-01-01"
           },
           "documentInterestTotals": {
             "interestPostedAmount": 13.12,
@@ -56,10 +56,10 @@
               "mainTransaction": "6220",
               "subTransaction": "3410",
               "chargeDescription": "ECL Return",
-              "periodFromDate": "2022-04-01",
-              "periodToDate": "2023-03-31",
-              "periodKey": "22YD",
-              "netDueDate": "2022-02-08",
+              "periodFromDate": "2023-04-01",
+              "periodToDate": "2024-03-31",
+              "periodKey": "23XY",
+              "netDueDate": "2023-02-08",
               "formBundleNumber": "125435934761",
               "statisticalKey": "1",
               "amount": 50,
@@ -71,69 +71,34 @@
               "lineItemLockDetails": [
                 {
                   "lockType": "Payment",
-                  "lockStartDate": "2022-01-01",
-                  "lockEndDate": "2022-01-01"
+                  "lockStartDate": "2023-01-01",
+                  "lockEndDate": "2023-01-01"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "documentNumber": "187346702498",
-          "documentType": "TRM New Charge",
-          "chargeReferenceNumber": "XMECL0000000001",
-          "businessPartnerNumber": "100893731",
-          "contractAccountNumber": "900726630",
-          "contractAccountCategory": "ECL",
-          "contractObjectNumber": "104920928302302",
-          "contractObjectType": "ECL",
-          "postingDate": "2021-01-01",
-          "issueDate": "2021-01-01",
-          "documentTotalAmount": 300,
-          "documentClearedAmount": 300,
-          "documentOutstandingAmount": 0,
-          "documentLockDetails": {
-            "lockType": "Payment",
-            "lockStartDate": "2021-01-01",
-            "lockEndDate": "2021-01-01"
-          },
-          "documentInterestTotals": {
-            "interestPostedAmount": 18.07,
-            "interestPostedChargeRef": "XB001286323438",
-            "interestAccruingAmount": 10.00
-          },
-          "documentPenaltyTotals": [
-            {
-              "penaltyType": "LPP1",
-              "penaltyStatus": "POSTED",
-              "penaltyAmount": 14.21,
-              "postedChargeReference": "XR00123933492"
-            }
-          ],
-          "lineItemDetails": [
+            },
             {
               "itemNumber": "0001",
-              "subItemNumber": "006",
+              "subItemNumber": "003",
               "mainTransaction": "6220",
               "subTransaction": "3410",
               "chargeDescription": "ECL Return",
-              "periodFromDate": "2021-04-01",
-              "periodToDate": "2022-03-31",
-              "periodKey": "21YD",
-              "netDueDate": "2021-02-08",
+              "periodFromDate": "2023-04-01",
+              "periodToDate": "2024-03-31",
+              "periodKey": "23XY",
+              "netDueDate": "2023-02-08",
               "formBundleNumber": "125435934761",
               "statisticalKey": "1",
-              "amount": 300,
-              "clearingDate": "2021-02-09",
-              "clearingReason": "01",
-              "clearingDocument": "719283701921",
+              "amount": 20,
+              "clearingDate": "",
+              "clearingReason": "",
+              "clearingDocument": "",
               "outgoingPaymentMethod": "B",
               "ddCollectionInProgress": true,
               "lineItemLockDetails": [
                 {
                   "lockType": "Payment",
-                  "lockStartDate": "2021-01-01",
-                  "lockEndDate": "2021-01-01"
+                  "lockStartDate": "2023-01-01",
+                  "lockEndDate": "2023-01-01"
                 }
               ]
             }

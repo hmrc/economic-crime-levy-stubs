@@ -14,23 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.economiccrimelevystubs.services
+package uk.gov.hmrc.economiccrimelevystubs.models.integrationframework
 
-import play.api.libs.json.{JsValue, Json}
-import javax.inject.Singleton
-import scala.io.Source.fromFile
+import play.api.libs.json.{Json, OFormat}
 
-@Singleton
-class ReadFileService {
+case class FinancialDataErrorResponse(code: String, reason: String)
 
-  private val BASE_PATH = "resources"
+object FinancialDataErrorResponse {
 
-  def readFile(fileName: String): JsValue = {
-    val stream = fromFile(s"$BASE_PATH/$fileName.json")
-    val lines  =
-      try stream.mkString
-      finally stream.close()
-    Json.parse(lines)
-  }
-
+  implicit val format: OFormat[FinancialDataErrorResponse] = Json.format[FinancialDataErrorResponse]
 }
