@@ -146,4 +146,22 @@ object ObligationStubData {
       )
     )
   )
+
+  def fulfilledObligation(): ObligationData = ObligationData(
+    obligations = Seq(
+      Obligation(
+        identification = None,
+        obligationDetails = Seq(
+          ObligationDetails(
+            status = Fulfilled,
+            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 2),
+            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 2),
+            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDueDate = dueDate(currentYear - 1),
+            periodKey = periodKey(eclPeriodFrom(currentYear - 1))
+          )
+        )
+      )
+    )
+  )
 }
