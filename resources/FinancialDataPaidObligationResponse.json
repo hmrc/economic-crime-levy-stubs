@@ -20,7 +20,7 @@
         {
           "documentNumber": "187346702498",
           "documentType": "TRM New Charge",
-          "chargeReferenceNumber": "XMECL0000000001",
+          "chargeReferenceNumber": "XMECL0000000005",
           "businessPartnerNumber": "100893731",
           "contractAccountNumber": "900726630",
           "contractAccountCategory": "ECL",
@@ -28,8 +28,8 @@
           "contractObjectType": "ECL",
           "postingDate": "2021-01-01",
           "issueDate": "2021-01-01",
-          "documentTotalAmount": 100,
-          "documentClearedAmount": 100,
+          "documentTotalAmount": 14000,
+          "documentClearedAmount": 14000,
           "documentOutstandingAmount": 0,
           "documentLockDetails": {
             "lockType": "Payment",
@@ -62,7 +62,7 @@
               "netDueDate": "2021-02-08",
               "formBundleNumber": "125435934761",
               "statisticalKey": "1",
-              "amount": 100,
+              "amount": 14000,
               "clearingDate": "2021-02-09",
               "clearingReason": "01",
               "clearingDocument": "719283701921",
