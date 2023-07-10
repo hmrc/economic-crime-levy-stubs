@@ -75,32 +75,6 @@
                   "lockEndDate": "2023-01-01"
                 }
               ]
-            },
-            {
-              "itemNumber": "0001",
-              "subItemNumber": "003",
-              "mainTransaction": "6220",
-              "subTransaction": "3410",
-              "chargeDescription": "ECL Return",
-              "periodFromDate": "2023-04-01",
-              "periodToDate": "2024-03-31",
-              "periodKey": "23XY",
-              "netDueDate": "2023-02-08",
-              "formBundleNumber": "125435934761",
-              "statisticalKey": "1",
-              "amount": 20,
-              "clearingDate": "",
-              "clearingReason": "",
-              "clearingDocument": "",
-              "outgoingPaymentMethod": "B",
-              "ddCollectionInProgress": true,
-              "lineItemLockDetails": [
-                {
-                  "lockType": "Payment",
-                  "lockStartDate": "2023-01-01",
-                  "lockEndDate": "2023-01-01"
-                }
-              ]
             }
           ]
         }
