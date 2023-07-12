@@ -17,20 +17,24 @@
 package uk.gov.hmrc.economiccrimelevystubs.services
 
 import play.api.libs.json.{JsValue, Json}
+
+import java.io.InputStream
 import javax.inject.Singleton
+import scala.io.Source
 import scala.io.Source.fromFile
 
 @Singleton
 class ReadFileService {
-
-  private val BASE_PATH = "resources"
-
+  private val BASE_PATH                                   = "/resources"
   def readFile(fileName: String): JsValue = {
-    val stream = fromFile(s"$BASE_PATH/$fileName.json")
-    val lines  =
-      try stream.mkString
-      finally stream.close()
-    Json.parse(lines)
+    val json = findResource(s"$BASE_PATH/$fileName.json")
+    Json.parse(json)
   }
-
+  private def findResource(path: String): String = {
+    val resource = getClass.getResourceAsStream(path)
+    readStreamToString(resource)
+  }
+  private def readStreamToString(is: InputStream): String =
+    try Source.fromInputStream(is).mkString
+    finally is.close()
 }
