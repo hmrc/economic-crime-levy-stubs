@@ -130,7 +130,7 @@ object ObligationStubData {
             status = Fulfilled,
             inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 3),
             inboundCorrespondenceToDate = eclPeriodTo(currentYear - 3),
-            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDateReceived = Some(dueDate(yearDue = 2021)),
             inboundCorrespondenceDueDate = dueDate(currentYear - 2),
             periodKey = periodKey(eclPeriodFrom(currentYear - 2))
           ),
