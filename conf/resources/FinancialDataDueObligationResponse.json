@@ -63,9 +63,6 @@
               "formBundleNumber": "125435934761",
               "statisticalKey": "1",
               "amount": 0,
-              "clearingDate": "",
-              "clearingReason": "",
-              "clearingDocument": "",
               "outgoingPaymentMethod": "B",
               "ddCollectionInProgress": true,
               "lineItemLockDetails": [
