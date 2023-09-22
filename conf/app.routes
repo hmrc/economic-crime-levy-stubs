@@ -9,3 +9,5 @@ POST        /economic-crime-levy/subscription/:safeId                         uk
 POST        /economic-crime-levy/return/:eclRegistrationReference             uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnController.submitReturn(eclRegistrationReference)
 
 GET         /enrolments/cleanup-references                                    uk.gov.hmrc.economiccrimelevystubs.controllers.EnrolmentCleanUpController.referencesForCleanup()
+
+GET         /echo                                                             uk.gov.hmrc.economiccrimelevystubs.controllers.EchoController.echo()
