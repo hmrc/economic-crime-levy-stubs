@@ -78,7 +78,7 @@
               "amount": 10000,
               "clearingDate": "2021-03-12",
               "clearingReason": "",
-              "clearingDocument": "",
+              "clearingDocument": "02",
               "outgoingPaymentMethod": "B",
               "ddCollectionInProgress": true,
               "lineItemLockDetails": [
