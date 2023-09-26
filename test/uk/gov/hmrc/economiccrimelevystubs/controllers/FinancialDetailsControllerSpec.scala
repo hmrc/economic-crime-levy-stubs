@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
+import org.mockito.ArgumentMatchers.any
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
@@ -51,6 +52,16 @@ class FinancialDetailsControllerSpec extends SpecBase {
           )
         )
       )
+    }
+
+    "return 200 OK when idNumber ends in '010'" in {
+      when(mockReadFileService.readFile(any()))
+        .thenReturn(Json.parse("{\"getFinancialData\": {}}"))
+
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000010", regimeType)(fakeRequest)
+
+      status(result) shouldBe OK
     }
 
     "return 500 INTERNAL_SERVER_ERROR with a SERVER_ERROR code when the idNumber ends in '500'" in {
