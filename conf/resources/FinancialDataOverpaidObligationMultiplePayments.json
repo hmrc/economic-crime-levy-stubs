@@ -1,0 +1,97 @@
+{
+  "getFinancialData": {
+    "financialDetails": {
+      "totalisation": {
+        "regimeTotalisation": {
+          "totalAccountOverdue": 0,
+          "totalAccountNotYetDue": 0,
+          "totalAccountCredit": 0,
+          "totalAccountBalance": 0
+        },
+        "targetedSearch_SelectionCriteriaTotalisation": {
+          "totalOverdue": 0,
+          "totalNotYetDue": 0,
+          "totalBalance": 0,
+          "totalCredit": 0,
+          "totalCleared": 0
+        }
+      },
+      "documentDetails": [
+        {
+          "documentNumber": "110988002549",
+          "documentType": "TRM New Charge",
+          "chargeReferenceNumber": "XMECL0000000009",
+          "businessPartnerNumber": "100893731",
+          "contractAccountNumber": "900726630",
+          "contractAccountCategory": "ECL",
+          "contractObjectNumber": "104920928302302",
+          "contractObjectType": "ECL",
+          "postingDate": "2021-01-01",
+          "issueDate": "2021-01-01",
+          "documentTotalAmount": 18000,
+          "documentClearedAmount": 20000,
+          "documentOutstandingAmount": 0,
+          "documentLockDetails": {
+            "lockType": "Payment",
+            "lockStartDate": "2021-01-01",
+            "lockEndDate": "2021-01-01"
+          },
+          "lineItemDetails": [
+            {
+              "itemNumber": "0001",
+              "subItemNumber": "003",
+              "mainTransaction": "6220",
+              "subTransaction": "3410",
+              "chargeDescription": "ECL Return",
+              "periodFromDate": "2020-04-01",
+              "periodToDate": "2021-03-31",
+              "periodKey": "20XY",
+              "netDueDate": "2021-02-08",
+              "formBundleNumber": "125435934761",
+              "statisticalKey": "1",
+              "amount": 10000,
+              "clearingDate": "2021-03-12",
+              "clearingReason": "",
+              "clearingDocument": "02",
+              "outgoingPaymentMethod": "B",
+              "ddCollectionInProgress": true,
+              "lineItemLockDetails": [
+                {
+                  "lockType": "Payment",
+                  "lockStartDate": "2021-01-01",
+                  "lockEndDate": "2021-01-01"
+                }
+              ]
+            },
+            {
+              "itemNumber": "0002",
+              "subItemNumber": "003",
+              "mainTransaction": "6220",
+              "subTransaction": "3410",
+              "chargeDescription": "ECL Return",
+              "periodFromDate": "2020-04-01",
+              "periodToDate": "2021-03-31",
+              "periodKey": "20XY",
+              "netDueDate": "2021-02-08",
+              "formBundleNumber": "125435934761",
+              "statisticalKey": "1",
+              "amount": 10000,
+              "clearingDate": "2021-03-12",
+              "clearingReason": "",
+              "clearingDocument": "",
+              "outgoingPaymentMethod": "B",
+              "ddCollectionInProgress": true,
+              "lineItemLockDetails": [
+                {
+                  "lockType": "Payment",
+                  "lockStartDate": "2021-01-01",
+                  "lockEndDate": "2021-01-01"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
