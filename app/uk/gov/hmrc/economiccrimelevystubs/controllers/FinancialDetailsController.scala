@@ -39,7 +39,9 @@ class FinancialDetailsController @Inject() (
       case "007" => Ok(readFileService.readFile("FinancialDataPaidPartiallyPaidOverdueResponse"))
       case "008" => Ok(readFileService.readFile("FinancialDataOverpaidObligationSinglePayment"))
       case "009" => Ok(readFileService.readFile("FinancialDataOverpaidObligationMultiplePayments"))
-      case "010" => Ok(readFileService.readFile("FinancialDataPaidObligationPaidPartialPaidInterestResponse"))
+      case "010" => Ok(readFileService.readFile("FinancialDataPaidObligationPartialPaidInterestResponse"))
+      case "011" => Ok(readFileService.readFile("FinancialDataPaidObligationPaidInterestResponse"))
+      case "012" => Ok(readFileService.readFile("FinancialDataOverdueObligationWithInterestResponse"))
       case "400" =>
         BadRequest(
           Json.obj(
