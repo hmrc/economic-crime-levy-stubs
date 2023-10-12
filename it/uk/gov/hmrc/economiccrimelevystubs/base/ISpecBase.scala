@@ -26,7 +26,7 @@ import scala.concurrent.ExecutionContext.global
 import scala.concurrent.{ExecutionContext, Future}
 
 abstract class ISpecBase
-  extends AnyWordSpec
+    extends AnyWordSpec
     with GuiceOneAppPerSuite
     with BeforeAndAfterEach
     with BeforeAndAfterAll
@@ -50,16 +50,16 @@ abstract class ISpecBase
     with IntegrationPatience
     with EclTestData {
 
-  implicit lazy val system: ActorSystem = ActorSystem()
+  implicit lazy val system: ActorSystem        = ActorSystem()
   implicit lazy val materializer: Materializer = Materializer(system)
 
   implicit def ec: ExecutionContext = global
 
-  val now: Instant = Instant.now.truncatedTo(ChronoUnit.MILLIS)
+  val now: Instant             = Instant.now.truncatedTo(ChronoUnit.MILLIS)
   private val stubClock: Clock = Clock.fixed(now, ZoneId.systemDefault)
 
   val additionalAppConfig: Map[String, Any] = Map(
-    "metrics.enabled" -> false,
+    "metrics.enabled"  -> false,
     "auditing.enabled" -> false
   )
 
@@ -74,15 +74,15 @@ abstract class ISpecBase
       .build()
 
   def callRoute[A](fakeRequest: FakeRequest[A], requiresAuth: Boolean = true)(implicit
-                                                                              app: Application,
-                                                                              w: Writeable[A]
+    app: Application,
+    w: Writeable[A]
   ): Future[Result] = {
     val errorHandler = app.errorHandler
 
     val req = if (requiresAuth) fakeRequest.withHeaders("Authorization" -> "test") else fakeRequest
 
     route(app, req) match {
-      case None => fail("Route does not exist")
+      case None         => fail("Route does not exist")
       case Some(result) =>
         result.recoverWith { case t: Throwable =>
           errorHandler.onServerError(req, t)
