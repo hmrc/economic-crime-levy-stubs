@@ -92,6 +92,16 @@ class FinancialDetailsControllerSpec extends SpecBase {
       status(result) shouldBe OK
     }
 
+    "return 200 OK when idNumber ends in '016'" in {
+      when(mockReadFileService.readFile(any()))
+        .thenReturn(Json.parse("{\"getFinancialData\": {}}"))
+
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000016", regimeType)(fakeRequest)
+
+      status(result) shouldBe OK
+    }
+
     "return 500 INTERNAL_SERVER_ERROR with a SERVER_ERROR code when the idNumber ends in '500'" in {
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000500", regimeType)(fakeRequest)

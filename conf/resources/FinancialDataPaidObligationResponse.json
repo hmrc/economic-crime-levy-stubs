@@ -64,7 +64,7 @@
               "statisticalKey": "1",
               "amount": 14000,
               "clearingDate": "2021-02-09",
-              "clearingReason": "01",
+              "clearingReason": "Incoming Payment",
               "clearingDocument": "719283701921",
               "outgoingPaymentMethod": "B",
               "ddCollectionInProgress": true,
