@@ -1,0 +1,132 @@
+{
+  "getFinancialData": {
+    "financialDetails": {
+      "totalisation": {
+        "regimeTotalisation": {
+          "totalAccountOverdue": 796.23,
+          "totalAccountBalance": 796.23
+        },
+        "targetedSearch_SelectionCriteriaTotalisation": {
+          "totalOverdue": 796.23,
+          "totalBalance": 796.23,
+          "totalCleared": 286000
+        },
+        "additionalReceivableTotalisations": {
+          "totalAccountPostedInterest": 796.23,
+          "totalAccountAccruingInterest": 796.23
+        }
+      },
+      "documentDetails": [
+        {
+          "documentNumber": "003230019262",
+          "documentType": "Interest Document",
+          "chargeReferenceNumber": "XQ003230019262",
+          "businessPartnerNumber": "0100428283",
+          "contractAccountNumber": "002000000372",
+          "contractAccountCategory": "ECL",
+          "contractObjectNumber": "00000290000000000331",
+          "contractObjectType": "ECL",
+          "postingDate": "2023-10-16",
+          "issueDate": "2023-10-18",
+          "documentTotalAmount": 796.23,
+          "documentOutstandingAmount": 796.23,
+          "lineItemDetails": [
+            {
+              "itemNumber": "0001",
+              "subItemNumber": "000",
+              "mainTransaction": "6225",
+              "subTransaction": "3415",
+              "chargeDescription": "Economic Crime Levy Interest",
+              "periodFromDate": "2022-10-03",
+              "periodToDate": "2023-03-31",
+              "netDueDate": "2023-10-16",
+              "amount": 796.23,
+              "lineItemInterestDetails": {
+                "interestStartDate": "2023-10-16"
+              }
+            }
+          ]
+        },
+        {
+          "documentNumber": "003390018797",
+          "documentType": "TRM New Charge",
+          "chargeReferenceNumber": "XL002610192892",
+          "businessPartnerNumber": "0100428283",
+          "contractAccountNumber": "002000000372",
+          "contractAccountCategory": "ECL",
+          "contractObjectNumber": "00000290000000000331",
+          "contractObjectType": "ECL",
+          "postingDate": "2023-10-16",
+          "documentTotalAmount": 250000,
+          "documentClearedAmount": 250000,
+          "documentInterestTotals": {
+            "interestPostedAmount": 796.23,
+            "interestPostedChargeRef": "XQ003230019262",
+            "interestAccruingAmount": 796.23
+          },
+          "lineItemDetails": [
+            {
+              "itemNumber": "0001",
+              "subItemNumber": "000",
+              "mainTransaction": "6220",
+              "subTransaction": "3410",
+              "chargeDescription": "Economic Crime Levy",
+              "periodFromDate": "2022-10-03",
+              "periodToDate": "2023-03-31",
+              "periodKey": "22YD",
+              "netDueDate": "2023-09-30",
+              "formBundleNumber": "260000000282",
+              "amount": 250000,
+              "clearingDate": "2023-10-16",
+              "clearingReason": "Incoming Payment",
+              "clearingDocument": "209000000088",
+              "lineItemInterestDetails": {
+                "interestKey": "365/SAIN (LPI)",
+                "currentInterestRate": 7.75,
+                "interestStartDate": "2023-10-01",
+                "interestPostedAmount": 796.23,
+                "interestAccruingAmount": 796.23
+              }
+            }
+          ]
+        },
+        {
+          "documentNumber": "003570019058",
+          "documentType": "TRM New Charge",
+          "chargeReferenceNumber": "XN002610192893",
+          "businessPartnerNumber": "0100428283",
+          "contractAccountNumber": "002000000372",
+          "contractAccountCategory": "ECL",
+          "contractObjectNumber": "00000290000000000331",
+          "contractObjectType": "ECL",
+          "postingDate": "2023-10-16",
+          "documentTotalAmount": 36000,
+          "documentClearedAmount": 36000,
+          "lineItemDetails": [
+            {
+              "itemNumber": "0001",
+              "subItemNumber": "000",
+              "mainTransaction": "6220",
+              "subTransaction": "3410",
+              "chargeDescription": "Economic Crime Levy",
+              "periodFromDate": "2023-04-01",
+              "periodToDate": "2024-03-31",
+              "periodKey": "23YD",
+              "netDueDate": "2024-09-30",
+              "formBundleNumber": "260000000283",
+              "amount": 36000,
+              "clearingDate": "2023-10-16",
+              "clearingReason": "Reversal",
+              "clearingDocument": "003240019077",
+              "lineItemInterestDetails": {
+                "interestKey": "365/SAIN (LPI)",
+                "currentInterestRate": 7.75,
+                "interestStartDate": "2024-10-01"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
