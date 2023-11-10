@@ -134,7 +134,7 @@
               "statisticalKey": "1",
               "amount": 114.84,
               "clearingDate": "2021-02-09",
-              "clearingReason": "01",
+              "clearingReason": "Incoming Payment",
               "clearingDocument": "719283701921"
             }
           ]
