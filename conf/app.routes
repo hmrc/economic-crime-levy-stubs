@@ -11,3 +11,5 @@ POST        /economic-crime-levy/return/:eclRegistrationReference             uk
 GET         /enrolments/cleanup-references                                    uk.gov.hmrc.economiccrimelevystubs.controllers.EnrolmentCleanUpController.referencesForCleanup()
 
 GET         /echo                                                             uk.gov.hmrc.economiccrimelevystubs.controllers.EchoController.echo()
+
+POST        /dms-submission/submit                                            uk.gov.hmrc.economiccrimelevystubs.controllers.DmsSubmissionController.submit()
