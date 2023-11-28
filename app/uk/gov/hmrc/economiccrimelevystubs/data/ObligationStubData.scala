@@ -35,7 +35,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = eclPeriodFrom(),
             inboundCorrespondenceToDate = eclPeriodTo(),
             inboundCorrespondenceDateReceived = Some(eclPeriodTo().plus(Period.ofDays(1))),
-            inboundCorrespondenceDueDate = dueDate(),
+            inboundCorrespondenceDueDate = dueDate(eclPeriodTo().getYear),
             periodKey = periodKey(eclPeriodFrom())
           )
         )
@@ -53,7 +53,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = eclPeriodFrom(),
             inboundCorrespondenceToDate = eclPeriodTo(),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(),
+            inboundCorrespondenceDueDate = dueDate(eclPeriodTo().getYear),
             periodKey = periodKey(eclPeriodFrom())
           )
         )
@@ -71,7 +71,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = eclPeriodFrom(currentFyStartYear - 1),
             inboundCorrespondenceToDate = eclPeriodTo(currentFyStartYear - 1),
             inboundCorrespondenceDateReceived = Some(eclPeriodTo(currentFyStartYear - 1).plus(Period.ofDays(1))),
-            inboundCorrespondenceDueDate = dueDate(currentYear - 1),
+            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentFyStartYear - 1).getYear),
             periodKey = periodKey(eclPeriodFrom(currentFyStartYear - 1))
           ),
           ObligationDetails(
@@ -79,7 +79,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = eclPeriodFrom(),
             inboundCorrespondenceToDate = eclPeriodTo(),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(),
+            inboundCorrespondenceDueDate = dueDate(eclPeriodTo().getYear),
             periodKey = periodKey(eclPeriodFrom())
           )
         )
@@ -97,7 +97,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = eclPeriodFrom(currentFyStartYear - 1),
             inboundCorrespondenceToDate = eclPeriodTo(currentFyStartYear - 1),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(currentYear - 1),
+            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentFyStartYear - 1).getYear),
             periodKey = periodKey(eclPeriodFrom(currentFyStartYear - 1))
           ),
           ObligationDetails(
@@ -105,7 +105,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = eclPeriodFrom(),
             inboundCorrespondenceToDate = eclPeriodTo(),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(),
+            inboundCorrespondenceDueDate = dueDate(eclPeriodTo().getYear),
             periodKey = periodKey(eclPeriodFrom())
           )
         )
@@ -123,7 +123,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 2),
             inboundCorrespondenceToDate = eclPeriodTo(currentYear - 2),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(currentYear - 1),
+            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentYear - 2).getYear),
             periodKey = periodKey(eclPeriodFrom(currentYear - 1))
           ),
           ObligationDetails(
@@ -131,7 +131,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 3),
             inboundCorrespondenceToDate = eclPeriodTo(currentYear - 3),
             inboundCorrespondenceDateReceived = Some(dueDate(yearDue = 2021)),
-            inboundCorrespondenceDueDate = dueDate(currentYear - 2),
+            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentYear - 3).getYear),
             periodKey = periodKey(eclPeriodFrom(currentYear - 2))
           ),
           ObligationDetails(
@@ -139,7 +139,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 1),
             inboundCorrespondenceToDate = eclPeriodTo(currentYear - 1),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(currentYear),
+            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentYear - 1).getYear),
             periodKey = periodKey(eclPeriodFrom(currentYear))
           )
         )
