@@ -23,8 +23,7 @@ import javax.inject.{Inject, Singleton}
 import scala.concurrent.Future
 
 @Singleton
-class DmsSubmissionController @Inject() (
-  cc: ControllerComponents) extends BackendController(cc) {
+class DmsSubmissionController @Inject() (cc: ControllerComponents) extends BackendController(cc) {
 
   def submit(): Action[AnyContent] = Action.async { _ =>
     Future.successful(Accepted)
