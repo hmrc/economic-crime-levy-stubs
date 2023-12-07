@@ -16,18 +16,27 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.utils
 
+import uk.gov.hmrc.time.TaxYear
+
 import java.time.LocalDate
 import scala.annotation.tailrec
 
 object EclTaxYear {
 
-  def currentYear: Int        = LocalDate.now().getYear
   private val MonthDue        = 9
   private val DayDue          = 30
   private val EclFyEndMonth   = 3
   private val EclFyStartMonth = 4
   private val EclFyEndDay     = 31
   private val EclFyStartDay   = 1
+  private val netDueDateMonth = 2
+  private val netDueDateDay   = 8
+
+  def currentTaxYear: TaxYear = TaxYear.current
+
+  def currentYear: Int = LocalDate.now().getYear
+
+  def previousTaxYear: TaxYear = TaxYear.current.previous
 
   def dueDate(yearDue: Int = currentYear): LocalDate =
     LocalDate.of(yearDue, MonthDue, DayDue)
@@ -44,10 +53,14 @@ object EclTaxYear {
       yearDue
     }
 
-  def eclPeriodFrom(startYear: Int = currentFyStartYear): LocalDate =
+  def netDueDate(endYear: Int = yearDue): LocalDate =
+    LocalDate.of(endYear, netDueDateMonth, netDueDateDay)
+
+  def periodFrom(startYear: Int = currentFyStartYear): LocalDate =
     LocalDate.of(startYear, EclFyStartMonth, EclFyStartDay)
 
-  def eclPeriodTo(startYear: Int = currentFyStartYear): LocalDate =
-    LocalDate.of(startYear + 1, EclFyEndMonth, EclFyEndDay)
+  def periodKey(taxYear: TaxYear): String = s"${taxYear.startYear.toString.takeRight(2)}XY"
 
+  def periodTo(startYear: Int = currentFyStartYear): LocalDate =
+    LocalDate.of(startYear + 1, EclFyEndMonth, EclFyEndDay)
 }

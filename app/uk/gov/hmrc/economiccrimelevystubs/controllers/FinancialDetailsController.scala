@@ -18,7 +18,8 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.FinancialDataErrorResponse
+import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubData
+import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
 import uk.gov.hmrc.economiccrimelevystubs.services.ReadFileService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
@@ -32,7 +33,7 @@ class FinancialDetailsController @Inject() (
 
   def getFinancialDetails(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
     idNumber.takeRight(3) match {
-      case "003" => Ok(readFileService.readFile("FinancialDataDueObligationResponse"))
+      case "003" => Ok(Json.toJson(FinancialStubData.financialDataDueObligation()))
       case "004" => Ok(readFileService.readFile("FinancialDataOverdueObligationResponse"))
       case "005" => Ok(readFileService.readFile("FinancialDataPaidObligationResponse"))
       case "006" => Ok(readFileService.readFile("FinancialDataPartiallyPaidResponse"))

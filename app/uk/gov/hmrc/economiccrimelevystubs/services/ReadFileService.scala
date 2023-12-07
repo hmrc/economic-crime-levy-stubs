@@ -21,7 +21,6 @@ import play.api.libs.json.{JsValue, Json}
 import java.io.InputStream
 import javax.inject.Singleton
 import scala.io.Source
-import scala.io.Source.fromFile
 
 @Singleton
 class ReadFileService {
