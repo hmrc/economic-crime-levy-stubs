@@ -36,7 +36,7 @@ class FinancialDetailsController @Inject() (
       case "003" => Ok(Json.toJson(FinancialStubData.financialDataDueObligation()))
       case "004" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationResponse()))
       case "005" => Ok(Json.toJson(FinancialStubData.FinancialDataPaidObligationResponse()))
-      case "006" => Ok(readFileService.readFile("FinancialDataPartiallyPaidResponse"))
+      case "006" => Ok(Json.toJson(FinancialStubData.FinancialDataPartiallyPaidResponse()))
       case "007" => Ok(readFileService.readFile("FinancialDataPaidPartiallyPaidOverdueResponse"))
       case "008" => Ok(readFileService.readFile("FinancialDataOverpaidObligationSinglePayment"))
       case "009" => Ok(readFileService.readFile("FinancialDataOverpaidObligationMultiplePayments"))

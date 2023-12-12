@@ -56,7 +56,7 @@ object EclTaxYear {
 
   def previousTaxYear: TaxYear = TaxYear.current.previous
 
-  def startYearStarOfYear(taxYear: TaxYear): LocalDate =
+  def startYearStartOfTaxYear(taxYear: TaxYear): LocalDate =
     LocalDate.of(taxYear.startYear, yearStartMonth, yearStartDay)
 
   @tailrec

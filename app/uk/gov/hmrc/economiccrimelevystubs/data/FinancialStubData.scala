@@ -19,6 +19,8 @@ package uk.gov.hmrc.economiccrimelevystubs.data
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
 import uk.gov.hmrc.economiccrimelevystubs.utils.EclTaxYear._
 
+import java.time.LocalDate
+
 object FinancialStubData {
 
   private val contractObjectNumber    = "104920928302302"
@@ -53,7 +55,7 @@ object FinancialStubData {
           interestAccruingAmount = Some(12.1),
           interestPostedAmount = Some(13.12),
           interestPostedChargeRef = Some(interestPostedChargeRef),
-          issueDate = Some(startYearStarOfYear(currentTaxYear).toString),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
           lineItemDetails = Some(
             Seq(
               LineItemDetails(
@@ -70,7 +72,7 @@ object FinancialStubData {
             )
           ),
           penaltyTotals = None,
-          postingDate = Some(startYearStarOfYear(currentTaxYear).toString)
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString)
         )
       )
     )
@@ -101,7 +103,7 @@ object FinancialStubData {
           interestAccruingAmount = Some(12.1),
           interestPostedAmount = Some(13.12),
           interestPostedChargeRef = Some(interestPostedChargeRef),
-          issueDate = Some(startYearStarOfYear(previousTaxYear).toString),
+          issueDate = Some(startYearStartOfTaxYear(previousTaxYear).toString),
           lineItemDetails = Some(
             Seq(
               LineItemDetails(
@@ -118,7 +120,7 @@ object FinancialStubData {
             )
           ),
           penaltyTotals = None,
-          postingDate = Some(startYearStarOfYear(previousTaxYear).toString)
+          postingDate = Some(startYearStartOfTaxYear(previousTaxYear).toString)
         )
       )
     )
@@ -149,7 +151,7 @@ object FinancialStubData {
           interestAccruingAmount = None,
           interestPostedAmount = Some(114.84),
           interestPostedChargeRef = Some(interestPostedChargeRef),
-          issueDate = Some(startYearStarOfYear(previousTaxYear.back(1)).toString),
+          issueDate = Some(startYearStartOfTaxYear(previousTaxYear.back(1)).toString),
           lineItemDetails = Some(
             Seq(
               LineItemDetails(
@@ -177,7 +179,7 @@ object FinancialStubData {
             )
           ),
           penaltyTotals = None,
-          postingDate = Some(startYearStarOfYear(previousTaxYear.back(1)).toString)
+          postingDate = Some(startYearStartOfTaxYear(previousTaxYear.back(1)).toString)
         ),
         DocumentDetails(
           chargeReferenceNumber = Some(interestPostedChargeRef),
@@ -190,7 +192,7 @@ object FinancialStubData {
           interestAccruingAmount = None,
           interestPostedAmount = None,
           interestPostedChargeRef = None,
-          issueDate = Some(startYearStarOfYear(previousTaxYear.back(1)).toString),
+          issueDate = Some(startYearStartOfTaxYear(previousTaxYear.back(1)).toString),
           lineItemDetails = Some(
             Seq(
               LineItemDetails(
@@ -218,7 +220,66 @@ object FinancialStubData {
             )
           ),
           penaltyTotals = None,
-          postingDate = Some(startYearStarOfYear(previousTaxYear.back(1)).toString)
+          postingDate = Some(startYearStartOfTaxYear(previousTaxYear.back(1)).toString)
+        )
+      )
+    )
+  )
+
+  def FinancialDataPartiallyPaidResponse(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(0),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000006"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(4900),
+          documentOutstandingAmount = Some(23100),
+          documentTotalAmount = Some(28000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = Some(12.1),
+          interestPostedAmount = Some(13.12),
+          interestPostedChargeRef = Some(interestPostedChargeRef),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(3600),
+                chargeDescription = Some(eclReturn),
+                clearingDate = Some(LocalDate.of(currentTaxYear.startYear, 7, 21).toString),
+                clearingDocument = None,
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString)
+              ),
+              LineItemDetails(
+                amount = Some(1300),
+                chargeDescription = Some(eclReturn),
+                clearingDate = Some(LocalDate.of(currentTaxYear.startYear, 7, 20).toString),
+                clearingDocument = None,
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString)
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString)
         )
       )
     )
