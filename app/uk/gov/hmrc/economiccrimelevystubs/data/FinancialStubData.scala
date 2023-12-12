@@ -126,7 +126,7 @@ object FinancialStubData {
     )
   )
 
-  def FinancialDataPaidObligationResponse(): FinancialData = FinancialData(
+  def financialDataPaidObligationResponse(): FinancialData = FinancialData(
     Some(
       Totalisation(
         totalAccountBalance = Some(1250),
@@ -226,7 +226,7 @@ object FinancialStubData {
     )
   )
 
-  def FinancialDataPartiallyPaidResponse(): FinancialData = FinancialData(
+  def financialDataPartiallyPaidResponse(): FinancialData = FinancialData(
     Some(
       Totalisation(
         totalAccountBalance = Some(1250),
@@ -285,7 +285,7 @@ object FinancialStubData {
     )
   )
 
-  def FinancialDataPaidPartiallyPaidOverdueResponse(): FinancialData = FinancialData(
+  def financialDataPaidPartiallyPaidOverdueResponse(): FinancialData = FinancialData(
     Some(
       Totalisation(
         totalAccountBalance = Some(1250),
@@ -393,7 +393,7 @@ object FinancialStubData {
     )
   )
 
-  def FinancialDataOverpaidObligationSinglePayment(): FinancialData = FinancialData(
+  def financialDataOverpaidObligationSinglePayment(): FinancialData = FinancialData(
     Some(
       Totalisation(
         totalAccountBalance = Some(1250),
@@ -426,6 +426,65 @@ object FinancialStubData {
                 chargeDescription = Some(eclReturn),
                 clearingDate = Some(LocalDate.of(currentTaxYear.back(2).startYear, 3, 12).toString),
                 clearingDocument = Some("01"),
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.back(2).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(2))),
+                periodToDate = Some(periodTo(previousTaxYear.back(2).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString)
+        )
+      )
+    )
+  )
+
+  def financialDataOverpaidObligationMultiplePayments(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(0),
+        totalAccountOverdue = Some(0),
+        totalBalance = Some(0),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(0),
+        totalOverdue = Some(0)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000009"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(20000),
+          documentOutstandingAmount = Some(0),
+          documentTotalAmount = Some(18000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None,
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(10000),
+                chargeDescription = Some(eclReturn),
+                clearingDate = Some(LocalDate.of(currentTaxYear.back(2).startYear, 3, 12).toString),
+                clearingDocument = Some("01"),
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.back(2).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(2))),
+                periodToDate = Some(periodTo(previousTaxYear.back(2).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+              ),
+              LineItemDetails(
+                amount = Some(10000),
+                chargeDescription = Some(eclReturn),
+                clearingDate = Some(LocalDate.of(currentTaxYear.back(2).startYear, 3, 12).toString),
+                clearingDocument = Some("02"),
                 clearingReason = Some(incomingPayment),
                 periodFromDate = Some(periodFrom(previousTaxYear.back(2).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(2))),
