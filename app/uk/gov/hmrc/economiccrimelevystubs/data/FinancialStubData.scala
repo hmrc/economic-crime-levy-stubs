@@ -392,4 +392,52 @@ object FinancialStubData {
       )
     )
   )
+
+  def FinancialDataOverpaidObligationSinglePayment(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000008"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(20000),
+          documentOutstandingAmount = Some(0),
+          documentTotalAmount = Some(18000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = Some(12.1),
+          interestPostedAmount = Some(13.12),
+          interestPostedChargeRef = Some(interestPostedChargeRef),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(20000),
+                chargeDescription = Some(eclReturn),
+                clearingDate = Some(LocalDate.of(currentTaxYear.back(2).startYear, 3, 12).toString),
+                clearingDocument = Some("01"),
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.back(2).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(2))),
+                periodToDate = Some(periodTo(previousTaxYear.back(2).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString)
+        )
+      )
+    )
+  )
 }
