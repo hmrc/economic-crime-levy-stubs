@@ -22,7 +22,7 @@ import uk.gov.hmrc.economiccrimelevystubs.utils.EclTaxYear._
 object FinancialStubData {
 
   private val contractObjectType = "ECL"
-  private val issueDate = "2023-01-01"
+  private val issueDate          = "2023-01-01"
 
   def financialDataDueObligation(): FinancialData = FinancialData(
     Some(
@@ -50,19 +50,21 @@ object FinancialStubData {
           interestPostedAmount = Some(13.12),
           interestPostedChargeRef = Some("XB001286323438"),
           issueDate = Some(issueDate),
-          lineItemDetails = Some(Seq(
-            LineItemDetails(
-              amount = Some(0),
-              chargeDescription = None,
-              clearingDate = None,
-              clearingDocument = None,
-              clearingReason = None,
-              periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
-              periodKey = Some(periodKey(previousTaxYear)),
-              periodToDate = Some(periodTo(previousTaxYear.finishYear).toString),
-              netDueDate = Some(netDueDate().toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(0),
+                chargeDescription = None,
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString)
+              )
             )
-          )),
+          ),
           penaltyTotals = None,
           postingDate = Some("2023-01-01")
         )

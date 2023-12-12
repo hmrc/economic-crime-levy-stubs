@@ -16,12 +16,18 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.models.integrationframework
 
-import play.api.libs.json.{Json, OFormat}
+import play.api.libs.functional.syntax.{toFunctionalBuilderOps, unlift}
+import play.api.libs.json.{JsPath, Json, OFormat, OWrites, Reads, Writes}
 
 final case class FinancialData(totalisation: Option[Totalisation], documentDetails: Option[Seq[DocumentDetails]])
 
 object FinancialData {
-  implicit val format: OFormat[FinancialData] = Json.format[FinancialData]
+  implicit val reads: Reads[FinancialData] = Json.reads[FinancialData]
+
+  implicit val writes: Writes[FinancialData] = (
+    (JsPath \ "getFinancialData" \ "financialDetails" \ "totalisation").writeNullable[Totalisation] and
+      (JsPath \ "getFinancialData" \ "financialDetails" \ "documentDetails").writeNullable[Seq[DocumentDetails]]
+  )(unlift(FinancialData.unapply))
 }
 
 final case class Totalisation(
@@ -35,7 +41,17 @@ final case class Totalisation(
 )
 
 object Totalisation {
-  implicit val format: OFormat[Totalisation] = Json.format[Totalisation]
+  implicit val reads: Reads[Totalisation] = Json.reads[Totalisation]
+
+  implicit val writes: Writes[Totalisation] = (
+    (JsPath \ "regimeTotalisation" \ "totalAccountBalance").writeNullable[BigDecimal] and
+      (JsPath \ "regimeTotalisation" \ "totalAccountOverdue").writeNullable[BigDecimal] and
+      (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalOverdue").writeNullable[BigDecimal] and
+      (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalNotYetDue").writeNullable[BigDecimal] and
+      (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalBalance").writeNullable[BigDecimal] and
+      (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalCredit").writeNullable[BigDecimal] and
+      (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalCleared").writeNullable[BigDecimal]
+  )(unlift(Totalisation.unapply))
 }
 
 final case class DocumentDetails(
@@ -56,7 +72,24 @@ final case class DocumentDetails(
 )
 
 object DocumentDetails {
-  implicit var format: OFormat[DocumentDetails] = Json.format[DocumentDetails]
+  implicit var reads: Reads[DocumentDetails] = Json.reads[DocumentDetails]
+
+  implicit val writes: Writes[DocumentDetails] = (
+    (JsPath \ "documentType").writeNullable[DocumentType] and
+      (JsPath \ "chargeReferenceNumber").writeNullable[String] and
+      (JsPath \ "postingDate").writeNullable[String] and
+      (JsPath \ "issueDate").writeNullable[String] and
+      (JsPath \ "documentTotalAmount").writeNullable[BigDecimal] and
+      (JsPath \ "documentClearedAmount").writeNullable[BigDecimal] and
+      (JsPath \ "documentOutstandingAmount").writeNullable[BigDecimal] and
+      (JsPath \ "lineItemDetails").writeNullable[Seq[LineItemDetails]] and
+      (JsPath \ "documentInterestTotals" \ "interestPostedAmount").writeNullable[BigDecimal] and
+      (JsPath \ "documentInterestTotals" \ "interestAccruingAmount").writeNullable[BigDecimal] and
+      (JsPath \ "documentInterestTotals" \ "interestPostedChargeRef").writeNullable[String] and
+      (JsPath \ "documentPenaltyTotals").writeNullable[Seq[PenaltyTotals]] and
+      (JsPath \ "contractObjectNumber").writeNullable[String] and
+      (JsPath \ "contractObjectType").writeNullable[String]
+  )(unlift(DocumentDetails.unapply))
 }
 
 final case class LineItemDetails(
