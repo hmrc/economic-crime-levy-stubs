@@ -21,8 +21,10 @@ import uk.gov.hmrc.economiccrimelevystubs.utils.EclTaxYear._
 
 object FinancialStubData {
 
-  private val contractObjectType = "ECL"
-  private val issueDate          = "2023-01-01"
+  private val contractObjectNumber    = "104920928302302"
+  private val contractObjectType      = "ECL"
+  private val incomingPayment         = "Incoming Payment"
+  private val interestPostedChargeRef = "XB001286323438"
 
   def financialDataDueObligation(): FinancialData = FinancialData(
     Some(
@@ -40,7 +42,7 @@ object FinancialStubData {
       Seq(
         DocumentDetails(
           chargeReferenceNumber = Some("XMECL0000000003"),
-          contractObjectNumber = Some("104920928302302"),
+          contractObjectNumber = Some(contractObjectNumber),
           contractObjectType = Some(contractObjectType),
           documentClearedAmount = Some(0),
           documentOutstandingAmount = Some(10000),
@@ -48,8 +50,8 @@ object FinancialStubData {
           documentType = Some(DocumentType.NewCharge),
           interestAccruingAmount = Some(12.1),
           interestPostedAmount = Some(13.12),
-          interestPostedChargeRef = Some("XB001286323438"),
-          issueDate = Some(issueDate),
+          interestPostedChargeRef = Some(interestPostedChargeRef),
+          issueDate = Some(startYearStarOfYear(currentTaxYear).toString),
           lineItemDetails = Some(
             Seq(
               LineItemDetails(
@@ -66,7 +68,103 @@ object FinancialStubData {
             )
           ),
           penaltyTotals = None,
-          postingDate = Some("2023-01-01")
+          postingDate = Some(startYearStarOfYear(currentTaxYear).toString)
+        )
+      )
+    )
+  )
+
+  def financialDataOverdueObligationResponse(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(0),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000004"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(8000),
+          documentOutstandingAmount = Some(28000),
+          documentTotalAmount = Some(36000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = Some(12.1),
+          interestPostedAmount = Some(13.12),
+          interestPostedChargeRef = Some(interestPostedChargeRef),
+          issueDate = Some(startYearStarOfYear(previousTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(8000),
+                chargeDescription = Some("ECL Return"),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(previousTaxYear.startYear).toString)
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStarOfYear(previousTaxYear).toString)
+        )
+      )
+    )
+  )
+
+  def FinancialDataPaidObligationResponse(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(0),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000005"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(12000),
+          documentOutstandingAmount = Some(4000),
+          documentTotalAmount = Some(16000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = None,
+          interestPostedAmount = Some(114.84),
+          interestPostedChargeRef = Some(interestPostedChargeRef),
+          issueDate = Some(startYearStarOfYear(previousTaxYear.back(1)).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(4000),
+                chargeDescription = Some("ECL Return"),
+                clearingDate = Some(netDueDate(previousTaxYear.back(1).startYear).plusDays(1).toString),
+                clearingDocument = None,
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(previousTaxYear.back(1).startYear).toString)
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStarOfYear(previousTaxYear.back(1)).toString)
         )
       )
     )

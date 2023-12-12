@@ -31,27 +31,17 @@ object EclTaxYear {
   private val EclFyStartDay   = 1
   private val netDueDateMonth = 2
   private val netDueDateDay   = 8
+  private val yearStartDay    = 1
+  private val yearStartMonth  = 1
 
   def currentTaxYear: TaxYear = TaxYear.current
 
   def currentYear: Int = LocalDate.now().getYear
 
-  def previousTaxYear: TaxYear = TaxYear.current.previous
-
   def dueDate(yearDue: Int = currentYear): LocalDate =
     LocalDate.of(yearDue, MonthDue, DayDue)
 
-  private def yearDue: Int = calculateYearDue()
-
   def currentFyStartYear: Int = yearDue - 1
-
-  @tailrec
-  private def calculateYearDue(yearDue: Int = currentYear, currentDate: LocalDate = LocalDate.now()): Int =
-    if (currentDate.isAfter(LocalDate.of(yearDue, MonthDue, DayDue))) {
-      calculateYearDue(yearDue + 1, currentDate)
-    } else {
-      yearDue
-    }
 
   def netDueDate(endYear: Int = yearDue): LocalDate =
     LocalDate.of(endYear, netDueDateMonth, netDueDateDay)
@@ -63,4 +53,19 @@ object EclTaxYear {
 
   def periodTo(startYear: Int = currentFyStartYear): LocalDate =
     LocalDate.of(startYear + 1, EclFyEndMonth, EclFyEndDay)
+
+  def previousTaxYear: TaxYear = TaxYear.current.previous
+
+  def startYearStarOfYear(taxYear: TaxYear): LocalDate =
+    LocalDate.of(taxYear.startYear, yearStartMonth, yearStartDay)
+
+  @tailrec
+  private def calculateYearDue(yearDue: Int = currentYear, currentDate: LocalDate = LocalDate.now()): Int =
+    if (currentDate.isAfter(LocalDate.of(yearDue, MonthDue, DayDue))) {
+      calculateYearDue(yearDue + 1, currentDate)
+    } else {
+      yearDue
+    }
+
+  private def yearDue: Int = calculateYearDue()
 }

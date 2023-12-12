@@ -34,8 +34,8 @@ class FinancialDetailsController @Inject() (
   def getFinancialDetails(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
     idNumber.takeRight(3) match {
       case "003" => Ok(Json.toJson(FinancialStubData.financialDataDueObligation()))
-      case "004" => Ok(readFileService.readFile("FinancialDataOverdueObligationResponse"))
-      case "005" => Ok(readFileService.readFile("FinancialDataPaidObligationResponse"))
+      case "004" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationResponse()))
+      case "005" => Ok(Json.toJson(FinancialStubData.FinancialDataPaidObligationResponse()))
       case "006" => Ok(readFileService.readFile("FinancialDataPartiallyPaidResponse"))
       case "007" => Ok(readFileService.readFile("FinancialDataPaidPartiallyPaidOverdueResponse"))
       case "008" => Ok(readFileService.readFile("FinancialDataOverpaidObligationSinglePayment"))
