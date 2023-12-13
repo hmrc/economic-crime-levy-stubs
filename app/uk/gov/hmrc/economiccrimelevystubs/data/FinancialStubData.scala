@@ -955,8 +955,8 @@ object FinancialStubData {
           chargeReferenceNumber = Some("XMECL0000000016"),
           contractObjectNumber = Some(contractObjectNumber),
           contractObjectType = Some(contractObjectType),
-          documentClearedAmount = Some(0),
-          documentOutstandingAmount = Some(10000),
+          documentClearedAmount = Some(10000),
+          documentOutstandingAmount = Some(0),
           documentTotalAmount = Some(10000),
           documentType = Some(DocumentType.AmendedCharge),
           interestAccruingAmount = None,
@@ -1069,7 +1069,7 @@ object FinancialStubData {
           documentType = Some(DocumentType.NewCharge),
           interestAccruingAmount = Some(796.23),
           interestPostedAmount = Some(796.23),
-          interestPostedChargeRef = Some(chargeReference),
+          interestPostedChargeRef = Some("XMECL0000000017"),
           issueDate = None,
           lineItemDetails = Some(
             Seq(
@@ -1077,7 +1077,7 @@ object FinancialStubData {
                 amount = Some(250000),
                 chargeDescription = Some(eclReturn),
                 clearingDate = Some(LocalDate.of(currentTaxYear.startYear, 10, 16).toString),
-                clearingDocument = Some("719283701921"),
+                clearingDocument = Some("209000000088"),
                 clearingReason = Some(incomingPayment),
                 periodFromDate = Some(LocalDate.of(previousTaxYear.startYear, 10, 3).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
@@ -1090,7 +1090,7 @@ object FinancialStubData {
           postingDate = Some(LocalDate.of(currentTaxYear.startYear, 10, 16).toString)
         ),
         DocumentDetails(
-          chargeReferenceNumber = Some("003390018797"),
+          chargeReferenceNumber = Some("XN002610192893"),
           contractObjectNumber = Some(contractObjectNumber),
           contractObjectType = Some(contractObjectType),
           documentClearedAmount = Some(36000),
@@ -1107,12 +1107,12 @@ object FinancialStubData {
                 amount = Some(36000),
                 chargeDescription = Some(eclReturn),
                 clearingDate = Some(LocalDate.of(currentTaxYear.startYear, 10, 16).toString),
-                clearingDocument = Some("719283701921"),
+                clearingDocument = Some("003240019077"),
                 clearingReason = Some(reversal),
                 periodFromDate = Some(periodFrom(currentTaxYear.startYear).toString),
                 periodKey = Some(periodKey(currentTaxYear)),
                 periodToDate = Some(periodTo(currentTaxYear.startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.finishYear).toString)
+                netDueDate = Some(LocalDate.of(currentTaxYear.finishYear, 9, 30).toString)
               )
             )
           ),
