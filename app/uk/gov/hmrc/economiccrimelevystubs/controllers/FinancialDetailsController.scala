@@ -44,9 +44,9 @@ class FinancialDetailsController @Inject() (
       case "011" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationPaidInterestResponse()))
       case "012" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationWithInterestResponse()))
       case "013" => Ok(Json.toJson(FinancialStubData.financialDataRefundForOverpayment()))
-      case "014" => Ok(readFileService.readFile("FinancialDataOverdueObligationWithoutInterestDocumentFormed"))
-      case "015" => Ok(readFileService.readFile("FinancialDataUnexpectedDocumentType"))
-      case "016" => Ok(readFileService.readFile("FinancialDataPaidObligationWithReversalLineItemResponse"))
+      case "014" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationWithoutInterestDocumentFormed()))
+      case "015" => Ok(Json.toJson(FinancialStubData.financialDataUnexpectedDocumentType()))
+      case "016" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationWithReversalLineItemResponse()))
       case "017" => Ok(readFileService.readFile("FinancialDataPaidChargeWithInterestAndReversalResponse"))
       case "400" =>
         BadRequest(
