@@ -21,17 +21,13 @@ import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.FinancialDataErrorResponse
-import uk.gov.hmrc.economiccrimelevystubs.services.ReadFileService
 
 import scala.concurrent.Future
 
 class FinancialDetailsControllerSpec extends SpecBase {
 
-  val mockReadFileService: ReadFileService = mock[ReadFileService]
-
   val controller = new FinancialDetailsController(
-    cc,
-    mockReadFileService
+    cc
   )
 
   private val idType     = "zecl"
@@ -55,27 +51,18 @@ class FinancialDetailsControllerSpec extends SpecBase {
     }
 
     "return 200 OK when idNumber ends in '010'" in {
-      when(mockReadFileService.readFile(any()))
-        .thenReturn(Json.parse("{\"getFinancialData\": {}}"))
-
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000010", regimeType)(fakeRequest)
 
       status(result) shouldBe OK
     }
     "return 200 OK when idNumber ends in '011'" in {
-      when(mockReadFileService.readFile(any()))
-        .thenReturn(Json.parse("{\"getFinancialData\": {}}"))
-
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000011", regimeType)(fakeRequest)
 
       status(result) shouldBe OK
     }
     "return 200 OK when idNumber ends in '012'" in {
-      when(mockReadFileService.readFile(any()))
-        .thenReturn(Json.parse("{\"getFinancialData\": {}}"))
-
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000012", regimeType)(fakeRequest)
 
@@ -83,9 +70,6 @@ class FinancialDetailsControllerSpec extends SpecBase {
     }
 
     "return 200 OK when idNumber ends in '013'" in {
-      when(mockReadFileService.readFile(any()))
-        .thenReturn(Json.parse("{\"getFinancialData\": {}}"))
-
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000013", regimeType)(fakeRequest)
 
@@ -93,9 +77,6 @@ class FinancialDetailsControllerSpec extends SpecBase {
     }
 
     "return 200 OK when idNumber ends in '016'" in {
-      when(mockReadFileService.readFile(any()))
-        .thenReturn(Json.parse("{\"getFinancialData\": {}}"))
-
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000016", regimeType)(fakeRequest)
 
@@ -103,9 +84,6 @@ class FinancialDetailsControllerSpec extends SpecBase {
     }
 
     "return 200 OK when idNumber ends in '017'" in {
-      when(mockReadFileService.readFile(any()))
-        .thenReturn(Json.parse("{\"getFinancialData\": {}}"))
-
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000017", regimeType)(fakeRequest)
 

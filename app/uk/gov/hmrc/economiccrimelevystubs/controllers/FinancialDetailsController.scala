@@ -20,15 +20,13 @@ import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubData
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
-import uk.gov.hmrc.economiccrimelevystubs.services.ReadFileService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.{Inject, Singleton}
 
 @Singleton
 class FinancialDetailsController @Inject() (
-  cc: ControllerComponents,
-  readFileService: ReadFileService
+  cc: ControllerComponents
 ) extends BackendController(cc) {
 
   def getFinancialDetails(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
