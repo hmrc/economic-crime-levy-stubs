@@ -599,4 +599,204 @@ object FinancialStubData {
       )
     )
   )
+
+  def financialDataOverdueObligationWithInterestResponse(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(0),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000012"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(12000),
+          documentOutstandingAmount = Some(4000),
+          documentTotalAmount = Some(16000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = None,
+          interestPostedAmount = Some(114.84),
+          interestPostedChargeRef = Some(interestPostedChargeRef),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(4000),
+                chargeDescription = Some(eclReturn),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString)
+              ),
+              LineItemDetails(
+                amount = Some(12000),
+                chargeDescription = Some(eclReturn),
+                clearingDate = Some(LocalDate.of(currentTaxYear.back(2).startYear, 2, 9).toString),
+                clearingDocument = Some("719283701921"),
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString)
+        ),
+        DocumentDetails(
+          chargeReferenceNumber = Some(interestPostedChargeRef),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(100),
+          documentOutstandingAmount = Some(4.84),
+          documentTotalAmount = Some(114.84),
+          documentType = Some(DocumentType.InterestCharge),
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None,
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(4.84),
+                chargeDescription = Some(eclInterest),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+              ),
+              LineItemDetails(
+                amount = Some(100),
+                chargeDescription = Some(eclInterest),
+                clearingDate = Some(LocalDate.of(currentTaxYear.back(2).startYear, 2, 9).toString),
+                clearingDocument = Some("719283701921"),
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString)
+        )
+      )
+    )
+  )
+
+  def financialDataPaidObligationPaidInterestResponse(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(0),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000011"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(14000),
+          documentOutstandingAmount = Some(0),
+          documentTotalAmount = Some(14000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = None,
+          interestPostedAmount = Some(114.84),
+          interestPostedChargeRef = Some(interestPostedChargeRef),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(0),
+                chargeDescription = Some(eclReturn),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString)
+              ),
+              LineItemDetails(
+                amount = Some(14000),
+                chargeDescription = Some(eclReturn),
+                clearingDate = Some(LocalDate.of(currentTaxYear.back(2).startYear, 2, 9).toString),
+                clearingDocument = Some("719283701921"),
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString)
+        ),
+        DocumentDetails(
+          chargeReferenceNumber = Some(interestPostedChargeRef),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(114.84),
+          documentOutstandingAmount = Some(0),
+          documentTotalAmount = Some(114.84),
+          documentType = Some(DocumentType.InterestCharge),
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None,
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(0),
+                chargeDescription = Some(eclInterest),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+              ),
+              LineItemDetails(
+                amount = Some(114.84),
+                chargeDescription = Some(eclInterest),
+                clearingDate = Some(LocalDate.of(currentTaxYear.back(2).startYear, 2, 9).toString),
+                clearingDocument = Some("719283701921"),
+                clearingReason = Some(incomingPayment),
+                periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear.back(1))),
+                periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear.back(2)).toString)
+        )
+      )
+    )
+  )
 }
