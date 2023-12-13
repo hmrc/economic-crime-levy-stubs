@@ -17,7 +17,7 @@
 package uk.gov.hmrc.economiccrimelevystubs.models.integrationframework
 
 import play.api.libs.functional.syntax.{toFunctionalBuilderOps, unlift}
-import play.api.libs.json.{JsPath, Json, OFormat, OWrites, Reads, Writes}
+import play.api.libs.json._
 
 final case class FinancialData(totalisation: Option[Totalisation], documentDetails: Option[Seq[DocumentDetails]])
 

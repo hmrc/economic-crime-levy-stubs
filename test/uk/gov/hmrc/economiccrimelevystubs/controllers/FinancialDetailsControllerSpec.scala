@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
-import org.mockito.ArgumentMatchers.any
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
