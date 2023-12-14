@@ -87,6 +87,14 @@ class ObligationDataControllerSpec extends SpecBase {
       contentAsJson(result) shouldBe Json.toJson(ObligationStubData.overdueSubmittedDueObligations())
     }
 
+    "return 200 OK with obligation data JSON containing fulfilled on time, when the idNumber ends in '006'" in {
+      val result: Future[Result] =
+        controller.getObligationData(idType, "XMECL0000000006", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(ObligationStubData.fulfilledObligation())
+    }
+
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000400", regimeType)(fakeRequest)
