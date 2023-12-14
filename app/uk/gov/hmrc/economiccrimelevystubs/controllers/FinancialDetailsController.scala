@@ -18,35 +18,34 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
-import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.FinancialDataErrorResponse
-import uk.gov.hmrc.economiccrimelevystubs.services.ReadFileService
+import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubData
+import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.{Inject, Singleton}
 
 @Singleton
 class FinancialDetailsController @Inject() (
-  cc: ControllerComponents,
-  readFileService: ReadFileService
+  cc: ControllerComponents
 ) extends BackendController(cc) {
 
   def getFinancialDetails(idType: String, idNumber: String, regimeType: String): Action[AnyContent] = Action { _ =>
     idNumber.takeRight(3) match {
-      case "003" => Ok(readFileService.readFile("FinancialDataDueObligationResponse"))
-      case "004" => Ok(readFileService.readFile("FinancialDataOverdueObligationResponse"))
-      case "005" => Ok(readFileService.readFile("FinancialDataPaidObligationResponse"))
-      case "006" => Ok(readFileService.readFile("FinancialDataPartiallyPaidResponse"))
-      case "007" => Ok(readFileService.readFile("FinancialDataPaidPartiallyPaidOverdueResponse"))
-      case "008" => Ok(readFileService.readFile("FinancialDataOverpaidObligationSinglePayment"))
-      case "009" => Ok(readFileService.readFile("FinancialDataOverpaidObligationMultiplePayments"))
-      case "010" => Ok(readFileService.readFile("FinancialDataPaidObligationPartialPaidInterestResponse"))
-      case "011" => Ok(readFileService.readFile("FinancialDataPaidObligationPaidInterestResponse"))
-      case "012" => Ok(readFileService.readFile("FinancialDataOverdueObligationWithInterestResponse"))
-      case "013" => Ok(readFileService.readFile("FinancialDataRefundForOverpayment"))
-      case "014" => Ok(readFileService.readFile("FinancialDataOverdueObligationWithoutInterestDocumentFormed"))
-      case "015" => Ok(readFileService.readFile("FinancialDataUnexpectedDocumentType"))
-      case "016" => Ok(readFileService.readFile("FinancialDataPaidObligationWithReversalLineItemResponse"))
-      case "017" => Ok(readFileService.readFile("FinancialDataPaidChargeWithInterestAndReversalResponse"))
+      case "003" => Ok(Json.toJson(FinancialStubData.financialDataDueObligation()))
+      case "004" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationResponse()))
+      case "005" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationResponse()))
+      case "006" => Ok(Json.toJson(FinancialStubData.financialDataPartiallyPaidResponse()))
+      case "007" => Ok(Json.toJson(FinancialStubData.financialDataPaidPartiallyPaidOverdueResponse()))
+      case "008" => Ok(Json.toJson(FinancialStubData.financialDataOverpaidObligationSinglePayment()))
+      case "009" => Ok(Json.toJson(FinancialStubData.financialDataOverpaidObligationMultiplePayments()))
+      case "010" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationPartialPaidInterestResponse()))
+      case "011" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationPaidInterestResponse()))
+      case "012" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationWithInterestResponse()))
+      case "013" => Ok(Json.toJson(FinancialStubData.financialDataRefundForOverpayment()))
+      case "014" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationWithoutInterestDocumentFormed()))
+      case "015" => Ok(Json.toJson(FinancialStubData.financialDataUnexpectedDocumentType()))
+      case "016" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationWithReversalLineItemResponse()))
+      case "017" => Ok(Json.toJson(FinancialStubData.financialDataPaidChargeWithInterestAndReversalResponse()))
       case "400" =>
         BadRequest(
           Json.obj(

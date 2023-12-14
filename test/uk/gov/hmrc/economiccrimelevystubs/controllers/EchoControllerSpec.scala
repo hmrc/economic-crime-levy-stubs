@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
-import play.api.libs.typedmap.{TypedEntry, TypedKey, TypedMap}
 import play.api.mvc.Result
 import play.api.test.FakeRequest
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase

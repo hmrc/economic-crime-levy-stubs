@@ -32,11 +32,11 @@ object ObligationStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Fulfilled,
-            inboundCorrespondenceFromDate = eclPeriodFrom(),
-            inboundCorrespondenceToDate = eclPeriodTo(),
-            inboundCorrespondenceDateReceived = Some(eclPeriodTo().plus(Period.ofDays(1))),
-            inboundCorrespondenceDueDate = dueDate(eclPeriodTo().getYear),
-            periodKey = periodKey(eclPeriodFrom())
+            inboundCorrespondenceFromDate = periodFrom(),
+            inboundCorrespondenceToDate = periodTo(),
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(1))),
+            inboundCorrespondenceDueDate = dueDate(periodTo().getYear),
+            periodKey = periodKey(periodFrom())
           )
         )
       )
@@ -50,11 +50,11 @@ object ObligationStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Open,
-            inboundCorrespondenceFromDate = eclPeriodFrom(),
-            inboundCorrespondenceToDate = eclPeriodTo(),
+            inboundCorrespondenceFromDate = periodFrom(),
+            inboundCorrespondenceToDate = periodTo(),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(eclPeriodTo().getYear),
-            periodKey = periodKey(eclPeriodFrom())
+            inboundCorrespondenceDueDate = dueDate(periodTo().getYear),
+            periodKey = periodKey(periodFrom())
           )
         )
       )
@@ -68,19 +68,19 @@ object ObligationStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Fulfilled,
-            inboundCorrespondenceFromDate = eclPeriodFrom(currentFyStartYear - 1),
-            inboundCorrespondenceToDate = eclPeriodTo(currentFyStartYear - 1),
-            inboundCorrespondenceDateReceived = Some(eclPeriodTo(currentFyStartYear - 1).plus(Period.ofDays(1))),
-            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentFyStartYear - 1).getYear),
-            periodKey = periodKey(eclPeriodFrom(currentFyStartYear - 1))
+            inboundCorrespondenceFromDate = periodFrom(currentFyStartYear - 1),
+            inboundCorrespondenceToDate = periodTo(currentFyStartYear - 1),
+            inboundCorrespondenceDateReceived = Some(periodTo(currentFyStartYear - 1).plus(Period.ofDays(1))),
+            inboundCorrespondenceDueDate = dueDate(periodTo(currentFyStartYear - 1).getYear),
+            periodKey = periodKey(periodFrom(currentFyStartYear - 1))
           ),
           ObligationDetails(
             status = Open,
-            inboundCorrespondenceFromDate = eclPeriodFrom(),
-            inboundCorrespondenceToDate = eclPeriodTo(),
+            inboundCorrespondenceFromDate = periodFrom(),
+            inboundCorrespondenceToDate = periodTo(),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(eclPeriodTo().getYear),
-            periodKey = periodKey(eclPeriodFrom())
+            inboundCorrespondenceDueDate = dueDate(periodTo().getYear),
+            periodKey = periodKey(periodFrom())
           )
         )
       )
@@ -94,19 +94,19 @@ object ObligationStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Open,
-            inboundCorrespondenceFromDate = eclPeriodFrom(currentFyStartYear - 1),
-            inboundCorrespondenceToDate = eclPeriodTo(currentFyStartYear - 1),
+            inboundCorrespondenceFromDate = periodFrom(currentFyStartYear - 1),
+            inboundCorrespondenceToDate = periodTo(currentFyStartYear - 1),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentFyStartYear - 1).getYear),
-            periodKey = periodKey(eclPeriodFrom(currentFyStartYear - 1))
+            inboundCorrespondenceDueDate = dueDate(periodTo(currentFyStartYear - 1).getYear),
+            periodKey = periodKey(periodFrom(currentFyStartYear - 1))
           ),
           ObligationDetails(
             status = Open,
-            inboundCorrespondenceFromDate = eclPeriodFrom(),
-            inboundCorrespondenceToDate = eclPeriodTo(),
+            inboundCorrespondenceFromDate = periodFrom(),
+            inboundCorrespondenceToDate = periodTo(),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(eclPeriodTo().getYear),
-            periodKey = periodKey(eclPeriodFrom())
+            inboundCorrespondenceDueDate = dueDate(periodTo().getYear),
+            periodKey = periodKey(periodFrom())
           )
         )
       )
@@ -120,27 +120,27 @@ object ObligationStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Open,
-            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 2),
-            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 2),
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 2),
+            inboundCorrespondenceToDate = periodTo(currentYear - 2),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentYear - 2).getYear),
-            periodKey = periodKey(eclPeriodFrom(currentYear - 1))
+            inboundCorrespondenceDueDate = dueDate(periodTo(currentYear - 2).getYear),
+            periodKey = periodKey(periodFrom(currentYear - 1))
           ),
           ObligationDetails(
             status = Fulfilled,
-            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 3),
-            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 3),
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 3),
+            inboundCorrespondenceToDate = periodTo(currentYear - 3),
             inboundCorrespondenceDateReceived = Some(dueDate(yearDue = 2021)),
-            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentYear - 3).getYear),
-            periodKey = periodKey(eclPeriodFrom(currentYear - 2))
+            inboundCorrespondenceDueDate = dueDate(periodTo(currentYear - 3).getYear),
+            periodKey = periodKey(periodFrom(currentYear - 2))
           ),
           ObligationDetails(
             status = Open,
-            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 1),
-            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 1),
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 1),
+            inboundCorrespondenceToDate = periodTo(currentYear - 1),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(eclPeriodTo(currentYear - 1).getYear),
-            periodKey = periodKey(eclPeriodFrom(currentYear))
+            inboundCorrespondenceDueDate = dueDate(periodTo(currentYear - 1).getYear),
+            periodKey = periodKey(periodFrom(currentYear))
           )
         )
       )
@@ -154,11 +154,11 @@ object ObligationStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Fulfilled,
-            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 2),
-            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 2),
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 2),
+            inboundCorrespondenceToDate = periodTo(currentYear - 2),
             inboundCorrespondenceDateReceived = None,
             inboundCorrespondenceDueDate = dueDate(currentYear - 1),
-            periodKey = periodKey(eclPeriodFrom(currentYear - 1))
+            periodKey = periodKey(periodFrom(currentYear - 1))
           )
         )
       )
@@ -172,11 +172,11 @@ object ObligationStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Fulfilled,
-            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 3),
-            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 3),
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 3),
+            inboundCorrespondenceToDate = periodTo(currentYear - 3),
             inboundCorrespondenceDateReceived = None,
             inboundCorrespondenceDueDate = dueDate(currentYear - 2),
-            periodKey = periodKey(eclPeriodFrom(currentYear - 3))
+            periodKey = periodKey(periodFrom(currentYear - 3))
           )
         )
       ),
@@ -185,11 +185,11 @@ object ObligationStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Fulfilled,
-            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 2),
-            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 2),
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 2),
+            inboundCorrespondenceToDate = periodTo(currentYear - 2),
             inboundCorrespondenceDateReceived = None,
             inboundCorrespondenceDueDate = dueDate(currentYear - 1),
-            periodKey = periodKey(eclPeriodFrom(currentYear - 2))
+            periodKey = periodKey(periodFrom(currentYear - 2))
           )
         )
       ),
@@ -198,11 +198,11 @@ object ObligationStubData {
         obligationDetails = Seq(
           ObligationDetails(
             status = Fulfilled,
-            inboundCorrespondenceFromDate = eclPeriodFrom(currentYear - 1),
-            inboundCorrespondenceToDate = eclPeriodTo(currentYear - 1),
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 1),
+            inboundCorrespondenceToDate = periodTo(currentYear - 1),
             inboundCorrespondenceDateReceived = None,
             inboundCorrespondenceDueDate = dueDate(currentYear),
-            periodKey = periodKey(eclPeriodFrom(currentYear - 1))
+            periodKey = periodKey(periodFrom(currentYear - 1))
           )
         )
       )
