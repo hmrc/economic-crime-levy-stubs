@@ -452,7 +452,7 @@ object FinancialStubData {
     )
   )
 
-  def FinancialDataPaidObligationPartialPaidInterestResponse(): FinancialData = FinancialData(
+  def financialDataPaidObligationPartialPaidInterestResponse(): FinancialData = FinancialData(
     Some(
       Totalisation(
         totalAccountBalance = Some(1250),
