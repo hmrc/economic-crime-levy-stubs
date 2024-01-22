@@ -23,17 +23,17 @@ import java.time.LocalDate
 object ReturnStubData {
 
   private val accountingPeriodLength = 365
-  private val eclReference = "XMECL0000000001"
-  private val emailAddress = "a@b.com"
-  private val name = "Joe John"
-  private val periodKey = "22XY"
-  private val positionInCompany = "Manager"
-  private val processingDateTime = "2022-06-07T13:49:51Z"
-  private val receiptDate = LocalDate.parse("2022-04-01")
-  private val returnDate = "2022-04-01"
-  private val returnType = "01"
-  private val submissionId = "789124231021"
-  private val telephoneNumber = "9876543218"
+  private val eclReference           = "XMECL0000000001"
+  private val emailAddress           = "a@b.com"
+  private val name                   = "Joe John"
+  private val periodKey              = "22XY"
+  private val positionInCompany      = "Manager"
+  private val processingDateTime     = "2022-06-07T13:49:51Z"
+  private val receiptDate            = LocalDate.parse("2022-04-01")
+  private val returnDate             = "2022-04-01"
+  private val returnType             = "01"
+  private val submissionId           = "789124231021"
+  private val telephoneNumber        = "9876543218"
 
   private def validBase(): GetEclReturnSubmissionResponse =
     GetEclReturnSubmissionResponse(
@@ -41,12 +41,14 @@ object ReturnStubData {
         chargeReference = None,
         periodKey = periodKey,
         receiptDate = receiptDate,
-        returnType = returnType),
+        returnType = returnType
+      ),
       declarationDetails = GetEclReturnDeclarationDetails(
         emailAddress = emailAddress,
         name = name,
         positionInCompany = positionInCompany,
-        telephoneNumber = telephoneNumber),
+        telephoneNumber = telephoneNumber
+      ),
       eclReference = eclReference,
       processingDateTime = processingDateTime,
       returnDetails = GetEclReturnDetails(
@@ -55,11 +57,16 @@ object ReturnStubData {
         amountOfEclDutyLiable = 10_000,
         numberOfDaysRegulatedActivityTookPlace = Some(365),
         returnDate = returnDate,
-        revenueBand = Band.Medium),
+        revenueBand = Band.Medium
+      ),
       submissionId = Some(submissionId)
     )
 
-  def validReturnMedium(periodKey: String, eclRegistrationReference: String, chargeReference: Option[String] = None): GetEclReturnSubmissionResponse = {
+  def validReturnMedium(
+    periodKey: String,
+    eclRegistrationReference: String,
+    chargeReference: Option[String] = None
+  ): GetEclReturnSubmissionResponse = {
     val base = validBase()
     base.copy(
       chargeDetails = base.chargeDetails.copy(
@@ -70,7 +77,11 @@ object ReturnStubData {
     )
   }
 
-  def validReturnLarge(periodKey: String, eclRegistrationReference: String, chargeReference: Option[String] = None): GetEclReturnSubmissionResponse = {
+  def validReturnLarge(
+    periodKey: String,
+    eclRegistrationReference: String,
+    chargeReference: Option[String] = None
+  ): GetEclReturnSubmissionResponse = {
     val base = validBase()
     base.copy(
       chargeDetails = base.chargeDetails.copy(
@@ -86,7 +97,11 @@ object ReturnStubData {
     )
   }
 
-  def validReturnVeryLarge(periodKey: String, eclRegistrationReference: String, chargeReference: Option[String] = None): GetEclReturnSubmissionResponse = {
+  def validReturnVeryLarge(
+    periodKey: String,
+    eclRegistrationReference: String,
+    chargeReference: Option[String] = None
+  ): GetEclReturnSubmissionResponse = {
     val base = validBase()
     base.copy(
       chargeDetails = base.chargeDetails.copy(
