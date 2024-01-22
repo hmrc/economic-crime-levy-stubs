@@ -19,6 +19,7 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
+import uk.gov.hmrc.economiccrimelevystubs.data.ReturnStubData
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.SubmitEclReturnResponse
 import uk.gov.hmrc.economiccrimelevystubs.services.ChargeReferenceService
 
@@ -81,4 +82,88 @@ class ReturnControllerSpec extends SpecBase {
     }
   }
 
+  "getReturn" should {
+
+    val periodKey = "22XY"
+
+    "return 200 OK when eclReference ends in '001' with band 'Medium'" in {
+      val eclReference = "XMECL0000000001"
+
+      val result: Future[Result] =
+        controller.getReturn(periodKey, eclReference)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        ReturnStubData.validReturnMedium(periodKey, eclReference)
+      )
+    }
+
+    "return 200 OK when eclReference ends in '002' with band 'Large'" in {
+      val eclReference = "XMECL0000000002"
+
+      val result: Future[Result] =
+        controller.getReturn(periodKey, eclReference)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        ReturnStubData.validReturnLarge(periodKey, eclReference)
+      )
+    }
+
+    "return 200 OK when eclReference ends in '003' with band 'VeryLarge'" in {
+      val eclReference = "XMECL0000000003"
+
+      val result: Future[Result] =
+        controller.getReturn(periodKey, eclReference)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        ReturnStubData.validReturnVeryLarge(periodKey, eclReference)
+      )
+    }
+
+    "return 400 BAD_REQUEST with an INVALID_ECLREFERENCE code when the eclReference ends in '400'" in {
+      val result: Future[Result] =
+        controller.getReturn(periodKey, "XMECL0000000400")(fakeRequest)
+
+      status(result)        shouldBe BAD_REQUEST
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "INVALID_ECLREFERENCE",
+        "reason" -> "Submission has not passed validation. Invalid parameter eclReference."
+      )
+    }
+
+    "return 422 UNPROCESSABLE_ENTITY with an NOT_FOUND_FORM code when the eclReference ends in '422'" in {
+      val result: Future[Result] =
+        controller.getReturn(periodKey, "XMECL0000000422")(fakeRequest)
+
+      status(result)        shouldBe UNPROCESSABLE_ENTITY
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "NOT_FOUND_FORM",
+        "reason" -> "The remote endpoint has indicated that no successfully processed forms can be found."
+      )
+    }
+
+    "return 500 INTERNAL_SERVER_ERROR with an SERVER_ERROR code when the eclReference ends in '500'" in {
+      val result: Future[Result] =
+        controller.getReturn(periodKey, "XMECL0000000500")(fakeRequest)
+
+      status(result)        shouldBe INTERNAL_SERVER_ERROR
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "SERVER_ERROR",
+        "reason" -> "IF is currently experiencing problems that require live service intervention."
+      )
+    }
+
+    "return 503 SERVICE_UNAVAILABLE with an SERVICE_UNAVAILABLE code when the eclReference ends in '503'" in {
+      val result: Future[Result] =
+        controller.getReturn(periodKey, "XMECL0000000503")(fakeRequest)
+
+      status(result)        shouldBe SERVICE_UNAVAILABLE
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "SERVICE_UNAVAILABLE",
+        "reason" -> "Dependent systems are currently not responding."
+      )
+    }
+  }
 }
