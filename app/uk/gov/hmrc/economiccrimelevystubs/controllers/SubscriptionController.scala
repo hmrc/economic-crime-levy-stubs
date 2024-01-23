@@ -18,7 +18,8 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.Logging
 import play.api.libs.json.{JsValue, Json}
-import play.api.mvc.{Action, ControllerComponents}
+import play.api.mvc.{Action, AnyContent, ControllerComponents}
+import uk.gov.hmrc.economiccrimelevystubs.data.GetSubscriptionData
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.{CreateSubscriptionResponse, CreateSubscriptionResponsePayload}
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
@@ -58,4 +59,38 @@ class SubscriptionController @Inject() (
       )
     }
 
+  def getSubscription(eclRegistrationReference: String): Action[AnyContent] = Action { _ =>
+    eclRegistrationReference.takeRight(3) match {
+      case "001" => Ok(Json.toJson(GetSubscriptionData.validIndividualSubscription(eclRegistrationReference)))
+      case "002" => Ok(Json.toJson(GetSubscriptionData.validOrganisationSubscription(eclRegistrationReference)))
+      case "400" =>
+        BadRequest(
+          Json.obj(
+            "code"   -> "INVALID_ECLREFERENCE",
+            "reason" -> "Submission has not passed validation. Invalid parameter eclReference."
+          )
+        )
+      case "422" =>
+        UnprocessableEntity(
+          Json.obj(
+            "code"   -> "006",
+            "reason" -> "There are no successfully processed forms for this customer"
+          )
+        )
+      case "503" =>
+        ServiceUnavailable(
+          Json.obj(
+            "code"   -> "SERVICE_UNAVAILABLE",
+            "reason" -> "Dependent systems are currently not responding."
+          )
+        )
+      case _     =>
+        InternalServerError(
+          Json.obj(
+            "code"   -> "SERVER_ERROR",
+            "reason" -> "IF is currently experiencing problems that require live service intervention."
+          )
+        )
+    }
+  }
 }
