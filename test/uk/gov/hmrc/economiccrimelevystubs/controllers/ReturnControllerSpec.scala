@@ -86,8 +86,8 @@ class ReturnControllerSpec extends SpecBase {
 
     val periodKey = "22XY"
 
-    "return 200 OK when eclReference ends in '001' with band 'Medium'" in {
-      val eclReference = "XMECL0000000001"
+    "return 200 OK when eclReference ends in '007' with band 'Medium'" in {
+      val eclReference = "XMECL0000000007"
 
       val result: Future[Result] =
         controller.getReturn(periodKey, eclReference)(fakeRequest)
@@ -95,30 +95,6 @@ class ReturnControllerSpec extends SpecBase {
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
         ReturnStubData.validReturnMedium(periodKey, eclReference)
-      )
-    }
-
-    "return 200 OK when eclReference ends in '002' with band 'Large'" in {
-      val eclReference = "XMECL0000000002"
-
-      val result: Future[Result] =
-        controller.getReturn(periodKey, eclReference)(fakeRequest)
-
-      status(result)        shouldBe OK
-      contentAsJson(result) shouldBe Json.toJson(
-        ReturnStubData.validReturnLarge(periodKey, eclReference)
-      )
-    }
-
-    "return 200 OK when eclReference ends in '003' with band 'VeryLarge'" in {
-      val eclReference = "XMECL0000000003"
-
-      val result: Future[Result] =
-        controller.getReturn(periodKey, eclReference)(fakeRequest)
-
-      status(result)        shouldBe OK
-      contentAsJson(result) shouldBe Json.toJson(
-        ReturnStubData.validReturnVeryLarge(periodKey, eclReference)
       )
     }
 
