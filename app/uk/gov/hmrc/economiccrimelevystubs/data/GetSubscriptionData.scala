@@ -75,6 +75,6 @@ object GetSubscriptionData {
     liabilityStartDate = "2023-05-01",
     eclReference = eclReference,
     amlSupervisor = "HMRC",
-    businessSector = "Business sector"
+    businessSector = "Insolvency Practitioner"
   )
 }
