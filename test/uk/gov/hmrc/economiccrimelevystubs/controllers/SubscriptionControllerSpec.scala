@@ -92,5 +92,29 @@ class SubscriptionControllerSpec extends SpecBase {
         "reason" -> "There are no successfully processed forms for this customer"
       )
     }
+
+    "return 503 ServiceUnavailable with code and message if reference ends with '503'" in {
+      val eclReference = "XMECL000000503"
+
+      val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
+
+      status(result)        shouldBe SERVICE_UNAVAILABLE
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "SERVICE_UNAVAILABLE",
+        "reason" -> "Dependent systems are currently not responding."
+      )
+    }
+
+    "return 500 InternalServerError with code and message if reference ends with '500'" in {
+      val eclReference = "XMECL000000150"
+
+      val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
+
+      status(result)        shouldBe INTERNAL_SERVER_ERROR
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "SERVER_ERROR",
+        "reason" -> "IF is currently experiencing problems that require live service intervention."
+      )
+    }
   }
 }
