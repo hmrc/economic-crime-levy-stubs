@@ -7,6 +7,7 @@ GET         /cross-regime/subscription/:regime/:idType/:idValue/status          
 POST        /economic-crime-levy/subscription/:safeId                               uk.gov.hmrc.economiccrimelevystubs.controllers.SubscriptionController.createSubscription(safeId)
 GET         /economic-crime-levy/subscription/:eclRegistrationReference             uk.gov.hmrc.economiccrimelevystubs.controllers.SubscriptionController.getSubscription(eclRegistrationReference)
 
+
 GET         /economic-crime-levy/return/:periodKey/:eclRegistrationReference        uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnController.getReturn(periodKey, eclRegistrationReference)
 POST        /economic-crime-levy/return/:eclRegistrationReference                   uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnController.submitReturn(eclRegistrationReference)
 
