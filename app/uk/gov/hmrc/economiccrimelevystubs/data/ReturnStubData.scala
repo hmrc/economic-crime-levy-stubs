@@ -18,7 +18,7 @@ package uk.gov.hmrc.economiccrimelevystubs.data
 
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.{Band, GetEclReturnChargeDetails, GetEclReturnDeclarationDetails, GetEclReturnDetails, GetEclReturnSubmissionResponse}
 
-import java.time.LocalDate
+import java.time.{Instant, LocalDate}
 
 object ReturnStubData {
 
@@ -28,9 +28,9 @@ object ReturnStubData {
   private val name                   = "Joe John"
   private val periodKey              = "22XY"
   private val positionInCompany      = "Manager"
-  private val processingDateTime     = "2022-06-07T13:49:51Z"
-  private val receiptDate            = LocalDate.parse("2022-04-01")
-  private val returnDate             = "2022-04-01"
+  private val processingDateTime     = Instant.parse("2022-06-07T13:49:51Z")
+  private val receiptDate            = Instant.parse("2023-07-28T15:13:29Z")
+  private val returnDate             = LocalDate.parse("2022-04-01")
   private val returnType             = "01"
   private val submissionId           = "789124231021"
   private val telephoneNumber        = "9876543218"
