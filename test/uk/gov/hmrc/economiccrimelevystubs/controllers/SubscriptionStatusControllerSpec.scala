@@ -36,7 +36,7 @@ class SubscriptionStatusControllerSpec extends SpecBase {
 
     "return 200 OK with subscription status JSON containing a form bundle not found subscription status when the idValue ends in any other value" in {
       val result: Future[Result] =
-        controller.getSubscriptionStatus(regime, idType, "XA0000000000001")(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, "XA0000000000099")(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
@@ -50,7 +50,7 @@ class SubscriptionStatusControllerSpec extends SpecBase {
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        SubscriptionStatusStubData.eclSubscribedData
+        SubscriptionStatusStubData.eclSubscribedData(idType, "XA0000000000002")
       )
     }
 

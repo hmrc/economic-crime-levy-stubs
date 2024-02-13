@@ -16,14 +16,21 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.data
 
-import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.{NoFormBundleFound, Online, SubscriptionStatusResponse, Successful}
+import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
 
 object SubscriptionStatusStubData {
 
-  val eclSubscribedData: SubscriptionStatusResponse = SubscriptionStatusResponse(
+  def eclSubscribedData(idType: String, idValue: String): SubscriptionStatusResponse = SubscriptionStatusResponse(
     subscriptionStatus = Successful,
-    idType = Some("ZECL"),
-    idValue = Some("XMECL0000000001"),
+    idType = Some(idType),
+    idValue = Some(idValue),
+    channel = Some(Online)
+  )
+
+  def eclDeregisteredData(idType: String, idValue: String): SubscriptionStatusResponse = SubscriptionStatusResponse(
+    subscriptionStatus = ContractObjectInactive,
+    idType = Some(idType),
+    idValue = Some(idValue),
     channel = Some(Online)
   )
 
