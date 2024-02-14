@@ -18,7 +18,8 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.Logging
 import play.api.libs.json.{JsValue, Json}
-import play.api.mvc.{Action, ControllerComponents, Result}
+import play.api.mvc.{Action, AnyContent, ControllerComponents, Result}
+import uk.gov.hmrc.economiccrimelevystubs.data.ReturnStubData
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.SubmitEclReturnResponse
 import uk.gov.hmrc.economiccrimelevystubs.services.ChargeReferenceService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
@@ -34,6 +35,41 @@ class ReturnController @Inject() (
 )(implicit ec: ExecutionContext)
     extends BackendController(cc)
     with Logging {
+
+  def getReturn(periodKey: String, eclRegistrationReference: String): Action[AnyContent] = Action { _ =>
+    eclRegistrationReference.takeRight(3) match {
+      case "007" => Ok(Json.toJson(ReturnStubData.validReturnMedium(periodKey, eclRegistrationReference)))
+      case "019" => Ok(Json.toJson(ReturnStubData.validReturnMedium(periodKey, eclRegistrationReference)))
+      case "400" =>
+        BadRequest(
+          Json.obj(
+            "code"   -> "INVALID_ECLREFERENCE",
+            "reason" -> "Submission has not passed validation. Invalid parameter eclReference."
+          )
+        )
+      case "422" =>
+        UnprocessableEntity(
+          Json.obj(
+            "code"   -> "NOT_FOUND_FORM",
+            "reason" -> "The remote endpoint has indicated that no successfully processed forms can be found."
+          )
+        )
+      case "503" =>
+        ServiceUnavailable(
+          Json.obj(
+            "code"   -> "SERVICE_UNAVAILABLE",
+            "reason" -> "Dependent systems are currently not responding."
+          )
+        )
+      case _     =>
+        InternalServerError(
+          Json.obj(
+            "code"   -> "SERVER_ERROR",
+            "reason" -> "IF is currently experiencing problems that require live service intervention."
+          )
+        )
+    }
+  }
 
   def submitReturn(eclRegistrationReference: String): Action[JsValue] =
     Action.async(parse.json) { implicit request =>

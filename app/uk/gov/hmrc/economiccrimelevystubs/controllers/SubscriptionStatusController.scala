@@ -28,7 +28,25 @@ class SubscriptionStatusController @Inject() (
 ) extends BackendController(cc) {
   def getSubscriptionStatus(regime: String, idType: String, idValue: String): Action[AnyContent] = Action { _ =>
     idValue.takeRight(3) match {
-      case "002" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData))
+      case "001" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "002" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "003" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "004" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "005" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "006" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "007" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "008" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "009" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "010" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "011" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "012" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "013" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "014" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "015" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "016" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "017" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "018" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "019" => Ok(Json.toJson(SubscriptionStatusStubData.eclDeregisteredData(idType, idValue)))
       case "400" =>
         BadRequest(
           Json.obj(

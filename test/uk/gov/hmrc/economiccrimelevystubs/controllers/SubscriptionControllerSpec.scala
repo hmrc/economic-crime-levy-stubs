@@ -19,6 +19,7 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
+import uk.gov.hmrc.economiccrimelevystubs.data.GetSubscriptionData
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.{CreateSubscriptionResponse, CreateSubscriptionResponsePayload}
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
 
@@ -61,4 +62,59 @@ class SubscriptionControllerSpec extends SpecBase {
     }
   }
 
+  "getSubscription" should {
+    "return 200 OK with response for individuals if reference ends with '001' " in {
+      val eclReference = "XMECL0000000001"
+
+      val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(GetSubscriptionData.validIndividualSubscription(eclReference))
+    }
+
+    "return 200 OK with response for organizations if reference ends with '002'" in {
+      val eclReference = "XMECL0000000002"
+
+      val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(GetSubscriptionData.validOrganisationSubscription(eclReference))
+    }
+
+    "return 422 UnprocessableEntity with code and message if reference ends with '422'" in {
+      val eclReference = "XMECL000000422"
+
+      val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
+
+      status(result)        shouldBe UNPROCESSABLE_ENTITY
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "006",
+        "reason" -> "There are no successfully processed forms for this customer"
+      )
+    }
+
+    "return 503 ServiceUnavailable with code and message if reference ends with '503'" in {
+      val eclReference = "XMECL000000503"
+
+      val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
+
+      status(result)        shouldBe SERVICE_UNAVAILABLE
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "SERVICE_UNAVAILABLE",
+        "reason" -> "Dependent systems are currently not responding."
+      )
+    }
+
+    "return 500 InternalServerError with code and message if reference ends with '500'" in {
+      val eclReference = "XMECL000000150"
+
+      val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
+
+      status(result)        shouldBe INTERNAL_SERVER_ERROR
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "SERVER_ERROR",
+        "reason" -> "IF is currently experiencing problems that require live service intervention."
+      )
+    }
+  }
 }
