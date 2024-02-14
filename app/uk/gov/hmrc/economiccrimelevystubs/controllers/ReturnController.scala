@@ -39,6 +39,7 @@ class ReturnController @Inject() (
   def getReturn(periodKey: String, eclRegistrationReference: String): Action[AnyContent] = Action { _ =>
     eclRegistrationReference.takeRight(3) match {
       case "007" => Ok(Json.toJson(ReturnStubData.validReturnMedium(periodKey, eclRegistrationReference)))
+      case "019" => Ok(Json.toJson(ReturnStubData.validReturnMedium(periodKey, eclRegistrationReference)))
       case "400" =>
         BadRequest(
           Json.obj(
