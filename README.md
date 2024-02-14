@@ -37,6 +37,7 @@ to the same table):
 | XMECL0000000015            |                                                                                           | Unexpected document type                         |
 | XMECL0000000016            |                                                                                           | Paid obligation with reversal line item          |
 | XMECL0000000017            |                                                                                           | Paid charge with interest and reversal line item |
+| XMECL0000000019            | Deregistered                                                                              | Deregistered                                     |
 | XMECL0000000404            | No obligations (404)                                                                      | No financial data (404)                          |
 | XMECL0000000500            | Internal server error response (500)                                                      | Internal server error response (500)             |
 | XMECL0000000400            | Bad request response (400)                                                                | Bad request response (400)                       |

@@ -46,6 +46,7 @@ class SubscriptionStatusController @Inject() (
       case "016" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
       case "017" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
       case "018" => Ok(Json.toJson(SubscriptionStatusStubData.eclSubscribedData(idType, idValue)))
+      case "019" => Ok(Json.toJson(SubscriptionStatusStubData.eclDeregisteredData(idType, idValue)))
       case "400" =>
         BadRequest(
           Json.obj(
