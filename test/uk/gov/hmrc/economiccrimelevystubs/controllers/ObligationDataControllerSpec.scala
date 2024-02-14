@@ -44,15 +44,6 @@ class ObligationDataControllerSpec extends SpecBase {
       )
     }
 
-    "return 200 OK with obligation data JSON containing an open due obligation when the idNumber ends in '007'" in {
-      val result: Future[Result] =
-        controller.getObligationData(idType, "XMECL0000000007", regimeType)(fakeRequest)
-
-      status(result)        shouldBe OK
-      contentAsJson(result) shouldBe Json.toJson(
-        ObligationStubData.multipleFulfilledObligations()
-      )
-    }
     "return 200 OK with obligation data JSON containing open overdue and due obligations when the idNumber ends in '002'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000002", regimeType)(fakeRequest)
@@ -93,6 +84,36 @@ class ObligationDataControllerSpec extends SpecBase {
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(ObligationStubData.fulfilledObligation())
+    }
+
+    "return 200 OK with obligation data JSON containing an open due obligation when the idNumber ends in '007'" in {
+      val result: Future[Result] =
+        controller.getObligationData(idType, "XMECL0000000007", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        ObligationStubData.multipleFulfilledObligations()
+      )
+    }
+
+    "return 200 OK with obligation data JSON containing an open due obligation when the idNumber ends in '008'" in {
+      val result: Future[Result] =
+        controller.getObligationData(idType, "XMECL0000000008", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        ObligationStubData.multipleFulfilledObligations()
+      )
+    }
+
+    "return 200 OK with obligation data JSON containing an open due obligation when the idNumber ends in '018'" in {
+      val result: Future[Result] =
+        controller.getObligationData(idType, "XMECL0000000018", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        ObligationStubData.multipleFulfilledObligations()
+      )
     }
 
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {

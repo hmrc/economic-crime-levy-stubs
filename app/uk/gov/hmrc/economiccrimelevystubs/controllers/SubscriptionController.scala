@@ -62,7 +62,9 @@ class SubscriptionController @Inject() (
   def getSubscription(eclRegistrationReference: String): Action[AnyContent] = Action { _ =>
     eclRegistrationReference.takeRight(3) match {
       case "001" => Ok(Json.toJson(GetSubscriptionData.validIndividualSubscription(eclRegistrationReference)))
+      case "007" => Ok(Json.toJson(GetSubscriptionData.validIndividualSubscription(eclRegistrationReference)))
       case "002" => Ok(Json.toJson(GetSubscriptionData.validOrganisationSubscription(eclRegistrationReference)))
+      case "018" => Ok(Json.toJson(GetSubscriptionData.validOrganisationSubscription(eclRegistrationReference)))
       case "400" =>
         BadRequest(
           Json.obj(
