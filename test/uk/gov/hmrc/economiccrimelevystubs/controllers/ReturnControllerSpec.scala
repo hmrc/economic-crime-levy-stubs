@@ -98,6 +98,18 @@ class ReturnControllerSpec extends SpecBase {
       )
     }
 
+    "return 200 OK when eclReference ends in '018' with band 'Medium'" in {
+      val eclReference = "XMECL0000000018"
+
+      val result: Future[Result] =
+        controller.getReturn(periodKey, eclReference)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        ReturnStubData.validReturnMedium(periodKey, eclReference)
+      )
+    }
+
     "return 400 BAD_REQUEST with an INVALID_ECLREFERENCE code when the eclReference ends in '400'" in {
       val result: Future[Result] =
         controller.getReturn(periodKey, "XMECL0000000400")(fakeRequest)

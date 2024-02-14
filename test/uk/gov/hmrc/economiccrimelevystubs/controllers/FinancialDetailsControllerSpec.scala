@@ -179,6 +179,16 @@ class FinancialDetailsControllerSpec extends SpecBase {
       status(result) shouldBe OK
     }
 
+    "return 200 OK when idNumber ends in '018'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000018", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubData.financialDataPaidPartiallyPaidOverdueResponse()
+      )
+    }
+
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000400", regimeType)(fakeRequest)
