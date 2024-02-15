@@ -72,8 +72,26 @@ class SubscriptionControllerSpec extends SpecBase {
       contentAsJson(result) shouldBe Json.toJson(GetSubscriptionData.validIndividualSubscription(eclReference))
     }
 
+    "return 200 OK with response for individuals if reference ends with '007' " in {
+      val eclReference = "XMECL0000000007"
+
+      val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(GetSubscriptionData.validIndividualSubscription(eclReference))
+    }
+
     "return 200 OK with response for organizations if reference ends with '002'" in {
       val eclReference = "XMECL0000000002"
+
+      val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(GetSubscriptionData.validOrganisationSubscription(eclReference))
+    }
+
+    "return 200 OK with response for organizations if reference ends with '018'" in {
+      val eclReference = "XMECL0000000018"
 
       val result: Future[Result] = controller.getSubscription(eclReference)(fakeRequest)
 
