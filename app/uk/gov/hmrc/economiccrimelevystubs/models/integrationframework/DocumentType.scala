@@ -29,6 +29,8 @@ object DocumentType {
 
   case object Payment extends DocumentType
 
+  case object ClearingDocument extends DocumentType
+
   case class Other(value: String) extends DocumentType
 
   implicit val format: Format[DocumentType] = new Format[DocumentType] {
@@ -39,17 +41,19 @@ object DocumentType {
           case "TRM Amend Charge"  => JsSuccess(AmendedCharge)
           case "Interest Document" => JsSuccess(InterestCharge)
           case "Payment"           => JsSuccess(Payment)
+          case "Clearing Document" => JsSuccess(ClearingDocument)
           case value               => JsSuccess(Other(value))
         }
       case e: JsError          => e
     }
 
     override def writes(o: DocumentType): JsValue = o match {
-      case NewCharge      => JsString("TRM New Charge")
-      case AmendedCharge  => JsString("TRM Amend Charge")
-      case InterestCharge => JsString("Interest Document")
-      case Payment        => JsString("Payment")
-      case Other(value)   => JsString(value)
+      case NewCharge        => JsString("TRM New Charge")
+      case AmendedCharge    => JsString("TRM Amend Charge")
+      case InterestCharge   => JsString("Interest Document")
+      case Payment          => JsString("Payment")
+      case ClearingDocument => JsString("Clearing Document")
+      case Other(value)     => JsString(value)
     }
   }
 }

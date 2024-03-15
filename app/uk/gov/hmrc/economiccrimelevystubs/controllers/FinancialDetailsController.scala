@@ -48,6 +48,7 @@ class FinancialDetailsController @Inject() (
       case "017" => Ok(Json.toJson(FinancialStubData.financialDataPaidChargeWithInterestAndReversalResponse()))
       case "018" => Ok(Json.toJson(FinancialStubData.financialDataPaidPartiallyPaidOverdueResponse()))
       case "019" => Ok(Json.toJson(FinancialStubData.financialDataPaidPartiallyPaidOverdueResponse()))
+      case "020" => Ok(Json.toJson(FinancialStubData.financialDataClearingDocument()))
       case "400" =>
         BadRequest(
           Json.obj(

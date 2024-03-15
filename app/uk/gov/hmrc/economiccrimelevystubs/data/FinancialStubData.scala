@@ -1122,4 +1122,82 @@ object FinancialStubData {
       )
     )
   )
+
+  def financialDataClearingDocument(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = None,
+        totalAccountOverdue = None,
+        totalBalance = None,
+        totalCleared = Some(10000),
+        totalCredit = None,
+        totalNotYetDue = None,
+        totalOverdue = None
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000003"),
+          contractObjectNumber = Some("00000290000000000622"),
+          contractObjectType = Some("ECL"),
+          documentClearedAmount = Some(10000),
+          documentOutstandingAmount = None,
+          documentTotalAmount = Some(10000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None,
+          issueDate = None,
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(10000),
+                chargeDescription = Some("Economic Crime Levy"),
+                clearingDate = Some("2024-02-19"),
+                clearingDocument = Some("003547695151"),
+                clearingReason = Some("Reversal"),
+                periodFromDate = Some("2022-04-01"),
+                periodKey = Some("22YD"),
+                periodToDate = Some("2023-03-31"),
+                netDueDate = Some("2023-09-30")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some("2023-09-19")
+        ),
+        DocumentDetails(
+          chargeReferenceNumber = None,
+          contractObjectNumber = Some("00000290000000000622"),
+          contractObjectType = Some("ECL"),
+          documentClearedAmount = None,
+          documentOutstandingAmount = Some(-10000),
+          documentTotalAmount = Some(-10000),
+          documentType = Some(DocumentType.ClearingDocument),
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None,
+          issueDate = None,
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(-10000),
+                chargeDescription = Some("Payment on account"),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = None,
+                periodKey = Some("22YD"),
+                periodToDate = None,
+                netDueDate = Some("2023-09-28")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some("2024-02-19")
+        )
+      )
+    )
+  )
 }
