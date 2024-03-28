@@ -47,6 +47,13 @@ class ObligationDataController @Inject() (
             "reason" -> "Submission has not passed validation. Invalid parameter idType."
           )
         )
+      case "404" =>
+        NotFound(
+          Json.obj(
+            "code"   -> "NOT_FOUND",
+            "reason" -> "The remote endpoint has indicated that no associated data found."
+          )
+        )
       case "500" =>
         InternalServerError(
           Json.obj(
