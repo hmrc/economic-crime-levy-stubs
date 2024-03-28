@@ -60,6 +60,28 @@ class FinancialDetailsController @Inject() (
             )
           )
         )
+      case "404" =>
+        NotFound(
+          Json.obj(
+            "failures" -> Seq(
+              FinancialDataErrorResponse(
+                "NO_DATA_FOUND",
+                "The remote endpoint has indicated that no data can be found."
+              )
+            )
+          )
+        )
+      case "422" =>
+        UnprocessableEntity(
+          Json.obj(
+            "failures" -> Seq(
+              FinancialDataErrorResponse(
+                "INVALID_ID",
+                "The remote endpoint has indicated that reference id is invalid."
+              )
+            )
+          )
+        )
       case "500" =>
         InternalServerError(
           Json.obj(

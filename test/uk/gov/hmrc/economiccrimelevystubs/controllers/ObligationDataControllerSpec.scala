@@ -127,6 +127,17 @@ class ObligationDataControllerSpec extends SpecBase {
       )
     }
 
+    "return 404 NOT_FOUND with an NOT_FOUND code when the idNumber ends in '404'" in {
+      val result: Future[Result] =
+        controller.getObligationData(idType, "XMECL0000000404", regimeType)(fakeRequest)
+
+      status(result)        shouldBe NOT_FOUND
+      contentAsJson(result) shouldBe Json.obj(
+        "code"   -> "NOT_FOUND",
+        "reason" -> "The remote endpoint has indicated that no associated data found."
+      )
+    }
+
     "return 500 INTERNAL_SERVER_ERROR with a SERVER_ERROR code when the idNumber ends in '500'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000500", regimeType)(fakeRequest)

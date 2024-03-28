@@ -16,8 +16,10 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
+import org.scalatest.prop.TableDrivenPropertyChecks.forAll
 import play.api.libs.json.Json
 import play.api.mvc.Result
+import org.scalatest.prop.Tables._
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.data.SubscriptionStatusStubData
 
@@ -44,13 +46,46 @@ class SubscriptionStatusControllerSpec extends SpecBase {
       )
     }
 
-    "return 200 OK with subscription status JSON containing a successful subscription status when the idValue ends in '002'" in {
+    "return 200 OK with subscription status JSON containing a successful subscription status with known idValue" in forAll(
+      Table(
+        "eclReferenceNumber",
+        "XA0000000000001",
+        "XA0000000000002",
+        "XA0000000000003",
+        "XA0000000000004",
+        "XA0000000000005",
+        "XA0000000000006",
+        "XA0000000000007",
+        "XA0000000000008",
+        "XA0000000000009",
+        "XA0000000000010",
+        "XA0000000000011",
+        "XA0000000000012",
+        "XA0000000000013",
+        "XA0000000000014",
+        "XA0000000000015",
+        "XA0000000000016",
+        "XA0000000000017",
+        "XA0000000000018",
+        "XA0000000000020"
+      )
+    ) { (eclReferenceNumber: String) =>
       val result: Future[Result] =
-        controller.getSubscriptionStatus(regime, idType, "XA0000000000002")(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, eclReferenceNumber)(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        SubscriptionStatusStubData.eclSubscribedData(idType, "XA0000000000002")
+        SubscriptionStatusStubData.eclSubscribedData(idType, eclReferenceNumber)
+      )
+    }
+
+    "return 200 OK with subscription status JSON containing a deregistered subscription status ends with '019'" in {
+      val result: Future[Result] =
+        controller.getSubscriptionStatus(regime, idType, "XA0000000000019")(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        SubscriptionStatusStubData.eclDeregisteredData(idType, "XA0000000000019")
       )
     }
 

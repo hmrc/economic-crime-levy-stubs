@@ -206,7 +206,7 @@ class FinancialDetailsControllerSpec extends SpecBase {
 
     "return 404 NOT_FOUND with a NOT_FOUND code then idNumber ends in any other value" in {
       val result: Future[Result] =
-        controller.getFinancialDetails(idType, "XMECL0000000404", regimeType)(fakeRequest)
+        controller.getFinancialDetails(idType, "XMECL0000000999", regimeType)(fakeRequest)
 
       status(result)        shouldBe NOT_FOUND
       contentAsJson(result) shouldBe Json.obj(
@@ -214,6 +214,21 @@ class FinancialDetailsControllerSpec extends SpecBase {
           FinancialDataErrorResponse(
             "NO_DATA_FOUND",
             "The remote endpoint has indicated that no data can be found."
+          )
+        )
+      )
+    }
+
+    "return 422 UNPROCESSABLE_ENTITY with a UNPROCESSABLE_ENTITY code then idNumber ends in '422'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000422", regimeType)(fakeRequest)
+
+      status(result)        shouldBe UNPROCESSABLE_ENTITY
+      contentAsJson(result) shouldBe Json.obj(
+        "failures" -> Seq(
+          FinancialDataErrorResponse(
+            "INVALID_ID",
+            "The remote endpoint has indicated that reference id is invalid."
           )
         )
       )
@@ -229,6 +244,21 @@ class FinancialDetailsControllerSpec extends SpecBase {
           FinancialDataErrorResponse(
             "SERVER_ERROR",
             "IF is currently experiencing problems that require live service intervention."
+          )
+        )
+      )
+    }
+
+    "return 404 NOT_FOUND with a NOT_FOUND code then idNumber ends in '404'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000404", regimeType)(fakeRequest)
+
+      status(result)        shouldBe NOT_FOUND
+      contentAsJson(result) shouldBe Json.obj(
+        "failures" -> Seq(
+          FinancialDataErrorResponse(
+            "NO_DATA_FOUND",
+            "The remote endpoint has indicated that no data can be found."
           )
         )
       )
