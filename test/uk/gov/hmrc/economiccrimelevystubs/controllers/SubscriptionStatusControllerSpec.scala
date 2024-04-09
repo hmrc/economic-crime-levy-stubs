@@ -79,13 +79,19 @@ class SubscriptionStatusControllerSpec extends SpecBase {
       )
     }
 
-    "return 200 OK with subscription status JSON containing a deregistered subscription status ends with '019'" in {
+    "return 200 OK with subscription status JSON containing a deregistered subscription status with known idValue" in forAll(
+      Table(
+        "eclReferenceNumber",
+        "XA0000000000019",
+        "XA0000000000021"
+      )
+    ) { (eclReferenceNumber: String) =>
       val result: Future[Result] =
-        controller.getSubscriptionStatus(regime, idType, "XA0000000000019")(fakeRequest)
+        controller.getSubscriptionStatus(regime, idType, eclReferenceNumber)(fakeRequest)
 
       status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
-        SubscriptionStatusStubData.eclDeregisteredData(idType, "XA0000000000019")
+        SubscriptionStatusStubData.eclDeregisteredData(idType, eclReferenceNumber)
       )
     }
 
