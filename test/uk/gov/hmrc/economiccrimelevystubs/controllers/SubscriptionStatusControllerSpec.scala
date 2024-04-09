@@ -79,7 +79,7 @@ class SubscriptionStatusControllerSpec extends SpecBase {
       )
     }
 
-    "return 200 OK with subscription status JSON containing a deregistered subscription status ends with '019'" in forAll(
+    "return 200 OK with subscription status JSON containing a deregistered subscription status with known idValue" in forAll(
       Table(
         "eclReferenceNumber",
         "XA0000000000019",
