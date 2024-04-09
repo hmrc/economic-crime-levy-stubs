@@ -116,6 +116,26 @@ class ObligationDataControllerSpec extends SpecBase {
       )
     }
 
+    "return 200 OK with obligation data JSON containing an open due obligation when the idNumber ends in '019'" in {
+      val result: Future[Result] =
+        controller.getObligationData(idType, "XMECL0000000018", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        ObligationStubData.multipleFulfilledObligations()
+      )
+    }
+
+    "return 200 OK with obligation data JSON containing an open due obligation when the idNumber ends in '021'" in {
+      val result: Future[Result] =
+        controller.getObligationData(idType, "XMECL0000000021", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        ObligationStubData.openDueObligation()
+      )
+    }
+
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
       val result: Future[Result] =
         controller.getObligationData(idType, "XMECL0000000400", regimeType)(fakeRequest)
