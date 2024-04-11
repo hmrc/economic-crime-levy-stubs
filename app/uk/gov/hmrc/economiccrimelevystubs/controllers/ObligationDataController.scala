@@ -38,6 +38,8 @@ class ObligationDataController @Inject() (
       case "006" => Ok(Json.toJson(ObligationStubData.fulfilledObligation()))
       case "007" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "008" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
+      case "010" => Ok(Json.toJson(ObligationStubData.fulfilledOnTimeAndOpenDueObligations()))
+      case "012" => Ok(Json.toJson(ObligationStubData.fulfilledOnTimeAndOpenDueObligations()))
       case "018" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "019" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "021" => Ok(Json.toJson(ObligationStubData.openDueObligation()))
