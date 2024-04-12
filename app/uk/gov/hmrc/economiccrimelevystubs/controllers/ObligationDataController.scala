@@ -40,8 +40,17 @@ class ObligationDataController @Inject() (
       case "008" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "010" => Ok(Json.toJson(ObligationStubData.fulfilledOnTimeAndOpenDueObligations()))
       case "012" => Ok(Json.toJson(ObligationStubData.fulfilledOnTimeAndOpenDueObligations()))
+      case "010" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
+      case "011" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
+      case "012" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
+      case "013" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
+      case "014" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
+      case "015" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
+      case "016" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
+      case "017" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "018" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "019" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
+      case "020" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "021" => Ok(Json.toJson(ObligationStubData.openDueObligation()))
       case "400" =>
         BadRequest(
