@@ -156,7 +156,7 @@ object ObligationStubData {
             status = Fulfilled,
             inboundCorrespondenceFromDate = periodFrom(currentYear - 2),
             inboundCorrespondenceToDate = periodTo(currentYear - 2),
-            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(1))),
             inboundCorrespondenceDueDate = dueDate(currentYear - 1),
             periodKey = periodKey(periodFrom(currentYear - 1))
           )
@@ -174,7 +174,7 @@ object ObligationStubData {
             status = Fulfilled,
             inboundCorrespondenceFromDate = periodFrom(currentYear - 3),
             inboundCorrespondenceToDate = periodTo(currentYear - 3),
-            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(1))),
             inboundCorrespondenceDueDate = dueDate(currentYear - 2),
             periodKey = periodKey(periodFrom(currentYear - 3))
           )
@@ -187,7 +187,7 @@ object ObligationStubData {
             status = Fulfilled,
             inboundCorrespondenceFromDate = periodFrom(currentYear - 2),
             inboundCorrespondenceToDate = periodTo(currentYear - 2),
-            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(1))),
             inboundCorrespondenceDueDate = dueDate(currentYear - 1),
             periodKey = periodKey(periodFrom(currentYear - 2))
           )
@@ -200,7 +200,7 @@ object ObligationStubData {
             status = Fulfilled,
             inboundCorrespondenceFromDate = periodFrom(currentYear - 1),
             inboundCorrespondenceToDate = periodTo(currentYear - 1),
-            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(1))),
             inboundCorrespondenceDueDate = dueDate(currentYear),
             periodKey = periodKey(periodFrom(currentYear - 1))
           )
