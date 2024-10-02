@@ -141,6 +141,14 @@ object ObligationStubData {
             inboundCorrespondenceDateReceived = None,
             inboundCorrespondenceDueDate = dueDate(periodTo(currentYear).getYear),
             periodKey = periodKey(periodFrom(currentYear))
+          ),
+          ObligationDetails(
+            status = Open,
+            inboundCorrespondenceFromDate = periodFrom(currentYear),
+            inboundCorrespondenceToDate = periodTo(currentYear),
+            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDueDate = dueDate(periodTo(currentYear).getYear),
+            periodKey = periodKey(periodFrom(currentYear))
           )
         )
       )
