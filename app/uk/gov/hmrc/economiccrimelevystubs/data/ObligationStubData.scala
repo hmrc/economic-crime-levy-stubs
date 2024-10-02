@@ -139,7 +139,7 @@ object ObligationStubData {
             inboundCorrespondenceFromDate = periodFrom(currentYear - 1),
             inboundCorrespondenceToDate = periodTo(currentYear - 1),
             inboundCorrespondenceDateReceived = None,
-            inboundCorrespondenceDueDate = dueDate(periodTo(currentYear - 1).getYear),
+            inboundCorrespondenceDueDate = dueDate(periodTo(currentYear).getYear),
             periodKey = periodKey(periodFrom(currentYear))
           )
         )
