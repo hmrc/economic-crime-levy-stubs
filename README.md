@@ -20,6 +20,7 @@ to the same table):
 
 | ECL Registration Reference | Get Obligation Data                                                                       | Get Financial Details                              |
 |----------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------|
+| leave creds empty          | New User Registering                                                                      |                                                    |
 | XMECL0000000001            | A single open obligation that is due in the future                                        |                                                    |
 | XMECL0000000002            | Two open obligations; one that is due in the future and one that is overdue               |                                                    |
 | XMECL0000000003            | A single fulfilled obligation before the due date                                         | Due obligation                                     |
