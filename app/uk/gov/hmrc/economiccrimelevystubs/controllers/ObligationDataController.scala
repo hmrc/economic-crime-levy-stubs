@@ -52,6 +52,7 @@ class ObligationDataController @Inject() (
       case "019" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "020" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "021" => Ok(Json.toJson(ObligationStubData.openDueObligation()))
+      case "022" => Ok(Json.toJson(ObligationStubData.multipleFulfilledObligations()))
       case "400" =>
         BadRequest(
           Json.obj(
