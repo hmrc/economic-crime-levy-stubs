@@ -43,6 +43,7 @@ to the same table):
 | XMECL0000000020            |                                                                                           | Clearing Document financial data return            |
 | XMECL0000000021            | Deregistered with due obligation                                                          |                                                    |
 | XMECL0000000022            | Deregistered with no due obligations                                                      | Fully paid obligations                             |
+| XMECL0000000022            | Deregistered with one submitted and one overdue obligation                                | One overdue payment                                |
 | XMECL0000000404            | No obligations (404)                                                                      | No financial data (404)                            |
 | XMECL0000000500            | Internal server error response (500)                                                      | Internal server error response (500)               |
 | XMECL0000000400            | Bad request response (400)                                                                | Bad request response (400)                         |
