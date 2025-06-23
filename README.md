@@ -20,6 +20,7 @@ to the same table):
 
 | ECL Registration Reference | Get Obligation Data                                                                       | Get Financial Details                              |
 |----------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------|
+| leave creds empty          | New User Registering                                                                      |                                                    |
 | XMECL0000000001            | A single open obligation that is due in the future                                        |                                                    |
 | XMECL0000000002            | Two open obligations; one that is due in the future and one that is overdue               |                                                    |
 | XMECL0000000003            | A single fulfilled obligation before the due date                                         | Due obligation                                     |
@@ -41,6 +42,8 @@ to the same table):
 | XMECL0000000019            | Deregistered with amendable obligations                                                   | Deregistered with partially paid, paid and overdue |
 | XMECL0000000020            |                                                                                           | Clearing Document financial data return            |
 | XMECL0000000021            | Deregistered with due obligation                                                          |                                                    |
+| XMECL0000000022            | Deregistered with no due obligations                                                      | Fully paid obligations                             |
+| XMECL0000000023            | Deregistered with one submitted and one overdue obligation                                | One overdue payment                                |
 | XMECL0000000404            | No obligations (404)                                                                      | No financial data (404)                            |
 | XMECL0000000500            | Internal server error response (500)                                                      | Internal server error response (500)               |
 | XMECL0000000400            | Bad request response (400)                                                                | Bad request response (400)                         |
