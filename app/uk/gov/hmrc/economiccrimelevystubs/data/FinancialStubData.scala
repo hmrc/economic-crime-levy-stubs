@@ -71,7 +71,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(netDueDate().toString)
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6220"),
+                subTransaction = Some("3410")
               )
             )
           ),
@@ -119,7 +121,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(previousTaxYear.startYear).toString)
+                netDueDate = Some(netDueDate(previousTaxYear.startYear).toString),
+                mainTransaction = Some("6220"),
+                subTransaction = Some("3410")
               )
             )
           ),
@@ -167,7 +171,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(previousTaxYear.back(1).startYear).toString)
+                netDueDate = Some(netDueDate(previousTaxYear.back(1).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -215,7 +221,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString),
+                mainTransaction = Some("0060"),
+                subTransaction = Some("0100")
               ),
               LineItemDetails(
                 amount = Some(1300),
@@ -226,7 +234,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -274,7 +284,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString),
+                mainTransaction = Some("0060"),
+                subTransaction = Some("0100")
               )
             )
           ),
@@ -304,7 +316,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString),
+                mainTransaction = Some("0060"),
+                subTransaction = Some("0100")
               )
             )
           ),
@@ -334,7 +348,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(2).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(2))),
                 periodToDate = Some(periodTo(previousTaxYear.back(2).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -382,7 +398,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(2).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(2))),
                 periodToDate = Some(periodTo(previousTaxYear.back(2).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -430,7 +448,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(2).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(2))),
                 periodToDate = Some(periodTo(previousTaxYear.back(2).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               ),
               LineItemDetails(
                 amount = Some(10000),
@@ -441,7 +461,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(2).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(2))),
                 periodToDate = Some(periodTo(previousTaxYear.back(2).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -489,7 +511,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               ),
               LineItemDetails(
                 amount = Some(14000),
@@ -500,7 +524,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -530,7 +556,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString),
+                mainTransaction = Some("6225"),
+                subTransaction = Some("3415")
               ),
               LineItemDetails(
                 amount = Some(100),
@@ -541,7 +569,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -589,7 +619,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString),
+                mainTransaction = Some("6220"),
+                subTransaction = Some("3410")
               ),
               LineItemDetails(
                 amount = Some(12000),
@@ -600,7 +632,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -630,7 +664,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = Some("6225"),
+                subTransaction = Some("3415")
               ),
               LineItemDetails(
                 amount = Some(100),
@@ -641,7 +677,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -689,7 +727,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(1).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               ),
               LineItemDetails(
                 amount = Some(14000),
@@ -700,7 +740,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -730,7 +772,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               ),
               LineItemDetails(
                 amount = Some(114.84),
@@ -741,7 +785,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.back(1).startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear.back(1))),
                 periodToDate = Some(periodTo(previousTaxYear.back(1).startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.back(2).startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -789,7 +835,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -819,7 +867,9 @@ object FinancialStubData {
                 periodFromDate = None,
                 periodKey = None,
                 periodToDate = None,
-                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 7, 31).toString)
+                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 7, 31).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -867,7 +917,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 9, 30).toString)
+                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 9, 30).toString),
+                mainTransaction = Some("6220"),
+                subTransaction = Some("3410")
               ),
               LineItemDetails(
                 amount = Some(6000),
@@ -878,7 +930,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 9, 30).toString)
+                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 9, 30).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -926,7 +980,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString)
+                netDueDate = Some(netDueDate(currentTaxYear.startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -974,7 +1030,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(netDueDate(previousTaxYear.startYear).plusDays(1).toString)
+                netDueDate = Some(netDueDate(previousTaxYear.startYear).plusDays(1).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -1004,7 +1062,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(netDueDate(previousTaxYear.startYear).toString)
+                netDueDate = Some(netDueDate(previousTaxYear.startYear).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -1052,7 +1112,9 @@ object FinancialStubData {
                 periodFromDate = Some(LocalDate.of(previousTaxYear.startYear, 10, 3).toString),
                 periodKey = None,
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 10, 16).toString)
+                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 10, 16).toString),
+                mainTransaction = Some("6225"),
+                subTransaction = Some("3415")
               )
             )
           ),
@@ -1082,7 +1144,9 @@ object FinancialStubData {
                 periodFromDate = Some(LocalDate.of(previousTaxYear.startYear, 10, 3).toString),
                 periodKey = Some(periodKey(previousTaxYear)),
                 periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
-                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 9, 30).toString)
+                netDueDate = Some(LocalDate.of(currentTaxYear.startYear, 9, 30).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -1112,7 +1176,9 @@ object FinancialStubData {
                 periodFromDate = Some(periodFrom(currentTaxYear.startYear).toString),
                 periodKey = Some(periodKey(currentTaxYear)),
                 periodToDate = Some(periodTo(currentTaxYear.startYear).toString),
-                netDueDate = Some(LocalDate.of(currentTaxYear.finishYear, 9, 30).toString)
+                netDueDate = Some(LocalDate.of(currentTaxYear.finishYear, 9, 30).toString),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
@@ -1138,7 +1204,7 @@ object FinancialStubData {
     Some(
       Seq(
         DocumentDetails(
-          chargeReferenceNumber = Some("XMECL0000000003"),
+          chargeReferenceNumber = Some("XMECL0000000020"),
           contractObjectNumber = Some("00000290000000000622"),
           contractObjectType = Some("ECL"),
           documentClearedAmount = Some(10000),
@@ -1160,7 +1226,9 @@ object FinancialStubData {
                 periodFromDate = Some("2022-04-01"),
                 periodKey = Some("22YD"),
                 periodToDate = Some("2023-03-31"),
-                netDueDate = Some("2023-09-30")
+                netDueDate = Some("2023-09-30"),
+                mainTransaction = Some("6220"),
+                subTransaction = Some("3410")
               )
             )
           ),
@@ -1190,12 +1258,264 @@ object FinancialStubData {
                 periodFromDate = None,
                 periodKey = Some("22YD"),
                 periodToDate = None,
-                netDueDate = Some("2023-09-28")
+                netDueDate = Some("2023-09-28"),
+                mainTransaction = None,
+                subTransaction = None
               )
             )
           ),
           penaltyTotals = None,
           postingDate = Some("2024-02-19")
+        )
+      )
+    )
+  )
+
+  def financialDataFirstLateFilingPenalty(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000099"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = None,
+          documentOutstandingAmount = Some(500),
+          documentTotalAmount = Some(500),
+          documentType = Some(DocumentType.NewCharge),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(500),
+                chargeDescription = Some("ECL 1st Late Filing Penalty"),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6060"),
+                subTransaction = Some("1080")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None
+        )
+      )
+    )
+  )
+
+  def financialDataFirstLatePaymentPenalty(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000098"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = None,
+          documentOutstandingAmount = Some(500),
+          documentTotalAmount = Some(500),
+          documentType = Some(DocumentType.NewCharge),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(500),
+                chargeDescription = Some("ECL 1st Late Payment Penalty"),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6062"),
+                subTransaction = Some("1080")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None
+        )
+      )
+    )
+  )
+
+  def financialDataSecondLateFilingPenalty(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000097"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = None,
+          documentOutstandingAmount = Some(500),
+          documentTotalAmount = Some(500),
+          documentType = Some(DocumentType.NewCharge),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(500),
+                chargeDescription = Some("ECL 2nd Late Filing Penalty"),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6061"),
+                subTransaction = Some("1090")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None
+        )
+      )
+    )
+  )
+
+  def financialDataThirdLatePaymentPenalty(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000096"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = None,
+          documentOutstandingAmount = Some(500),
+          documentTotalAmount = Some(500),
+          documentType = Some(DocumentType.NewCharge),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(500),
+                chargeDescription = Some("ECL 3rd Late Payment Penalty"),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6064"),
+                subTransaction = Some("1090")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None
+        )
+      )
+    )
+  )
+
+  def financialDataPaymentOnAccount(): FinancialData = FinancialData(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = None,
+          contractObjectNumber = Some("00000290000000000622"),
+          contractObjectType = Some("ECL"),
+          documentClearedAmount = Some(-10000),
+          documentOutstandingAmount = None,
+          documentTotalAmount = Some(-10000),
+          documentType = Some(DocumentType.Payment),
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None,
+          issueDate = None,
+          penaltyTotals = None,
+          postingDate = Some("2024-02-19"),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(-10000),
+                chargeDescription = Some("Payment on account"),
+                clearingDate = Some("2023-09-28"),
+                clearingDocument = Some("1234567890"),
+                clearingReason = Some("automatic clearing"),
+                periodFromDate = None,
+                periodKey = None,
+                periodToDate = None,
+                netDueDate = Some("2023-09-28"),
+                mainTransaction = Some("0060"),
+                subTransaction = Some("0100")
+              )
+            )
+          )
         )
       )
     )
