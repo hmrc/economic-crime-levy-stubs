@@ -189,6 +189,66 @@ class FinancialDetailsControllerSpec extends SpecBase {
       )
     }
 
+    "return 200 OK when idNumber ends in '019'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000019", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubData.financialDataPaidPartiallyPaidOverdueResponse()
+      )
+    }
+
+    "return 200 OK when idNumber ends in '020'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000020", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubData.financialDataClearingDocument()
+      )
+    }
+
+    "return 200 OK when idNumber ends in '095'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000095", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubData.financialDataPaymentOnAccount()
+      )
+    }
+
+    "return 200 OK when idNumber ends in '096'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000096", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubData.financialDataThirdLatePaymentPenalty()
+      )
+    }
+
+    "return 200 OK when idNumber ends in '097'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000097", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubData.financialDataSecondLateFilingPenalty()
+      )
+    }
+
+    "return 200 OK when idNumber ends in '098'" in {
+      val result: Future[Result] =
+        controller.getFinancialDetails(idType, "XMECL0000000098", regimeType)(fakeRequest)
+
+      status(result)        shouldBe OK
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubData.financialDataFirstLatePaymentPenalty()
+      )
+    }
+
     "return 400 BAD_REQUEST with an INVALID_IDTYPE code when the idNumber ends in '400'" in {
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000400", regimeType)(fakeRequest)
