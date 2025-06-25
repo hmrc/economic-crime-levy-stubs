@@ -1286,7 +1286,7 @@ object FinancialStubData {
     Some(
       Seq(
         DocumentDetails(
-          chargeReferenceNumber = Some("XMECL0000000099"),
+          chargeReferenceNumber = Some("XMECL0000000028"),
           contractObjectNumber = Some(contractObjectNumber),
           contractObjectType = Some(contractObjectType),
           documentClearedAmount = None,
@@ -1336,7 +1336,7 @@ object FinancialStubData {
     Some(
       Seq(
         DocumentDetails(
-          chargeReferenceNumber = Some("XMECL0000000098"),
+          chargeReferenceNumber = Some("XMECL0000000027"),
           contractObjectNumber = Some(contractObjectNumber),
           contractObjectType = Some(contractObjectType),
           documentClearedAmount = None,
@@ -1386,7 +1386,7 @@ object FinancialStubData {
     Some(
       Seq(
         DocumentDetails(
-          chargeReferenceNumber = Some("XMECL0000000097"),
+          chargeReferenceNumber = Some("XMECL0000000026"),
           contractObjectNumber = Some(contractObjectNumber),
           contractObjectType = Some(contractObjectType),
           documentClearedAmount = None,
@@ -1436,7 +1436,7 @@ object FinancialStubData {
     Some(
       Seq(
         DocumentDetails(
-          chargeReferenceNumber = Some("XMECL0000000096"),
+          chargeReferenceNumber = Some("XMECL0000000025"),
           contractObjectNumber = Some(contractObjectNumber),
           contractObjectType = Some(contractObjectType),
           documentClearedAmount = None,

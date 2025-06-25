@@ -51,11 +51,11 @@ class FinancialDetailsController @Inject() (
       case "020" => Ok(Json.toJson(FinancialStubData.financialDataClearingDocument()))
       case "022" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationResponse()))
       case "023" => Ok(Json.toJson(FinancialStubData.financialDataDueObligation()))
-      case "095" => Ok(Json.toJson(FinancialStubData.financialDataPaymentOnAccount()))
-      case "096" => Ok(Json.toJson(FinancialStubData.financialDataThirdLatePaymentPenalty()))
-      case "097" => Ok(Json.toJson(FinancialStubData.financialDataSecondLateFilingPenalty()))
-      case "098" => Ok(Json.toJson(FinancialStubData.financialDataFirstLatePaymentPenalty()))
-      case "099" => Ok(Json.toJson(FinancialStubData.financialDataFirstLateFilingPenalty()))
+      case "024" => Ok(Json.toJson(FinancialStubData.financialDataPaymentOnAccount()))
+      case "025" => Ok(Json.toJson(FinancialStubData.financialDataThirdLatePaymentPenalty()))
+      case "026" => Ok(Json.toJson(FinancialStubData.financialDataSecondLateFilingPenalty()))
+      case "027" => Ok(Json.toJson(FinancialStubData.financialDataFirstLatePaymentPenalty()))
+      case "028" => Ok(Json.toJson(FinancialStubData.financialDataFirstLateFilingPenalty()))
       case "400" =>
         BadRequest(
           Json.obj(

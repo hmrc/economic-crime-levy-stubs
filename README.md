@@ -44,6 +44,11 @@ to the same table):
 | XMECL0000000021            | Deregistered with due obligation                                                          |                                                    |
 | XMECL0000000022            | Deregistered with no due obligations                                                      | Fully paid obligations                             |
 | XMECL0000000023            | Deregistered with one submitted and one overdue obligation                                | One overdue payment                                |
+| XMECL0000000024            |                                                                                           | Payment On Account                                 |
+| XMECL0000000025            |                                                                                           | Third Late Payment Penalty                         |
+| XMECL0000000026            |                                                                                           | Second Late Filing Penalty                         |
+| XMECL0000000027            |                                                                                           | First Late Payment Penalty                         |
+| XMECL0000000028            |                                                                                           | First Late Filing Penalty                          |
 | XMECL0000000404            | No obligations (404)                                                                      | No financial data (404)                            |
 | XMECL0000000500            | Internal server error response (500)                                                      | Internal server error response (500)               |
 | XMECL0000000400            | Bad request response (400)                                                                | Bad request response (400)                         |
