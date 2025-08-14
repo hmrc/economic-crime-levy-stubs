@@ -17,4 +17,4 @@ GET         /echo                                                               
 
 POST        /dms-submission/submit                                                  uk.gov.hmrc.economiccrimelevystubs.controllers.DmsSubmissionController.submit()
 
-POST        /etmp/RESTAdapter/cross-regime/taxpayer/financial-data/query            uk.gov.hmrc.economiccrimelevystubs.controllers.FinancialDetailsController.getFinancialDetailsHip
+POST        /etmp/RESTAdapter/cross-regime/taxpayer/financial-data/query            uk.gov.hmrc.economiccrimelevystubs.controllers.FinancialDetailsHipController.getFinancialDetailsHip

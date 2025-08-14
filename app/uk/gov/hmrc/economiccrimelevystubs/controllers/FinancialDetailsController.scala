@@ -18,10 +18,8 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc._
-import uk.gov.hmrc.economiccrimelevystubs.data.{FinancialStubData, FinancialStubDataHip}
+import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubData
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
-import uk.gov.hmrc.economiccrimelevystubs.models.hip._
-import uk.gov.hmrc.economiccrimelevystubs.utils.Logger.logger
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
 import javax.inject.{Inject, Singleton}
@@ -113,129 +111,6 @@ class FinancialDetailsController @Inject() (
             )
           )
         )
-    }
-  }
-
-  def getFinancialDetailsHip: Action[AnyContent] = Action { implicit request =>
-    (validateRequestJsonBody(request), validateRequestHeaders(request)) match {
-      case (Left(errorResult), _)         =>
-        errorResult
-      case (_, Left(errorResult))         =>
-        errorResult
-      case (Right(requestBody), Right(_)) =>
-        requestBody.idNumber.takeRight(3) match {
-          case "003" => Ok(Json.toJson(FinancialStubDataHip.financialDataDueObligation()))
-          case "004" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationResponse()))
-          case "005" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationResponse()))
-          case "006" => Ok(Json.toJson(FinancialStubData.financialDataPartiallyPaidResponse()))
-          case "007" => Ok(Json.toJson(FinancialStubData.financialDataPaidPartiallyPaidOverdueResponse()))
-          case "008" => Ok(Json.toJson(FinancialStubData.financialDataOverpaidObligationSinglePayment()))
-          case "009" => Ok(Json.toJson(FinancialStubData.financialDataOverpaidObligationMultiplePayments()))
-          case "010" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationPartialPaidInterestResponse()))
-          case "011" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationPaidInterestResponse()))
-          case "012" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationWithInterestResponse()))
-          case "013" => Ok(Json.toJson(FinancialStubData.financialDataRefundForOverpayment()))
-          case "014" => Ok(Json.toJson(FinancialStubData.financialDataOverdueObligationWithoutInterestDocumentFormed()))
-          case "015" => Ok(Json.toJson(FinancialStubData.financialDataUnexpectedDocumentType()))
-          case "016" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationWithReversalLineItemResponse()))
-          case "017" => Ok(Json.toJson(FinancialStubData.financialDataPaidChargeWithInterestAndReversalResponse()))
-          case "018" => Ok(Json.toJson(FinancialStubData.financialDataPaidPartiallyPaidOverdueResponse()))
-          case "019" => Ok(Json.toJson(FinancialStubData.financialDataPaidPartiallyPaidOverdueResponse()))
-          case "020" => Ok(Json.toJson(FinancialStubData.financialDataClearingDocument()))
-          case "022" => Ok(Json.toJson(FinancialStubData.financialDataPaidObligationResponse()))
-          case "023" => Ok(Json.toJson(FinancialStubData.financialDataDueObligation()))
-          case "024" => Ok(Json.toJson(FinancialStubData.financialDataPaymentOnAccount()))
-          case "025" => Ok(Json.toJson(FinancialStubData.financialDataThirdLatePaymentPenalty()))
-          case "026" => Ok(Json.toJson(FinancialStubData.financialDataSecondLateFilingPenalty()))
-          case "027" => Ok(Json.toJson(FinancialStubData.financialDataFirstLatePaymentPenalty()))
-          case "028" => Ok(Json.toJson(FinancialStubData.financialDataFirstLateFilingPenalty()))
-          case "400" =>
-            BadRequest(
-              Json.obj(
-                "failures" -> Seq(
-                  FinancialDataErrorResponse(
-                    "INVALID_REGIME_TYPE",
-                    "Submission has not passed validation. Invalid parameter taxRegime."
-                  )
-                )
-              )
-            )
-          case "404" =>
-            NotFound(
-              Json.obj(
-                "failures" -> Seq(
-                  FinancialDataErrorResponse(
-                    "NO_DATA_FOUND",
-                    "The remote endpoint has indicated that no data can be found."
-                  )
-                )
-              )
-            )
-          case "422" =>
-            UnprocessableEntity(
-              Json.obj(
-                "failures" -> Seq(
-                  FinancialDataErrorResponse(
-                    "INVALID_ID",
-                    "The remote endpoint has indicated that reference id is invalid."
-                  )
-                )
-              )
-            )
-          case "500" =>
-            InternalServerError(
-              Json.obj(
-                "failures" -> Seq(
-                  FinancialDataErrorResponse(
-                    "SERVER_ERROR",
-                    "IF is currently experiencing problems that require live service intervention."
-                  )
-                )
-              )
-            )
-          case _     =>
-            NotFound(
-              Json.obj(
-                "failures" -> Seq(
-                  FinancialDataErrorResponse(
-                    "NO_DATA_FOUND",
-                    "The remote endpoint has indicated that no data can be found."
-                  )
-                )
-              )
-            )
-        }
-    }
-
-  }
-
-  private def validateRequestJsonBody(request: Request[AnyContent]): Either[Result, FinancialDetailsRequest] =
-    request.body.asJson
-      .toRight {
-        logger.error("[GetFinancialDetailsController][getFinancialDetails] - No Json body received")
-        BadRequest("No Json body received")
-      }
-      .flatMap(_.asOpt[FinancialDetailsRequest].toRight {
-        logger.error("[GetFinancialDetailsController][getFinancialDetails] - Invalid Json body format")
-        BadRequest("Invalid Json body format")
-      })
-
-  private def validateRequestHeaders(request: Request[AnyContent]): Either[Result, Unit] = {
-    val requiredHeaders = List(
-      "correlationid",
-      "X-Originating-System",
-      "X-Receipt-Date",
-      "X-Transmitting-System"
-    )
-    val missingHeaders  = requiredHeaders.filterNot(request.headers.get(_).isDefined)
-
-    missingHeaders.headOption match {
-      case Some(missing) =>
-        val error = s"Missing required header: $missing"
-        logger.error(s"[GetFinancialDetailsController][getFinancialDetails] - Header validation failed: $error")
-        Left(BadRequest(error))
-      case None          =>
-        Right(())
     }
   }
 }

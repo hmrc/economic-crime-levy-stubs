@@ -23,7 +23,4 @@ import play.api.Configuration
 class AppConfig @Inject() (configuration: Configuration) {
 
   val appName: String = configuration.get[String]("appName")
-
-  val enable1811HipCall: Boolean = configuration.get[Boolean]("feature-switch.enable1811HipCall")
-
 }

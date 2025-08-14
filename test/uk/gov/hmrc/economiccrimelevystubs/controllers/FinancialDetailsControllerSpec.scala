@@ -20,7 +20,6 @@ import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubData
-import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubDataHip
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.FinancialDataErrorResponse
 
 import scala.concurrent.Future
@@ -28,8 +27,7 @@ import scala.concurrent.Future
 class FinancialDetailsControllerSpec extends SpecBase {
 
   val controller = new FinancialDetailsController(
-    cc,
-    appConfig
+    cc
   )
 
   private val idType     = "zecl"
@@ -43,15 +41,9 @@ class FinancialDetailsControllerSpec extends SpecBase {
 
       status(result) shouldBe OK
 
-      if (appConfig.enable1811HipCall) {
-        contentAsJson(result) shouldBe Json.toJson(
-          FinancialStubDataHip.financialDataDueObligation()
-        )
-      } else {
-        contentAsJson(result) shouldBe Json.toJson(
-          FinancialStubData.financialDataDueObligation()
-        )
-      }
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubData.financialDataDueObligation()
+      )
     }
 
     "return 200 OK when idNumber ends in '004'" in {
