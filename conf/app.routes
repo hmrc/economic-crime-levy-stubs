@@ -16,3 +16,5 @@ GET         /enrolments/cleanup-references                                      
 GET         /echo                                                                   uk.gov.hmrc.economiccrimelevystubs.controllers.EchoController.echo()
 
 POST        /dms-submission/submit                                                  uk.gov.hmrc.economiccrimelevystubs.controllers.DmsSubmissionController.submit()
+
+POST        /etmp/RESTAdapter/cross-regime/taxpayer/financial-data/query            uk.gov.hmrc.economiccrimelevystubs.controllers.FinancialDetailsController.getFinancialDetailsHip
