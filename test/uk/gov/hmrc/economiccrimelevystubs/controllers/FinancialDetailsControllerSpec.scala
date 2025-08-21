@@ -39,7 +39,8 @@ class FinancialDetailsControllerSpec extends SpecBase {
       val result: Future[Result] =
         controller.getFinancialDetails(idType, "XMECL0000000003", regimeType)(fakeRequest)
 
-      status(result)        shouldBe OK
+      status(result) shouldBe OK
+
       contentAsJson(result) shouldBe Json.toJson(
         FinancialStubData.financialDataDueObligation()
       )

@@ -17,7 +17,7 @@
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.Json
-import play.api.mvc.{Action, AnyContent, ControllerComponents}
+import play.api.mvc._
 import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubData
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
@@ -113,5 +113,4 @@ class FinancialDetailsController @Inject() (
         )
     }
   }
-
 }

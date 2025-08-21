@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,8 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.economiccrimelevystubs.config
+package uk.gov.hmrc.economiccrimelevystubs.utils
 
-import javax.inject.{Inject, Singleton}
-import play.api.Configuration
-
-@Singleton
-class AppConfig @Inject() (configuration: Configuration) {
-
-  val appName: String = configuration.get[String]("appName")
+object Logger {
+  val logger: play.api.Logger = play.api.Logger("eclStubLogger")
 }
