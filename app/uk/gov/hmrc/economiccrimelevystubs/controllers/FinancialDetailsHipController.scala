@@ -101,6 +101,26 @@ class FinancialDetailsHipController @Inject() (
                 )
               )
             )
+          case "433" =>
+            UnprocessableEntity(
+              Json.obj(
+                "errors" -> Json.obj(
+                  "processingDate" -> "2025-09-16T10:00:00Z",
+                  "code"           -> "018",
+                  "text"           -> "No Data Identified"
+                )
+              )
+            )
+          case "434" =>
+            UnprocessableEntity(
+              Json.obj(
+                "errors" -> Json.obj(
+                  "processingDate" -> "2025-09-16T10:00:00Z",
+                  "code"           -> "003",
+                  "text"           -> "Request could not be processed"
+                )
+              )
+            )
           case "500" =>
             InternalServerError(
               Json.obj(
