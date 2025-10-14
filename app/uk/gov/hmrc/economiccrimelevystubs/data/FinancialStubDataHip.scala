@@ -1421,7 +1421,7 @@ object FinancialStubDataHip {
     )
   )
 
-  def financialDataThirdLatePaymentPenalty(): FinancialDataHIP = FinancialDataHIP(
+  def financialDataThirdLatePaymentPenalty(): FinancialDataHIP    = FinancialDataHIP(
     Some(
       Totalisation(
         totalAccountBalance = Some(1250),
@@ -1466,6 +1466,87 @@ object FinancialStubDataHip {
           interestAccruingAmount = None,
           interestPostedAmount = None,
           interestPostedChargeRef = None
+        )
+      )
+    )
+  )
+  def financialDataDueObligationWithPenalties(): FinancialDataHIP = FinancialDataHIP(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000029"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(0),
+          documentOutstandingAmount = Some(10000),
+          documentTotalAmount = Some(10000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = Some(12.1),
+          interestPostedAmount = Some(13.12),
+          interestPostedChargeRef = Some(chargeReference),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(0),
+                chargeDescription = None,
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6220"),
+                subTransaction = Some("3410")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString)
+        ),
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000029"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = None,
+          documentOutstandingAmount = Some(500),
+          documentTotalAmount = Some(500),
+          documentType = Some(DocumentType.NewCharge),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          penaltyTotals = None,
+          interestAccruingAmount = None,
+          interestPostedAmount = None,
+          interestPostedChargeRef = None,
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(500),
+                chargeDescription = Some("ECL 1st Late Filing Penalty"),
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6060"),
+                subTransaction = Some("1080")
+              )
+            )
+          )
         )
       )
     )
