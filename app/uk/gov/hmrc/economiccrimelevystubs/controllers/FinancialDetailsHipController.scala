@@ -68,6 +68,8 @@ class FinancialDetailsHipController @Inject() (
           case "026" => Created(Json.toJson(FinancialStubDataHip.financialDataSecondLateFilingPenalty()))
           case "027" => Created(Json.toJson(FinancialStubDataHip.financialDataFirstLatePaymentPenalty()))
           case "028" => Created(Json.toJson(FinancialStubDataHip.financialDataFirstLateFilingPenalty()))
+          case "029" => Created(Json.toJson(FinancialStubDataHip.financialDataDueObligationWithPenalties()))
+
           case "400" =>
             BadRequest(
               Json.obj(
