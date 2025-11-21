@@ -133,6 +133,28 @@ class FinancialDetailsHipController @Inject() (
                 )
               )
             }
+          case "035" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
 
           case "400" =>
             BadRequest(
