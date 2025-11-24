@@ -23,6 +23,7 @@ import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubDataHip
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.FinancialDataErrorResponse
 
+import java.time.LocalDate
 import scala.concurrent.Future
 
 class FinancialDetailsHipControllerSpec extends SpecBase {
@@ -37,6 +38,8 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     "X-Receipt-Date"        -> "2024-10-28T05:30:00Z",
     "X-Transmitting-System" -> "HIP"
   )
+
+  val currentDate = LocalDate.now().toString
 
   def requestWithHeadersAndBody(headers: Map[String, String], body: JsValue): FakeRequest[AnyContentAsJson] =
     FakeRequest("POST", "/etmp/RESTAdapter/cross-regime/taxpayer/financial-data/query")
@@ -506,6 +509,259 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
       status(result)        shouldBe CREATED
       contentAsJson(result) shouldBe Json.toJson(
         FinancialStubDataHip.financialDataFirstLateFilingPenalty()
+      )
+    }
+
+    "return 201 CREATED with batch 1 success when idNumber ends in '030' and dateTo is current date" in {
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                       |{
+                                                                       |  "taxRegime": "ECL",
+                                                                       |  "taxpayerInformation": {
+                                                                       |    "idType": "ZECL",
+                                                                       |    "idNumber": "030"
+                                                                       |  },
+                                                                       |  "targetedSearch": {
+                                                                       |    "searchType": "byDate",
+                                                                       |    "searchItem": "2025-01-01"
+                                                                       |  },
+                                                                       |  "selectionCriteria": {
+                                                                       |    "dateRange": {
+                                                                       |      "dateType": "POSTING",
+                                                                       |      "dateFrom": "2025-01-01",
+                                                                       |      "dateTo": "$currentDate"
+                                                                       |    },
+                                                                       |    "includeClearedItems": true,
+                                                                       |    "includeStatisticalItems": false,
+                                                                       |    "includePaymentOnAccount": true
+                                                                       |  },
+                                                                       |  "dataEnrichment": {
+                                                                       |    "addRegimeTotalisation": true,
+                                                                       |    "addLockInformation": false,
+                                                                       |    "addPenaltyDetails": true,
+                                                                       |    "addPostedInterestDetails": false,
+                                                                       |    "addAccruingInterestDetails": true
+                                                                       |  }
+                                                                       |}""".stripMargin)
+      val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
+
+      val result: Future[Result] =
+        controller.getFinancialDetailsHip(fakeHipRequest)
+
+      status(result)        shouldBe CREATED
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubDataHip.financialDataHipBatch1()
+      )
+    }
+
+    "return 201 CREATED with batch 1 success when idNumber ends in '030' and dateTo is not current date" in {
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "030"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2023-01-01",
+                                                                        |      "dateTo": "2024-01-01"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
+      val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
+
+      val result: Future[Result] =
+        controller.getFinancialDetailsHip(fakeHipRequest)
+
+      status(result)        shouldBe CREATED
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubDataHip.financialDataHipBatch2()
+      )
+    }
+
+    "return 201 CREATED with batch 1 success when idNumber ends in '031' and dateTo is current date" in {
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "031"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
+      val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
+
+      val result: Future[Result] =
+        controller.getFinancialDetailsHip(fakeHipRequest)
+
+      status(result)        shouldBe CREATED
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubDataHip.financialDataHipBatchSuccess()
+      )
+    }
+
+    "return 201 CREATED with batch 1 success when idNumber ends in '031' and dateTo is not current date" in {
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "031"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2023-01-01",
+                                                                        |      "dateTo": "2024-01-01"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
+      val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
+
+      val result: Future[Result] =
+        controller.getFinancialDetailsHip(fakeHipRequest)
+
+      status(result)        shouldBe UNPROCESSABLE_ENTITY
+      contentAsJson(result) shouldBe Json.obj(
+        "errors" -> Json.obj(
+          "processingDate" -> "2025-10-16T10:00:00Z",
+          "code"           -> "018",
+          "text"           -> "No Data Identified"
+        )
+      )
+    }
+
+    "return 201 CREATED with batch 1 success when idNumber ends in '033' and dateTo is current date" in {
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "033"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
+      val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
+
+      val result: Future[Result] =
+        controller.getFinancialDetailsHip(fakeHipRequest)
+
+      contentAsJson(result) shouldBe Json.obj(
+        "errors" -> Json.obj(
+          "processingDate" -> "2025-09-16T10:00:00Z",
+          "code"           -> "003",
+          "text"           -> "Request could not be processed"
+        )
+      )
+    }
+
+    "return 201 CREATED with batch 1 success when idNumber ends in '033' and dateTo is not current date" in {
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "033"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2023-01-01",
+                                                                        |      "dateTo": "2024-01-01"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
+      val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
+
+      val result: Future[Result] =
+        controller.getFinancialDetailsHip(fakeHipRequest)
+
+      status(result)        shouldBe CREATED
+      contentAsJson(result) shouldBe Json.toJson(
+        FinancialStubDataHip.financialDataHipBatchSuccess()
       )
     }
 

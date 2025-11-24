@@ -84,6 +84,156 @@ object FinancialStubDataHip {
     )
   )
 
+  def financialDataHipBatch1(): FinancialDataHIP = FinancialDataHIP(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000030"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(0),
+          documentOutstandingAmount = Some(10000),
+          documentTotalAmount = Some(10000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = Some(12.1),
+          interestPostedAmount = Some(13.12),
+          interestPostedChargeRef = Some(chargeReference),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(0),
+                chargeDescription = None,
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6220"),
+                subTransaction = Some("3410")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString)
+        )
+      )
+    )
+  )
+
+  def financialDataHipBatch2(): FinancialDataHIP = FinancialDataHIP(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000030"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(0),
+          documentOutstandingAmount = Some(20000),
+          documentTotalAmount = Some(20000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = Some(12.2),
+          interestPostedAmount = Some(13.13),
+          interestPostedChargeRef = Some(chargeReference),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(0),
+                chargeDescription = None,
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6220"),
+                subTransaction = Some("3410")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString)
+        )
+      )
+    )
+  )
+
+  def financialDataHipBatchSuccess(): FinancialDataHIP = FinancialDataHIP(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(1250),
+        totalAccountOverdue = Some(1000),
+        totalBalance = Some(100),
+        totalCleared = Some(0),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(250),
+        totalOverdue = Some(100)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          chargeReferenceNumber = Some("XMECL0000000031"),
+          contractObjectNumber = Some(contractObjectNumber),
+          contractObjectType = Some(contractObjectType),
+          documentClearedAmount = Some(0),
+          documentOutstandingAmount = Some(50000),
+          documentTotalAmount = Some(50000),
+          documentType = Some(DocumentType.NewCharge),
+          interestAccruingAmount = Some(15.2),
+          interestPostedAmount = Some(15.15),
+          interestPostedChargeRef = Some(chargeReference),
+          issueDate = Some(startYearStartOfTaxYear(currentTaxYear).toString),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                amount = Some(0),
+                chargeDescription = None,
+                clearingDate = None,
+                clearingDocument = None,
+                clearingReason = None,
+                periodFromDate = Some(periodFrom(previousTaxYear.startYear).toString),
+                periodKey = Some(periodKey(previousTaxYear)),
+                periodToDate = Some(periodTo(previousTaxYear.startYear).toString),
+                netDueDate = Some(netDueDate().toString),
+                mainTransaction = Some("6220"),
+                subTransaction = Some("3410")
+              )
+            )
+          ),
+          penaltyTotals = None,
+          postingDate = Some(startYearStartOfTaxYear(currentTaxYear).toString)
+        )
+      )
+    )
+  )
+
   def financialDataOverdueObligationResponse(): FinancialDataHIP = FinancialDataHIP(
     Some(
       Totalisation(

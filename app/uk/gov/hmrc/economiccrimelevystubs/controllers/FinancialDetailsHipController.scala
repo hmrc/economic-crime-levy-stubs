@@ -24,6 +24,7 @@ import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
 import uk.gov.hmrc.economiccrimelevystubs.utils.Logger.logger
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
+import java.time.LocalDate
 import javax.inject.{Inject, Singleton}
 
 @Singleton
@@ -69,6 +70,91 @@ class FinancialDetailsHipController @Inject() (
           case "027" => Created(Json.toJson(FinancialStubDataHip.financialDataFirstLatePaymentPenalty()))
           case "028" => Created(Json.toJson(FinancialStubDataHip.financialDataFirstLateFilingPenalty()))
           case "029" => Created(Json.toJson(FinancialStubDataHip.financialDataDueObligationWithPenalties()))
+          // batch call
+          case "030" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataHipBatch1()))
+            } else {
+              Created(Json.toJson(FinancialStubDataHip.financialDataHipBatch2()))
+            }
+          case "031" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataHipBatchSuccess()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "032" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            } else {
+              Created(Json.toJson(FinancialStubDataHip.financialDataHipBatchSuccess()))
+            }
+          case "033" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-09-16T10:00:00Z",
+                    "code"           -> "003",
+                    "text"           -> "Request could not be processed"
+                  )
+                )
+              )
+            } else {
+              Created(Json.toJson(FinancialStubDataHip.financialDataHipBatchSuccess()))
+            }
+          case "034" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataHipBatchSuccess()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-09-16T10:00:00Z",
+                    "code"           -> "003",
+                    "text"           -> "Request could not be processed"
+                  )
+                )
+              )
+            }
+          case "035" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
 
           case "400" =>
             BadRequest(
