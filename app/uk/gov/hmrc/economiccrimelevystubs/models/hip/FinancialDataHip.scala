@@ -26,7 +26,7 @@ object FinancialDataHIP {
   implicit val writes: OWrites[FinancialDataHIP] = (
     (JsPath \ "success" \ "financialData" \ "totalisation").writeNullable[Totalisation] and
       (JsPath \ "success" \ "financialData" \ "documentDetails").writeNullable[Seq[DocumentDetails]]
-  )(unlift(FinancialDataHIP.unapply))
+  )(fd => (fd.totalisation, fd.documentDetails))
 }
 
 case class Totalisation(
@@ -50,7 +50,17 @@ object Totalisation {
       (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalBalance").writeNullable[BigDecimal] and
       (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalCredit").writeNullable[BigDecimal] and
       (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalCleared").writeNullable[BigDecimal]
-  )(unlift(Totalisation.unapply))
+  )(t =>
+    (
+      t.totalAccountBalance,
+      t.totalAccountOverdue,
+      t.totalOverdue,
+      t.totalNotYetDue,
+      t.totalBalance,
+      t.totalCredit,
+      t.totalCleared
+    )
+  )
 }
 
 case class DocumentDetails(
@@ -88,7 +98,24 @@ object DocumentDetails {
       (JsPath \ "documentPenaltyTotals").writeNullable[Seq[PenaltyTotals]] and
       (JsPath \ "contractObjectNumber").writeNullable[String] and
       (JsPath \ "contractObjectType").writeNullable[String]
-  )(unlift(DocumentDetails.unapply))
+  )(d =>
+    (
+      d.documentType,
+      d.chargeReferenceNumber,
+      d.postingDate,
+      d.issueDate,
+      d.documentTotalAmount,
+      d.documentClearedAmount,
+      d.documentOutstandingAmount,
+      d.lineItemDetails,
+      d.interestPostedAmount,
+      d.interestAccruingAmount,
+      d.interestPostedChargeRef,
+      d.penaltyTotals,
+      d.contractObjectNumber,
+      d.contractObjectType
+    )
+  )
 }
 
 case class LineItemDetails(

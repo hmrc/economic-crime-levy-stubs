@@ -20,6 +20,7 @@ import org.mockito.ArgumentMatchers.any
 import play.api.test.Helpers.await
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.repositories.SequenceRepository
+import org.mockito.Mockito.when
 
 import scala.concurrent.Future
 

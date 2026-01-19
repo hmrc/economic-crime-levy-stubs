@@ -27,7 +27,12 @@ object FinancialData {
   implicit val writes: Writes[FinancialData] = (
     (JsPath \ "getFinancialData" \ "financialDetails" \ "totalisation").writeNullable[Totalisation] and
       (JsPath \ "getFinancialData" \ "financialDetails" \ "documentDetails").writeNullable[Seq[DocumentDetails]]
-  )(unlift(FinancialData.unapply))
+  )(fd =>
+    (
+      fd.totalisation,
+      fd.documentDetails
+    )
+  )
 }
 
 final case class Totalisation(
@@ -51,7 +56,17 @@ object Totalisation {
       (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalBalance").writeNullable[BigDecimal] and
       (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalCredit").writeNullable[BigDecimal] and
       (JsPath \ "targetedSearch_SelectionCriteriaTotalisation" \ "totalCleared").writeNullable[BigDecimal]
-  )(unlift(Totalisation.unapply))
+  )(t =>
+    (
+      t.totalAccountBalance,
+      t.totalAccountOverdue,
+      t.totalOverdue,
+      t.totalNotYetDue,
+      t.totalBalance,
+      t.totalCredit,
+      t.totalCleared
+    )
+  )
 }
 
 final case class DocumentDetails(
@@ -89,7 +104,24 @@ object DocumentDetails {
       (JsPath \ "documentPenaltyTotals").writeNullable[Seq[PenaltyTotals]] and
       (JsPath \ "contractObjectNumber").writeNullable[String] and
       (JsPath \ "contractObjectType").writeNullable[String]
-  )(unlift(DocumentDetails.unapply))
+  )(d =>
+    (
+      d.documentType,
+      d.chargeReferenceNumber,
+      d.postingDate,
+      d.issueDate,
+      d.documentTotalAmount,
+      d.documentClearedAmount,
+      d.documentOutstandingAmount,
+      d.lineItemDetails,
+      d.interestPostedAmount,
+      d.interestAccruingAmount,
+      d.interestPostedChargeRef,
+      d.penaltyTotals,
+      d.contractObjectNumber,
+      d.contractObjectType
+    )
+  )
 }
 
 final case class LineItemDetails(

@@ -20,6 +20,7 @@ import play.api.libs.json.Json
 import play.api.mvc.Result
 import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
+import org.mockito.Mockito.when
 
 import scala.concurrent.Future
 
