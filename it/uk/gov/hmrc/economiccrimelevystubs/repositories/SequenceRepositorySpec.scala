@@ -18,18 +18,18 @@ class SequenceRepositorySpec
 
   private val testKey: String = "test-id"
 
-  protected override val repository = new SequenceRepository(
-    mongoComponent = mongoComponent
-  )
+  private val sequenceRepository: SequenceRepository =
+    new SequenceRepository(mongoComponent = mongoComponent)
+
+  protected override val repository = sequenceRepository
 
   "getNextSequenceId" should {
     "get the next sequence ID for the given key" in {
       val expectedResult = 1L
 
-      val result: Long = repository.getNextSequenceId(testKey).futureValue
+      val result: Long = sequenceRepository.getNextSequenceId(testKey).futureValue
 
       result shouldEqual expectedResult
     }
   }
-
 }
