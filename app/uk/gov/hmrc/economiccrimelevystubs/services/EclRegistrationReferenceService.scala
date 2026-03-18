@@ -38,7 +38,8 @@ class EclRegistrationReferenceService @Inject() (sequenceRepository: SequenceRep
 
   def getPreviousReferences: Future[List[String]] =
     sequenceRepository.getCurrentReference(eclRegistrationReferenceKey).map {
-      case Some(ref) => List.range(1, ref + 1).map(i => s"$prefix${pattern.format(i)}")
+      case Some(ref) =>
+        List.range(1, ref.toInt + 1).map(i => s"$prefix${pattern.format(i)}")
       case _         => List.empty
     }
 }

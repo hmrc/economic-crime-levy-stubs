@@ -22,6 +22,7 @@ import uk.gov.hmrc.economiccrimelevystubs.base.SpecBase
 import uk.gov.hmrc.economiccrimelevystubs.data.GetSubscriptionData
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.{CreateSubscriptionResponse, CreateSubscriptionResponsePayload}
 import uk.gov.hmrc.economiccrimelevystubs.services.EclRegistrationReferenceService
+import org.mockito.Mockito.when
 
 import java.time.{Clock, Instant, ZoneId}
 import scala.concurrent.Future

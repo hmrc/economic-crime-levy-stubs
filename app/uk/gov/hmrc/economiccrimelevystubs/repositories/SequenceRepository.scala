@@ -22,6 +22,8 @@ import org.mongodb.scala.model.{FindOneAndUpdateOptions, ReturnDocument}
 import play.api.libs.json.{Json, OFormat}
 import uk.gov.hmrc.mongo.MongoComponent
 import uk.gov.hmrc.mongo.play.json.PlayMongoRepository
+import org.mongodb.scala.ToSingleObservablePublisher
+import org.mongodb.scala.SingleObservableFuture
 
 import javax.inject.{Inject, Singleton}
 import scala.concurrent.{ExecutionContext, Future}
@@ -37,9 +39,8 @@ class SequenceRepository @Inject() (
       indexes = Seq.empty
     ) {
 
-  /** A TTL index is not desirable as there is only ever 1 record per key (currently 2)
-    * that tracks the next available sequence number, hence we do not want the record to expire
-    * so that we don't reset and recycle sequence numbers.
+  /** A TTL index is not desirable as there is only ever 1 record per key (currently 2) that tracks the next available
+    * sequence number, hence we do not want the record to expire so that we don't reset and recycle sequence numbers.
     */
   override lazy val requiresTtlIndex: Boolean = false
 
