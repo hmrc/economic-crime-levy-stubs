@@ -1751,4 +1751,118 @@ object FinancialStubDataHip {
       )
     )
   )
+
+  def financialDataReversalNotShown(): FinancialDataHIP = FinancialDataHIP(
+    Some(
+      Totalisation(
+        totalAccountBalance = Some(0),
+        totalAccountOverdue = Some(0),
+        totalBalance = Some(0),
+        totalCleared = Some(1800),
+        totalCredit = Some(0),
+        totalNotYetDue = Some(0),
+        totalOverdue = Some(0)
+      )
+    ),
+    Some(
+      Seq(
+        DocumentDetails(
+          documentType = Some(DocumentType.NewCharge),
+          chargeReferenceNumber = Some("XMECL0000000036"),
+          postingDate = Some("2025-02-17"),
+          issueDate = Some("2025-02-17"),
+          documentTotalAmount = Some(1800),
+          documentClearedAmount = Some(1800),
+          documentOutstandingAmount = Some(0),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                chargeDescription = Some("ECL 2nd Late Filing Penalty"),
+                periodFromDate = Some("2023-04-01"),
+                periodToDate = Some("2024-03-31"),
+                periodKey = Some("23XY"),
+                netDueDate = Some("2025-03-19"),
+                amount = Some(1800),
+                clearingDate = Some("2025-10-30"),
+                clearingReason = Some(reversal),
+                clearingDocument = Some("003119631924"),
+                mainTransaction = Some("6061"),
+                subTransaction = Some("1090")
+              )
+            )
+          ),
+          interestPostedAmount = None,
+          interestAccruingAmount = None,
+          interestPostedChargeRef = None,
+          penaltyTotals = None,
+          contractObjectNumber = Some("00000290000000001372"),
+          contractObjectType = Some(contractObjectType)
+        ),
+        DocumentDetails(
+          documentType = Some(DocumentType.AmendedCharge),
+          chargeReferenceNumber = Some("XMECL0000000036"),
+          postingDate = Some("2025-10-30"),
+          issueDate = Some("2025-10-30"),
+          documentTotalAmount = Some(1800),
+          documentClearedAmount = Some(1800),
+          documentOutstandingAmount = Some(0),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                chargeDescription = Some("ECL 2nd Late Filing Penalty"),
+                periodFromDate = Some("2023-04-01"),
+                periodToDate = Some("2024-03-31"),
+                periodKey = Some("23XY"),
+                netDueDate = Some("2025-03-19"),
+                amount = Some(1800),
+                clearingDate = Some("2025-11-20"),
+                clearingReason = Some(reversal),
+                clearingDocument = Some("487000287203"),
+                mainTransaction = Some("6061"),
+                subTransaction = Some("1090")
+              )
+            )
+          ),
+          interestPostedAmount = None,
+          interestAccruingAmount = None,
+          interestPostedChargeRef = None,
+          penaltyTotals = None,
+          contractObjectNumber = Some("00000290000000001372"),
+          contractObjectType = Some(contractObjectType)
+        ),
+        DocumentDetails(
+          documentType = Some(DocumentType.AmendedCharge),
+          chargeReferenceNumber = Some("XMECL0000000036"),
+          postingDate = Some("2025-11-20"),
+          issueDate = Some("2025-11-20"),
+          documentTotalAmount = None,
+          documentClearedAmount = Some(1800),
+          documentOutstandingAmount = Some(0),
+          lineItemDetails = Some(
+            Seq(
+              LineItemDetails(
+                chargeDescription = Some("ECL 2nd Late Filing Penalty"),
+                periodFromDate = Some("2023-04-01"),
+                periodToDate = Some("2024-03-31"),
+                periodKey = Some("23XY"),
+                netDueDate = Some("2025-03-19"),
+                amount = Some(1800),
+                clearingDate = Some("2025-12-01"),
+                clearingReason = Some(incomingPayment),
+                clearingDocument = Some("267002767685"),
+                mainTransaction = Some("6061"),
+                subTransaction = Some("1090")
+              )
+            )
+          ),
+          interestPostedAmount = None,
+          interestAccruingAmount = None,
+          interestPostedChargeRef = None,
+          penaltyTotals = None,
+          contractObjectNumber = Some("00000290000000001372"),
+          contractObjectType = Some(contractObjectType)
+        )
+      )
+    )
+  )
 }
