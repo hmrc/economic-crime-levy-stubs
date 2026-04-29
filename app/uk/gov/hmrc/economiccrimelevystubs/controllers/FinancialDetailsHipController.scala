@@ -155,7 +155,7 @@ class FinancialDetailsHipController @Inject() (
                 )
               )
             }
-
+          case "036" => Created(Json.toJson(FinancialStubDataHip.financialDataReversalNotShown()))
           case "400" =>
             BadRequest(
               Json.obj(
