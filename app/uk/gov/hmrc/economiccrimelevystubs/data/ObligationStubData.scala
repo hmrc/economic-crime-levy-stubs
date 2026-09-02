@@ -173,6 +173,100 @@ object ObligationStubData {
     )
   )
 
+  def open2026To2027Obligation(): ObligationData = ObligationData(
+    obligations = Seq(
+      Obligation(
+        identification = None,
+        obligationDetails = Seq(
+          ObligationDetails(
+            status = Open,
+            inboundCorrespondenceFromDate = periodFrom(2026),
+            inboundCorrespondenceToDate = periodTo(2026),
+            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDueDate = dueDate(2027),
+            periodKey = "26XY"
+          ),
+          ObligationDetails(
+            status = Fulfilled,
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 2),
+            inboundCorrespondenceToDate = periodTo(currentYear - 2),
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(1))),
+            inboundCorrespondenceDueDate = dueDate(currentYear - 1),
+            periodKey = periodKey(periodFrom(currentYear - 1))
+          ),
+          ObligationDetails(
+            status = Open,
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 2),
+            inboundCorrespondenceToDate = periodTo(currentYear - 2),
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(1))),
+            inboundCorrespondenceDueDate = dueDate(currentYear - 1),
+            periodKey = periodKey(periodFrom(currentYear - 1))
+          )
+        )
+      )
+    )
+  )
+
+  def openAndSubmitted2026To2027Obligation(): ObligationData = ObligationData(
+    obligations = Seq(
+      Obligation(
+        identification = None,
+        obligationDetails = Seq(
+          ObligationDetails(
+            status = Open,
+            inboundCorrespondenceFromDate = periodFrom(2026),
+            inboundCorrespondenceToDate = periodTo(2026),
+            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDueDate = dueDate(2027),
+            periodKey = "26XY"
+          ),
+          ObligationDetails(
+            status = Fulfilled,
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 2),
+            inboundCorrespondenceToDate = periodTo(currentYear - 2),
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(1))),
+            inboundCorrespondenceDueDate = dueDate(currentYear - 1),
+            periodKey = periodKey(periodFrom(currentYear - 1))
+          )
+        )
+      )
+    )
+  )
+
+  def MultipleOpen2026To2027Obligation(): ObligationData = ObligationData(
+    obligations = Seq(
+      Obligation(
+        identification = None,
+        obligationDetails = Seq(
+          ObligationDetails(
+            status = Open,
+            inboundCorrespondenceFromDate = periodFrom(2026),
+            inboundCorrespondenceToDate = periodTo(2026),
+            inboundCorrespondenceDateReceived = None,
+            inboundCorrespondenceDueDate = dueDate(2027),
+            periodKey = "26XY"
+          ),
+          ObligationDetails(
+            status = Open,
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 2),
+            inboundCorrespondenceToDate = periodTo(currentYear - 2),
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(1))),
+            inboundCorrespondenceDueDate = dueDate(currentYear - 1),
+            periodKey = periodKey(periodFrom(currentYear - 1))
+          ),
+          ObligationDetails(
+            status = Open,
+            inboundCorrespondenceFromDate = periodFrom(currentYear - 3),
+            inboundCorrespondenceToDate = periodTo(currentYear - 3),
+            inboundCorrespondenceDateReceived = Some(periodTo().plus(Period.ofDays(2))),
+            inboundCorrespondenceDueDate = dueDate(currentYear - 2),
+            periodKey = periodKey(periodFrom(currentYear - 2))
+          )
+        )
+      )
+    )
+  )
+
   def multipleFulfilledObligations(): ObligationData = ObligationData(
     obligations = Seq(
       Obligation(

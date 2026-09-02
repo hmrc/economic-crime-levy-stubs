@@ -44,9 +44,9 @@ to the same table):
 | XMECL0000000021            | Deregistered with due obligation                                                          |                                                    |
 | XMECL0000000022            | Deregistered with no due obligations                                                      | Fully paid obligations                             |
 | XMECL0000000023            | Deregistered with one submitted and one overdue obligation                                | One overdue payment                                |
-| XMECL0000000024            |                                                                                           | Payment On Account                                 |
-| XMECL0000000025            |                                                                                           | Third Late Payment Penalty                         |
-| XMECL0000000026            |                                                                                           | Second Late Filing Penalty                         |
+| XMECL0000000024            | A single open 26/27 obligation, one previous year open obligation and one fuilled return  |                                                    |
+| XMECL0000000025            | A single open 26/27 obligation and one fuilled return                                     |                                                    |
+| XMECL0000000026            | A single open 26/27 obligation and two previous year open obligations                     |                                                    |
 | XMECL0000000027            |                                                                                           | First Late Payment Penalty                         |
 | XMECL0000000028            |                                                                                           | First Late Filing Penalty                          |
 | XMECL0000000404            | No obligations (404)                                                                      | No financial data (404)                            |
