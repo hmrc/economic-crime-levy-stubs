@@ -18,6 +18,11 @@ package uk.gov.hmrc.economiccrimelevystubs.models.integrationframework
 
 import play.api.libs.json.{Json, OFormat}
 
+case class HipGetSubscriptionResponse(success: GetSubscriptionResponse)
+case object HipGetSubscriptionResponse {
+  implicit val format: OFormat[HipGetSubscriptionResponse] = Json.format[HipGetSubscriptionResponse]
+}
+
 case class GetSubscriptionResponse(
   processingDateTime: String,
   legalEntityDetails: GetLegalEntityDetails,
