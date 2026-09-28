@@ -18,7 +18,7 @@ package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.Json
 import play.api.mvc.*
-import uk.gov.hmrc.economiccrimelevystubs.data.{FinancialStubDataHip, LiData}
+import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubDataHip
 import uk.gov.hmrc.economiccrimelevystubs.models.hip.*
 import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.*
 import uk.gov.hmrc.economiccrimelevystubs.utils.Logger.logger
