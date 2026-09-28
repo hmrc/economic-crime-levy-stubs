@@ -16,8 +16,8 @@
 
 package uk.gov.hmrc.economiccrimelevystubs.data
 
-import uk.gov.hmrc.economiccrimelevystubs.models.hip._
-import uk.gov.hmrc.economiccrimelevystubs.utils.EclTaxYear._
+import uk.gov.hmrc.economiccrimelevystubs.models.hip.*
+import uk.gov.hmrc.economiccrimelevystubs.utils.EclTaxYear.*
 
 import java.time.LocalDate
 
