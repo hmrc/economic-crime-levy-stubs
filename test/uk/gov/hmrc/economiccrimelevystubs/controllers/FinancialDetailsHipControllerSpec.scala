@@ -50,14 +50,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
 
     "return 201 CREATED when idNumber ends in '003'" in {
 
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                 |{
-                                                 | "taxRegime": "ECL",
-                                                 | "taxpayerInformation": {
-                                                 |   "idType": "ZECL",
-                                                 |   "idNumber": "003"
-                                                 | }
-                                                 |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "003"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -71,14 +92,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '004'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                    |{
-                                                                    | "taxRegime": "ECL",
-                                                                    | "taxpayerInformation": {
-                                                                    |   "idType": "ZECL",
-                                                                    |   "idNumber": "004"
-                                                                    | }
-                                                                    |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "004"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -91,14 +133,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '005'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "005"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "005"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -111,14 +174,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '006'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "006"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "006"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -131,14 +215,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '007'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "007"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "007"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -151,14 +256,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '008'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "008"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "008"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -171,14 +297,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '009'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "009"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "009"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -191,14 +338,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '010'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "010"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "010"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -211,14 +379,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '011'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "011"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "011"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -231,14 +420,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '012'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "012"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "012"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -251,14 +461,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '013'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "013"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "013"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -271,14 +502,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '014'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "014"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "014"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -311,14 +563,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '016'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "016"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "016"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -332,14 +605,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '017'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "017"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "017"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -353,14 +647,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '018'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "018"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "018"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -373,14 +688,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '019'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "019"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "019"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -413,14 +749,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '024'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "024"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "024"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -433,14 +790,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '025'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "025"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "025"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -453,14 +831,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '026'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "026"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "026"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -473,14 +872,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '027'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "027"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "027"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
@@ -493,14 +913,35 @@ class FinancialDetailsHipControllerSpec extends SpecBase {
     }
 
     "return 201 CREATED when idNumber ends in '028'" in {
-      val jsonBodyToSubmit: JsValue                     = Json.parse("""
-                                                                       |{
-                                                                       | "taxRegime": "ECL",
-                                                                       | "taxpayerInformation": {
-                                                                       |   "idType": "ZECL",
-                                                                       |   "idNumber": "028"
-                                                                       | }
-                                                                       |}""".stripMargin)
+      val jsonBodyToSubmit: JsValue                     = Json.parse(s"""
+                                                                        |{
+                                                                        |  "taxRegime": "ECL",
+                                                                        |  "taxpayerInformation": {
+                                                                        |    "idType": "ZECL",
+                                                                        |    "idNumber": "028"
+                                                                        |  },
+                                                                        |  "targetedSearch": {
+                                                                        |    "searchType": "byDate",
+                                                                        |    "searchItem": "2025-01-01"
+                                                                        |  },
+                                                                        |  "selectionCriteria": {
+                                                                        |    "dateRange": {
+                                                                        |      "dateType": "POSTING",
+                                                                        |      "dateFrom": "2025-01-01",
+                                                                        |      "dateTo": "$currentDate"
+                                                                        |    },
+                                                                        |    "includeClearedItems": true,
+                                                                        |    "includeStatisticalItems": false,
+                                                                        |    "includePaymentOnAccount": true
+                                                                        |  },
+                                                                        |  "dataEnrichment": {
+                                                                        |    "addRegimeTotalisation": true,
+                                                                        |    "addLockInformation": false,
+                                                                        |    "addPenaltyDetails": true,
+                                                                        |    "addPostedInterestDetails": false,
+                                                                        |    "addAccruingInterestDetails": true
+                                                                        |  }
+                                                                        |}""".stripMargin)
       val fakeHipRequest: FakeRequest[AnyContentAsJson] = requestWithHeadersAndBody(validHeaders, jsonBodyToSubmit)
 
       val result: Future[Result] =
