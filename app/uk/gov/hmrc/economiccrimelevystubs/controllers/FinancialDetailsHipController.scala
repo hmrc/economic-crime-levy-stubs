@@ -17,10 +17,10 @@
 package uk.gov.hmrc.economiccrimelevystubs.controllers
 
 import play.api.libs.json.Json
-import play.api.mvc._
+import play.api.mvc.*
 import uk.gov.hmrc.economiccrimelevystubs.data.FinancialStubDataHip
-import uk.gov.hmrc.economiccrimelevystubs.models.hip._
-import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
+import uk.gov.hmrc.economiccrimelevystubs.models.hip.*
+import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework.*
 import uk.gov.hmrc.economiccrimelevystubs.utils.Logger.logger
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
@@ -40,36 +40,344 @@ class FinancialDetailsHipController @Inject() (
         errorResult
       case (Right(requestBody), Right(_)) =>
         requestBody.idNumber.takeRight(3) match {
-          case "003" => Created(Json.toJson(FinancialStubDataHip.financialDataDueObligation()))
-          case "004" => Created(Json.toJson(FinancialStubDataHip.financialDataOverdueObligationResponse()))
-          case "005" => Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationResponse()))
-          case "006" => Created(Json.toJson(FinancialStubDataHip.financialDataPartiallyPaidResponse()))
-          case "007" => Created(Json.toJson(FinancialStubDataHip.financialDataPaidPartiallyPaidOverdueResponse()))
-          case "008" => Created(Json.toJson(FinancialStubDataHip.financialDataOverpaidObligationSinglePayment()))
-          case "009" => Created(Json.toJson(FinancialStubDataHip.financialDataOverpaidObligationMultiplePayments()))
+          case "003" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataDueObligation()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "004" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataOverdueObligationResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "005" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "006" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPartiallyPaidResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "007" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaidPartiallyPaidOverdueResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "008" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataOverpaidObligationSinglePayment()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "009" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataOverpaidObligationMultiplePayments()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
           case "010" =>
-            Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationPartialPaidInterestResponse()))
-          case "011" => Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationPaidInterestResponse()))
-          case "012" => Created(Json.toJson(FinancialStubDataHip.financialDataOverdueObligationWithInterestResponse()))
-          case "013" => Created(Json.toJson(FinancialStubDataHip.financialDataRefundForOverpayment()))
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationPartialPaidInterestResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "011" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationPaidInterestResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "012" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataOverdueObligationWithInterestResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "013" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataRefundForOverpayment()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
           case "014" =>
-            Created(Json.toJson(FinancialStubDataHip.financialDataOverdueObligationWithoutInterestDocumentFormed()))
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataOverdueObligationWithoutInterestDocumentFormed()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
           case "015" => Created(Json.toJson(FinancialStubDataHip.financialDataUnexpectedDocumentType()))
           case "016" =>
-            Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationWithReversalLineItemResponse()))
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationWithReversalLineItemResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
           case "017" =>
-            Created(Json.toJson(FinancialStubDataHip.financialDataPaidChargeWithInterestAndReversalResponse()))
-          case "018" => Created(Json.toJson(FinancialStubDataHip.financialDataPaidPartiallyPaidOverdueResponse()))
-          case "019" => Created(Json.toJson(FinancialStubDataHip.financialDataPaidPartiallyPaidOverdueResponse()))
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaidChargeWithInterestAndReversalResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "018" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaidPartiallyPaidOverdueResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "019" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaidPartiallyPaidOverdueResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
           case "020" => Created(Json.toJson(FinancialStubDataHip.financialDataClearingDocument()))
-          case "022" => Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationResponse()))
-          case "023" => Created(Json.toJson(FinancialStubDataHip.financialDataDueObligation()))
-          case "024" => Created(Json.toJson(FinancialStubDataHip.financialDataPaymentOnAccount()))
-          case "025" => Created(Json.toJson(FinancialStubDataHip.financialDataThirdLatePaymentPenalty()))
-          case "026" => Created(Json.toJson(FinancialStubDataHip.financialDataSecondLateFilingPenalty()))
-          case "027" => Created(Json.toJson(FinancialStubDataHip.financialDataFirstLatePaymentPenalty()))
-          case "028" => Created(Json.toJson(FinancialStubDataHip.financialDataFirstLateFilingPenalty()))
-          case "029" => Created(Json.toJson(FinancialStubDataHip.financialDataDueObligationWithPenalties()))
+          case "022" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaidObligationResponse()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "023" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataDueObligation()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "024" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataPaymentOnAccount()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "025" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataThirdLatePaymentPenalty()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "026" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataSecondLateFilingPenalty()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "027" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataFirstLatePaymentPenalty()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "028" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataFirstLateFilingPenalty()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
+          case "029" =>
+            if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
+              Created(Json.toJson(FinancialStubDataHip.financialDataDueObligationWithPenalties()))
+            } else {
+              UnprocessableEntity(
+                Json.obj(
+                  "errors" -> Json.obj(
+                    "processingDate" -> "2025-10-16T10:00:00Z",
+                    "code"           -> "018",
+                    "text"           -> "No Data Identified"
+                  )
+                )
+              )
+            }
           // batch call
           case "030" =>
             if (requestBody.selectionCriteria.flatMap(_.dateRange).map(_.dateTo).contains(LocalDate.now.toString)) {
