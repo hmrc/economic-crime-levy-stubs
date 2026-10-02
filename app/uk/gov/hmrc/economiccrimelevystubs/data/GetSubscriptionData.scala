@@ -20,6 +20,9 @@ import uk.gov.hmrc.economiccrimelevystubs.models.integrationframework._
 
 object GetSubscriptionData {
 
+  def hipValidIndividualSubscription(eclReference: String): HipGetSubscriptionResponse =
+    HipGetSubscriptionResponse(validIndividualSubscription(eclReference))
+
   def validIndividualSubscription(eclReference: String): GetSubscriptionResponse =
     GetSubscriptionResponse(
       processingDateTime = "2024-01-22T13:49:51Z",
@@ -28,6 +31,9 @@ object GetSubscriptionData {
       primaryContactDetails = getPrimaryContactDetails,
       additionalDetails = getAdditionalDetails(eclReference)
     )
+
+  def hipValidOrganisationSubscription(eclReference: String): HipGetSubscriptionResponse =
+    HipGetSubscriptionResponse(validOrganisationSubscription(eclReference))
 
   def validOrganisationSubscription(eclReference: String): GetSubscriptionResponse =
     GetSubscriptionResponse(

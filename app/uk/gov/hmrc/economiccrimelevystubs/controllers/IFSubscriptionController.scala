@@ -28,7 +28,7 @@ import java.time.{Clock, Instant}
 import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 
-class SubscriptionController @Inject() (
+class IFSubscriptionController @Inject() (
   cc: ControllerComponents,
   eclRegistrationReferenceService: EclRegistrationReferenceService,
   clock: Clock

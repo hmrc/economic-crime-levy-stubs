@@ -27,14 +27,14 @@ import org.mockito.Mockito.when
 import java.time.{Clock, Instant, ZoneId}
 import scala.concurrent.Future
 
-class SubscriptionControllerSpec extends SpecBase {
+class IFSubscriptionControllerSpec extends SpecBase {
 
   val mockEclRegistrationReferenceService: EclRegistrationReferenceService = mock[EclRegistrationReferenceService]
 
   private val now              = Instant.now
   private val stubClock: Clock = Clock.fixed(now, ZoneId.systemDefault)
 
-  val controller = new SubscriptionController(
+  val controller = new IFSubscriptionController(
     cc,
     mockEclRegistrationReferenceService,
     stubClock
