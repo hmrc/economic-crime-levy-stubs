@@ -37,7 +37,6 @@ class HipSubscriptionController @Inject() (
     extends BackendController(cc)
     with Logging {
 
-  // TODO part of next ticket
   def createSubscription(safeId: String): Action[JsValue] =
     Action.async(parse.json) { implicit request =>
       logger.info(
