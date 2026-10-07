@@ -30,12 +30,12 @@ import java.time.{Clock, Instant}
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-class ReturnHipController @Inject()(
-                                     cc: ControllerComponents,
-                                     eclReturnReferenceService: ChargeReferenceService,
-                                     clock: Clock
-                                   )(implicit ec: ExecutionContext)
-  extends BackendController(cc)
+class ReturnHipController @Inject() (
+  cc: ControllerComponents,
+  eclReturnReferenceService: ChargeReferenceService,
+  clock: Clock
+)(implicit ec: ExecutionContext)
+    extends BackendController(cc)
     with Logging {
 
   private val logID = "D82EBAB67AC6D7565C0682CA91BDC577"
@@ -44,11 +44,16 @@ class ReturnHipController @Inject()(
     case "400" =>
       BadRequest(
         Json.toJson(
-          HipErrorWrapper(Origin.HoD, HipSystemErrorObject(HipError("400", logID, "Submission has not passed validation.")))
+          HipErrorWrapper(
+            Origin.HoD,
+            HipSystemErrorObject(HipError("400", logID, "Submission has not passed validation."))
+          )
         )
       )
     case "422" =>
-      UnprocessableEntity(Json.toJson(Hip422Error(HipInner422Err("005", "2022-01-31T09:26:17Z", "No Form Bundle found"))))
+      UnprocessableEntity(
+        Json.toJson(Hip422Error(HipInner422Err("005", "2022-01-31T09:26:17Z", "No Form Bundle found")))
+      )
     case "500" =>
       InternalServerError(
         Json.toJson(HipErrorWrapper(Origin.HoD, HipSystemErrorObject(HipError("500", logID, "Internal Server Error"))))
@@ -61,14 +66,13 @@ class ReturnHipController @Inject()(
       )
   }
 
-  def getReturn(periodKey: String, eclRegistrationReference: String): Action[AnyContent] = Action { _ => {
+  def getReturn(periodKey: String, eclRegistrationReference: String): Action[AnyContent] = Action { _ =>
     logger.info("Received GET return request")
 
-    val success: PartialFunction[String, Result] = {
-      case "007" | "018" | "019" => getEclSuccessRequestBuilder(periodKey, eclRegistrationReference)
+    val success: PartialFunction[String, Result] = { case "007" | "018" | "019" =>
+      getEclSuccessRequestBuilder(periodKey, eclRegistrationReference)
     }
     success.orElse(hipError).applyOrElse(eclRegistrationReference.takeRight(3), _ => InternalServerError)
-  }
   }
 
   def getEclSuccessRequestBuilder(periodKey: String, eclRegistrationReference: String): Result =
@@ -79,7 +83,6 @@ class ReturnHipController @Inject()(
         )
       )
     )
-
 
   def submitReturn(eclRegistrationReference: String): Action[JsValue] =
     Action.async(parse.json) { implicit request =>

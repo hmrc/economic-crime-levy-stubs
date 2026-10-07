@@ -32,7 +32,7 @@ class ReturnHipControllerSpec extends SpecBase {
 
   val mockChargeReferenceService: ChargeReferenceService = mock[ChargeReferenceService]
 
-  private val now = Instant.now
+  private val now              = Instant.now
   private val stubClock: Clock = Clock.fixed(now, ZoneId.systemDefault)
 
   val controller = new ReturnHipController(
@@ -91,7 +91,7 @@ class ReturnHipControllerSpec extends SpecBase {
   "submitReturn" should {
     "return 201 CREATED with the full HIP body when it is not a nil return" in {
       val eclRegistrationReference = "XMECL0000000001"
-      val chargeReference = "XY000000000001"
+      val chargeReference          = "XY000000000001"
 
       when(mockChargeReferenceService.getNextChargeReference).thenReturn(Future.successful(chargeReference))
 
@@ -102,7 +102,7 @@ class ReturnHipControllerSpec extends SpecBase {
           fakeRequestWithJsonBody(returnJson)
         )
 
-      status(result) shouldBe CREATED
+      status(result)        shouldBe CREATED
       contentAsJson(result) shouldBe Json.toJson(
         HipSuccessWrapper[HipSubmitEclReturnResponse](
           HipSubmitEclReturnResponse(
@@ -127,7 +127,7 @@ class ReturnHipControllerSpec extends SpecBase {
           fakeRequestWithJsonBody(returnJson)
         )
 
-      status(result) shouldBe CREATED
+      status(result)        shouldBe CREATED
       contentAsJson(result) shouldBe Json.toJson(
         HipSuccessWrapper[HipSubmitEclReturnResponse](
           HipSubmitEclReturnResponse(
@@ -153,7 +153,7 @@ class ReturnHipControllerSpec extends SpecBase {
       val result: Future[Result] =
         controller.getReturn(periodKey, eclReference)(fakeRequest)
 
-      status(result) shouldBe OK
+      status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
         HipSuccessWrapper[GetEclReturnSubmissionResponse](
           ReturnStubData.validReturnMedium(periodKey, eclReference)
@@ -167,7 +167,7 @@ class ReturnHipControllerSpec extends SpecBase {
       val result: Future[Result] =
         controller.getReturn(periodKey, eclReference)(fakeRequest)
 
-      status(result) shouldBe OK
+      status(result)        shouldBe OK
       contentAsJson(result) shouldBe Json.toJson(
         HipSuccessWrapper[GetEclReturnSubmissionResponse](
           ReturnStubData.validReturnMedium(periodKey, eclReference)
