@@ -10,6 +10,7 @@ GET         /economic-crime-levy/subscription/:eclRegistrationReference         
 
 # Hip
 GET         /etmp/RESTAdaptor/economic-crime-levy/subscription/:regReference        uk.gov.hmrc.economiccrimelevystubs.controllers.HipSubscriptionController.getSubscription(regReference)
+POST        /etmp/RESTAdaptor/economic-crime-levy/subscription/:safeId              uk.gov.hmrc.economiccrimelevystubs.controllers.HipSubscriptionController.createSubscription(safeId)
 
 GET         /economic-crime-levy/return/:periodKey/:eclRegistrationReference        uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnController.getReturn(periodKey, eclRegistrationReference)
 POST        /economic-crime-levy/return/:eclRegistrationReference                   uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnController.submitReturn(eclRegistrationReference)
