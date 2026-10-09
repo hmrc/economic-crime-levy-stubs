@@ -28,7 +28,7 @@ import java.time.{Clock, Instant}
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-class ReturnController @Inject() (
+class ReturnIfController @Inject() (
   cc: ControllerComponents,
   eclReturnReferenceService: ChargeReferenceService,
   clock: Clock

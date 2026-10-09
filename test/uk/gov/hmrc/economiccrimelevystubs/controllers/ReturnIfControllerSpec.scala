@@ -27,14 +27,14 @@ import org.mockito.Mockito.when
 import java.time.{Clock, Instant, ZoneId}
 import scala.concurrent.Future
 
-class ReturnControllerSpec extends SpecBase {
+class ReturnIfControllerSpec extends SpecBase {
 
   val mockChargeReferenceService: ChargeReferenceService = mock[ChargeReferenceService]
 
   private val now              = Instant.now
   private val stubClock: Clock = Clock.fixed(now, ZoneId.systemDefault)
 
-  val controller = new ReturnController(
+  val controller = new ReturnIfController(
     cc,
     mockChargeReferenceService,
     stubClock
