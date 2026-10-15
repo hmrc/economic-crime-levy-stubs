@@ -12,8 +12,8 @@ GET         /economic-crime-levy/subscription/:eclRegistrationReference         
 GET         /etmp/RESTAdaptor/economic-crime-levy/subscription/:regReference        uk.gov.hmrc.economiccrimelevystubs.controllers.HipSubscriptionController.getSubscription(regReference)
 POST        /etmp/RESTAdaptor/economic-crime-levy/subscription/:safeId              uk.gov.hmrc.economiccrimelevystubs.controllers.HipSubscriptionController.createSubscription(safeId)
 
-GET         /economic-crime-levy/return/:periodKey/:eclRegistrationReference        uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnController.getReturn(periodKey, eclRegistrationReference)
-POST        /economic-crime-levy/return/:eclRegistrationReference                   uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnController.submitReturn(eclRegistrationReference)
+GET         /economic-crime-levy/return/:periodKey/:eclRegistrationReference        uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnIfController.getReturn(periodKey, eclRegistrationReference)
+POST        /economic-crime-levy/return/:eclRegistrationReference                   uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnIfController.submitReturn(eclRegistrationReference)
 
 GET         /enrolments/cleanup-references                                          uk.gov.hmrc.economiccrimelevystubs.controllers.EnrolmentCleanUpController.referencesForCleanup()
 
@@ -21,4 +21,8 @@ GET         /echo                                                               
 
 POST        /dms-submission/submit                                                  uk.gov.hmrc.economiccrimelevystubs.controllers.DmsSubmissionController.submit()
 
+# HIP routes
 POST        /etmp/RESTAdapter/cross-regime/taxpayer/financial-data/query            uk.gov.hmrc.economiccrimelevystubs.controllers.FinancialDetailsHipController.getFinancialDetailsHip
+
+GET         /etmp/RESTAdapter/economic-crime-levy/return/:periodKey/:eclRegistrationReference        uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnHipController.getReturn(periodKey, eclRegistrationReference)
+POST        /etmp/RESTAdapter/economic-crime-levy/return/:eclRegistrationReference                   uk.gov.hmrc.economiccrimelevystubs.controllers.ReturnHipController.submitReturn(eclRegistrationReference)
